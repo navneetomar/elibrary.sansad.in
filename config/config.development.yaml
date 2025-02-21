@@ -7,7 +7,7 @@ debug: true
 ui:
   ssl: false
   host: localhost
-  port: 80
+  port: 4000
   # NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
   nameSpace: /
   # The rateLimiter settings limit each IP to a 'max' of 500 requests per 'windowMs' (1 minute).
@@ -21,9 +21,9 @@ ui:
 # NOTE: these settings define which (publicly available) REST API to use. They are usually
 # 'synced' with the 'dspace.server.url' setting in your backend's local.cfg.
 rest:
-  ssl: true
-  host: elibrary.sansad.in
-  port: 443
+  ssl: false
+  host: localhost
+  port: 8080
   # NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
   nameSpace: /server
 

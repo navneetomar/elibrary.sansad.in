@@ -14,29 +14,29 @@
     <span [style.fontSize.px]="fontSize" class="d-flex flex-wrap justify-content-end">
       <!-- Count of items, changes label based on mobile view -->
       <app-count class="d-block" [label]="isMobile ? 'Total Items' : 'Total Items'" [scope]=""
-        [dsoType]="DSpaceObjectType.ITEM"></app-count>
+        [dsoType]="DSpaceObjectType.ITEM"></app-count>;&nbsp;
 
         <app-count class="d-none d-md-block" [label]="isMobile ? 'Papers Laid' : 'Digitised Document Comprising Papers Laid'"
-        [scope]="'6c17e597-0efc-4518-8076-df80b21a73d3'"></app-count>
+        [scope]="'6c17e597-0efc-4518-8076-df80b21a73d3'"></app-count>;&nbsp;
       
       <!-- This div is used for line break without taking extra space -->
       <div style="flex-basis: 100%; height: 0; margin: 0; padding: 0;"></div>
 
       <!-- Additional counts for various document types, hidden on small screens -->
       <app-count class="d-none d-md-block" [label]="isMobile ? 'Books & Docs' : 'Books'"
-        [scope]="'c5ba6e19-880d-4fae-accc-7c8851ede5d6'"></app-count>
+        [scope]="'c5ba6e19-880d-4fae-accc-7c8851ede5d6'"></app-count>;&nbsp;
 
       <app-count class="d-none d-md-block" [label]="'Reports'"
-        [scope]="'5923c438-7e2a-4351-9ca9-2d188621ff08'"></app-count>
+        [scope]="'5923c438-7e2a-4351-9ca9-2d188621ff08'"></app-count>;&nbsp;
 
       <app-count class="d-none d-md-block" [label]="'Periodicals'"
-        [scope]="'a3332ba9-a2d7-4830-97ca-428bb656287e'"></app-count>
+        [scope]="'a3332ba9-a2d7-4830-97ca-428bb656287e'"></app-count>;&nbsp;
 
       <app-count class="d-none d-md-block" [label]="'Bills'" 
-        [scope]="'865c088e-f3e9-49ae-8c80-755e5f487a47'"></app-count>
+        [scope]="'865c088e-f3e9-49ae-8c80-755e5f487a47'"></app-count>;&nbsp;
 
       <app-count class="d-none d-md-block" [label]="'E-Parlib'"
-        [scope]="'ca1f325a-61ab-4d3c-857d-f48a9b78b1a2'"></app-count>
+        [scope]="'ca1f325a-61ab-4d3c-857d-f48a9b78b1a2'"></app-count>;&nbsp;
     </span>
 
     <!-- Login button for unauthenticated users -->

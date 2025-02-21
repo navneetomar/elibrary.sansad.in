@@ -1,9 +1,29 @@
-<!-- <ds-banner
-[imgUrl]="'assets/images/banner_collection_detail.png'"
-[title]="titleBanner"
-[description]="desc"
->
-</ds-banner> -->
+<!-- 
+
+  This component represents the community page in the application. It includes the following sections:
+
+  1. Breadcrumb Navigation:
+     - Displays breadcrumb navigation for the community page.
+     - Uses `ng-container` to conditionally render breadcrumb items.
+     - `breadcrumb` template for non-active breadcrumb items.
+     - `activeBreadcrumb` template for the active breadcrumb item.
+
+  2. Community Information:
+     - Displays community information if the community data has successfully loaded.
+     - Includes a logo, title, number of publications, handle link, and introductory text.
+
+  3. Search Form:
+     - Displays a search form specific to the community.
+
+  4. Community Page Content:
+     - Displays the community page header, edit button (if the user is an admin), and browse-by links.
+     - Includes sub-community and sub-collection lists.
+     - Displays copyright text if available.
+
+  5. Error and Loading States:
+     - Displays an error message if the community data failed to load.
+     - Displays a loading message while the community data is being loaded.
+-->
 <div>
   <ng-container *ngVar="breadcrumbs$ | async as breadcrumbs">
     <nav *ngIf="showBreadcrumbs$ | async" aria-label="breadcrumb" class="nav-breadcrumb cus-breadcrumbs ">
@@ -54,19 +74,9 @@
             <div class="box-detail-infor flex-full">
               <p class="title-comm">{{titleBanner}}</p>
               <p class="number-publications">
-                <!-- {{ getCounterPublicationsByID(communityPayload.id) }} -->
-                <app-count [scope]="communityPayload.id" [label]="'publications available'" [dsoType]="DSpaceObjectType.ITEM"></app-count>
+                <app-count [scope]="communityPayload.id" [isLargeFont]="true" [label]="'Publications available'"
+                  [dsoType]="DSpaceObjectType.ITEM"></app-count>
               </p>
-              
-
-
-
-              <!-- <ds-themed-comcol-page-handle
-                [content]="communityPayload.handle"
-                [title]="'community.page.handle'"
-              >
-              </ds-themed-comcol-page-handle> -->
-
               <p><a [href]="[communityPayload.handle]" *ngIf="communityPayload.handle"
                   class="mb-2 handle-comm">{{communityPayload.handle}}</a></p>
               <ds-comcol-page-content [content]="communityPayload.introductoryText" [hasInnerHtml]="true">
@@ -96,70 +106,6 @@
                 </div>
               </header>
             </div>
-            <!-- <div class="d-flex flex-row mb-4 pb-4">
-              <header class="comcol-header mr-auto w-100">
-                Community name
-                <ds-comcol-page-header
-                  [name]="communityPayload.name"
-                ></ds-comcol-page-header>
-                Community logo
-                <div class="d-flex row w-100 mt-5">
-                  <div class="col-lg-4 col-md-12">
-                    <ds-comcol-page-logo
-                      *ngIf="logoRD$"
-                      [logo]="(logoRD$ | async)?.payload"
-                      [alternateText]="'Community Logo'"
-                    >
-                    </ds-comcol-page-logo>
-                  </div>
-                  <div class="col-lg-8 col-md-12">
-                    Handle
-                    <ds-themed-comcol-page-handle
-                      [content]="communityPayload.handle"
-                      [title]="'community.page.handle'"
-                    >
-                    </ds-themed-comcol-page-handle>
-                    <div
-                      *ngIf="
-                        communityPayload?.metadata['dc.description.abstract'] &&
-                        communityPayload?.metadata
-                      "
-                    >
-                      <ds-comcol-page-content
-                        [content]="
-                          communityPayload?.metadata['dc.description.abstract'][0]
-                            ?.value
-                        "
-                        [hasInnerHtml]="true"
-                        [title]="'community.page.description.abstract'"
-                      >
-                      </ds-comcol-page-content>
-                    </div>
-                    Introductory text
-                    <ds-comcol-page-content
-                      [content]="communityPayload.introductoryText"
-                      [hasInnerHtml]="true"
-                    >
-                    </ds-comcol-page-content>
-                    News
-                    <ds-comcol-page-content
-                      [content]="communityPayload.sidebarText"
-                      [hasInnerHtml]="true"
-                      [title]="'community.page.news'"
-                    >
-                    </ds-comcol-page-content>
-                  </div>
-                </div>
-              </header>
-              <div class="pl-2 space-children-mr">
-                <ds-dso-page-edit-button
-                  *ngIf="isCommunityAdmin$ | async"
-                  [pageRoute]="communityPageRoute$ | async"
-                  [dso]="communityPayload"
-                  [tooltipMsg]="'community.page.edit'"
-                ></ds-dso-page-edit-button>
-              </div>
-            </div> -->
             <section class="comcol-page-browse-section">
               <!-- Browse-By Links -->
               <ds-themed-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">

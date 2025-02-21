@@ -635,6 +635,7 @@ const DIRECTIVES = [
     ...SHARED_ITEM_PAGE_COMPONENTS,
     ...DIRECTIVES,
     CountComponent,
+    LastUpdatedComponent,
     TranslateModule,
   ],
 })

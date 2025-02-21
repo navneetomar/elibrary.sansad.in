@@ -12,6 +12,8 @@ export class CountComponent implements OnInit {
   @Input() label: string = 'Total Items';
   @Input() scope: string | null = null; // If null, fetch total from all collections
   @Input() dsoType: string = 'ITEM'; // Default type is ITEM, can be overridden
+  @Input() fontSize: string = '12px'; // If true, show title with count
+  @Input() isLargeFont: boolean = false; // If true, show title with count
 
   totalItems: number = 0;
   isLoading: boolean = true;
@@ -25,6 +27,9 @@ export class CountComponent implements OnInit {
     this.baseUrl = this.appConfig.rest.baseUrl;
     //this.baseUrl = environment.rest.baseUrl;
     this.fetchTotalItems();
+    if(this.isLargeFont) {
+      this.fontSize = '20px';
+    }
   }
 
   fetchTotalItems() {
