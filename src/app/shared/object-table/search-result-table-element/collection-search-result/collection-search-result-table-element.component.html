@@ -1,0 +1,35 @@
+<!-- <div class="card" [routerLink]="['/collections/',  dso.id]">
+  <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/collections/', dso.id]" class="card-img-top" [attr.title]="'search.results.view-result' | translate">
+    <ds-thumbnail [thumbnail]="(dso.logo | async)?.payload" [limitWidth]="false">
+    </ds-thumbnail>
+  </a>
+  <span *ngIf="linkType == linkTypes.None" class="card-img-top">
+    <ds-thumbnail [thumbnail]="(dso.logo | async)?.payload" [limitWidth]="false">
+    </ds-thumbnail>
+  </span>
+  <div class="card-body" [ngbTooltip]="tipContent">
+    <ds-type-badge *ngIf="showLabel" [object]="dso" [viewMode]="'grid'"></ds-type-badge>
+    <span class="card-title limit-p">{{dso.name}}</span>
+    <p *ngIf="dso.shortDescription" class="card-text limit-p">{{dso.shortDescription}}</p>
+  </div>
+  <ng-content></ng-content>
+</div>
+<ng-template #tipContent>{{dso.name}}</ng-template> -->
+
+<div class="row result-search-list" [routerLink]="['/collections/',  dso.id]">
+  <div class="col-2 thumb">
+    <ds-thumbnail [thumbnail]="(dso.logo | async)?.payload" [limitWidth]="false">
+    </ds-thumbnail>
+  </div>
+  <div class="col-10">
+    <div class="content-wrapper">
+      <ds-type-badge *ngIf="showLabel" [object]="dso" [viewMode]="'table'"></ds-type-badge>
+      <span class="result-title">{{dso.name}}</span>
+      <p *ngIf="dso.firstMetadataValue('dc.description')" class="result-desc">
+        {{
+          dso.firstMetadataValue('dc.description')
+        }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<!-- <div class="container pl-0"> -->
+  <div class="row h-100">
+    <!-- <div *ngIf="showThumbnails" class="box-logo-item col-12 col-xl-2 col-lg-4">
+      <a
+        class="d-block"
+        *ngIf="linkType != linkTypes.None"
+        [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+        rel="noopener noreferrer"
+        [routerLink]="['/topics/' + dso.id]"
+        class="dont-break-out"
+      >
+        <div *ngIf="!(logo$ | async)" class="thumbnail-content outer">
+          <div class="inner">
+            <div class="centered">
+              <ds-themed-loading [spinner]="true"></ds-themed-loading>
+            </div>
+          </div>
+        </div>
+        <img [src]="logoTopic" class="img-collection" alt="dso.id" />
+      </a>
+    </div> -->
+    <div class="col-2">
+      <span
+      [innerHTML]="firstMetadataValue('dc.date.issued')"
+      ></span>
+    </div>
+    <div
+      class="detail-item col-7"
+    >
+    <span
+    [innerHTML]="dsoTitle"
+    class="lead item-list-title"
+    >
+
+    </span>
+      <div class="box-type-item">
+        <!-- <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge> -->
+      </div>
+      <a
+        *ngIf="linkType != linkTypes.None"
+        [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+        rel="noopener noreferrer"
+        [routerLink]="['/topics/' + dso.id]"
+        class="lead item-list-title"
+        [innerHTML]="dsoTitle"
+      ></a>
+      <span
+        *ngIf="linkType == linkTypes.None"
+        class="lead item-list-title"
+        [innerHTML]="dsoTitle"
+      ></span>
+      <div
+        *ngIf="dso.shortDescription"
+        class="text-muted abstract-text"
+        [innerHTML]="firstMetadataValue('dc.description.abstract')"
+      ></div>
+    </div>
+    <div class="col-2 d-flex align-items-center">
+      <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+    </div>
+    <div class="col-1 d-flex align-items-center">
+      <button type="button" class="btn btn-view">View</button>
+    </div>
+  </div>
+<!-- </div> -->

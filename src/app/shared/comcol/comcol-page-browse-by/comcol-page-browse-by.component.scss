@@ -1,0 +1,37 @@
+:host ::ng-deep {
+  .list-group.list-group-horizontal {
+    gap: 10px;
+    a{
+      color: var(--neutral-dark-grey, #666);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px; 
+      letter-spacing: 0.15px;
+      border-radius: 4px 4px 0px 0px;
+      border-top: 1px solid var(--neutral-light-grey, #DDD);
+      border-right: 1px solid var(--neutral-light-grey, #DDD);
+      border-left: 1px solid var(--neutral-light-grey, #DDD);
+      }
+    a.list-group-item.active {
+      color: #fff;
+      background: var(--primary-green-g-300, #008080);
+    }
+    a.list-group-item {
+      border-bottom: 0;
+      &:hover {
+        background: var(--primary-green-g-300, #008080);
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+  @media screen and (max-width: 1199.98px) {
+    .list-group-horizontal .list-group-item {
+      margin-right: -1px;
+      margin-bottom: 0;
+      font-size: 11px;
+      padding: 10px 6px;
+    }
+  }
+}

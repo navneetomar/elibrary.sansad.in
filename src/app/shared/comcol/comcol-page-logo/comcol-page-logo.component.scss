@@ -1,0 +1,22 @@
+:host {
+  .logo-comcol-page-logo {
+    width: 122px;
+    height: 163px;
+    object-fit: cover;
+  }
+  .dso-logo-no-thumbnail {
+    width: 122px;
+    height: 163px;
+  }
+  .logo-comcol-page-logo.thumb-coll-comm{
+    width: 265px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 40px;
+  }
+  @media (max-width: 575.98px) {
+    .logo-comcol-page-logo {
+      width: 100%;
+    }
+  }
+}

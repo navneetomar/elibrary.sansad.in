@@ -1,0 +1,76 @@
+// temporary fix for bootstrap 4 beta btn color issue
+.btn-secondary {
+  background-color: var(--bs-input-bg);
+  color: var(--bs-input-color);
+}
+
+.jump-title{
+    color: var(--neutral-black, #222);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px; 
+    letter-spacing: 0.5px;
+}
+.date-input-title{
+  color: var(--neutral-black, #222);
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+.input-search-start-with {
+  display: flex;
+  height: 48px;
+  padding: var(--spacing-12, 12px);
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--spacing-4, 4px);
+  border: 1px solid var(--neutral-light-grey, #DDD);
+  background: var(--neutral-smoke, #FAFAFA);
+  &[aria-label]{
+    overflow: hidden;
+    color: var(--neutral-dark-grey, #666);
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+  }
+}
+.input-group{
+  position: relative;
+  .form-control{
+    border-radius: 4px !important;
+  }
+  .btn-search-start-with{
+    position: absolute;
+    right: 24px;
+    top: 6px;
+    display: flex;
+    padding: 11px;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--spacing-4, 4px);
+    background: var(--primary-green-g-300, #008080);
+    color: #fff;
+    height: 36px;
+    width: 36px;
+    border: 0;
+  }
+}
+@media screen and (max-width: 1199.98px) {
+  .input-search-start-with {
+    padding: 10px 20px;
+    min-height: 45px;
+  }
+}
+@media (max-width: 575.98px) {
+  .box-search {
+    gap: 10px;
+  }
+  .input-search-start-with {
+    padding: 8px 11px;
+    min-height: 50px;
+  }
+}

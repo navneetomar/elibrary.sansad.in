@@ -1,0 +1,18 @@
+<div *ngIf="!isCollComm" class="background d-flex justify-content-center align-items-center" [ngStyle]="{'background-image': 'url(\'' + imgUrl + '\')'}">
+    <div class="title">
+      {{title}}
+    </div>
+    <div class="desc" *ngIf="description">
+      <div class="container d-flex justify-content-center align-items-center">
+        <div class="text">
+          {{description}}
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="isCollComm" class="d-flex">
+  <div></div>
+  <div><p>{{title}}</p>
+    <p>2000 Publications available</p>
+    <p>{{description}}</p></div>
+</div>

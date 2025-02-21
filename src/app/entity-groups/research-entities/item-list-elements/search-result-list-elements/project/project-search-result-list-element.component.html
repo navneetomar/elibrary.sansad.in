@@ -1,0 +1,77 @@
+<div class="container" [ngClass]="isRecentItem === true ? ' box-item' : 'pl-0'">
+  <div
+    class="row h-100 box-item-content"
+    [ngClass]="isRecentItem === true ? '' : 'item-content-no-home pl-0'"
+  >
+    <div
+      *ngIf="showThumbnails"
+      [ngClass]="
+        isRecentItem === true
+          ? 'col-12 col-lg-4 col-md-12 px-0'
+          : 'col-12 col-xl-2 col-lg-4'
+      "
+    >
+      <a
+        class="d-block"
+        *ngIf="linkType != linkTypes.None"
+        [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+        rel="noopener noreferrer"
+        [routerLink]="[itemPageRoute]"
+        class="dont-break-out"
+      >
+        <ds-thumbnail
+          [thumbnail]="dso?.thumbnail | async"
+          [defaultImage]="'assets/images/cover_book_enhira.png'"
+          [alt]="'thumbnail.project.alt'"
+          [placeholder]="'thumbnail.project.placeholder'"
+        >
+        </ds-thumbnail>
+      </a>
+      <span *ngIf="linkType == linkTypes.None" class="dont-break-out">
+        <ds-thumbnail
+          [thumbnail]="dso?.thumbnail | async"
+          [defaultImage]="'assets/images/cover_book_enhira.png'"
+          [alt]="'thumbnail.project.alt'"
+          [placeholder]="'thumbnail.project.placeholder'"
+        >
+        </ds-thumbnail>
+      </span>
+    </div>
+    <div
+      class="detail-item"
+      [ngClass]="showThumbnails ? 'col-6 col-md-8' : 'col-md-12'"
+      [ngClass]="
+        isRecentItem ? 'col-12 col-lg-8 col-md-12' : 'col-12 col-xl-10 col-lg-8'
+      "
+    >
+      <div class="box-type-item">
+        <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+      </div>
+      <ds-truncatable [id]="dso.id">
+        <a
+          *ngIf="linkType != linkTypes.None"
+          [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+          rel="noopener noreferrer"
+          [routerLink]="[itemPageRoute]"
+          class="lead item-list-title dont-break-out"
+          [innerHTML]="dsoTitle"
+        ></a>
+        <span
+          *ngIf="linkType == linkTypes.None"
+          class="lead item-list-title dont-break-out"
+          [innerHTML]="dsoTitle"
+        ></span>
+        <!--<span class="text-muted">-->
+        <!--<ds-truncatable-part [id]="dso.id" [minLines]="1">-->
+        <!--<span *ngIf="dso.allMetadata(['project.identifier.status']).length > 0"-->
+        <!--class="item-list-status">-->
+        <!--<span *ngFor="let value of allMetadataValues(['project.identifier.status']); let last=last;">-->
+        <!--<span [innerHTML]="value"><span [innerHTML]="value"></span></span>-->
+        <!--</span>-->
+        <!--</span>-->
+        <!--</ds-truncatable-part>-->
+        <!--</span>-->
+      </ds-truncatable>
+    </div>
+  </div>
+</div>

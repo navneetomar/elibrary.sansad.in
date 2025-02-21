@@ -1,0 +1,44 @@
+:host {
+  .title-notes {
+    flex: 1;
+    a.lead {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      color: #207698;
+    }
+  }
+  .box-nodes {
+    width: 100%;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .box-nodes-wrapper {
+    position: relative;
+  }
+  .box-nodes-wrapper::after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid #cfcfcf;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .btn-group > .btn {
+    flex: none !important;
+  }
+  .example-tree-node {
+    height: 50px;
+    padding-left: 0 !important;
+  }
+  // .btn.btn-default.invisible {
+  //   display: none !important;
+  // }
+  // .text-muted {
+  //   padding-top: 20px;
+  // }
+}

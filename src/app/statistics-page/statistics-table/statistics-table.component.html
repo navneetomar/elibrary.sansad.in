@@ -1,0 +1,33 @@
+<div *ngIf="hasData === true || hasData === false" class="m-1">
+  <h3 class="m-1">
+    {{ "statistics.table.title." + getTypeStatistics(report) | translate }}
+  </h3>
+
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <th scope="col"></th>
+        <th
+          scope="col"
+          *ngFor="let header of headers"
+          class="{{ header }}-header"
+          width="12%"
+        >
+          {{ header | translate }}
+        </th>
+      </tr>
+
+      <tr *ngFor="let point of report.points" class="{{ point.id }}-data">
+        <th scope="row">
+          {{ getLabel(point) | async }}
+        </th>
+        <td
+          *ngFor="let header of headers"
+          class="{{ point.id }}-{{ header }}-data"
+        >
+          {{ point.values[header] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

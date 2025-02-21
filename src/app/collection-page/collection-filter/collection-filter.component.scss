@@ -1,0 +1,172 @@
+:host ::ng-deep{
+    .link-search{
+        cursor: pointer;
+    }
+    .label{
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
+    .count{
+        border-radius: var(--spacing-8, 8px);
+        background: var(--primary-orange-o-300, #DE5431);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; 
+        padding: 4px 8px;
+        display: inline;
+        color: #fff;
+        height: max-content;
+    }
+    a{
+        margin-bottom: 10px;
+        gap: 0 10px;
+    }
+    ngb-accordion{
+        .card{
+            margin-bottom: 16px;
+            height: auto;
+            .card-header{
+                margin-bottom: 0;
+                padding: 0;
+                button{
+                    display: block;
+                    padding: 16px;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 24px;
+                    color: #000;
+                    
+                    width: 100%;
+                    text-align: left;
+
+                    outline: none;
+                    position: relative;
+                    &:hover{
+                        text-decoration: none;
+                    }
+                    &:active{
+                        box-shadow: none !important;
+                    }
+                    &::after{
+                        content: "+";
+                        width: 14px;
+                        height: 16px;
+                        font-size: 25px;
+                        right: 16px;
+                        position: absolute;
+                        font-weight: 500;
+                        color: #666;
+                    }
+                }
+                button[aria-expanded='true']{
+                    &::after{
+                        content: "-";
+                        width: 14px;
+                        height: 16px;
+                        font-size: 25px;
+                        right: 16px;
+                        position: absolute;
+                        font-weight: 500;
+                        color: #666;
+                    }
+                }
+            }
+            .card-body{
+                border-bottom: 1px solid var(--neutral-light-grey, #DDD);
+                align-items: normal;
+                
+               a{
+                &:last-child{
+                    margin-bottom: 0;
+                }
+               }
+               a.show-more, a.show-less{
+                    color: var(--primary-b-200, #3EB0D9);
+                
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    text-decoration-line: underline;
+
+                    margin-bottom: 20px;
+                    cursor: pointer;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .search-title{
+        color: var(--neutral-black, #222);
+        
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+       
+    }
+    .title-discover{
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        margin-bottom: 16px;
+    }
+    .add-filter-search{
+        margin-bottom: 16px;
+    }
+
+}
+::ng-deep
+{
+    html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
+        right: calc(var(--ds-slider-handle-width) / -2);
+    }
+    .noUi-horizontal .noUi-handle {
+        width: var(--ds-slider-handle-width);
+        height: 18px;
+        &:before {
+            left: calc(((var(--ds-slider-handle-width) - 2px) / 2) - 2px);
+        }
+        &:after {
+            left: calc(((var(--ds-slider-handle-width) - 2px) / 2) + 2px);
+        }
+        &:focus {
+            outline: none;
+            box-shadow: var(--bs-input-btn-focus-box-shadow);
+        }
+    }
+
+    .noUi-handle{
+        &:after{
+            top: 4px;
+            height: 8px;
+        }
+        &:before{
+            top: 4px;
+            height: 8px;
+        }
+    }
+
+  .noUi-connect {
+      background: #008080;
+  }
+
+  .noUi-target {
+    padding: 0 calc((var(--ds-slider-handle-width) / 2) - 1.5px);
+    margin: 0 1px;
+   height: 8px;
+  }
+  .noUi-connect {
+    margin: 0 calc(-1 * (var(--ds-slider-handle-width) / 2));
+    width: calc(100% + var(--ds-slider-handle-width));
+    height: 8px;
+  }
+}

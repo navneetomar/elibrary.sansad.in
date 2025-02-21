@@ -1,0 +1,22 @@
+<!-- <div
+  *ngIf="item.firstMetadataValue('dspace.entity.type') as type"
+  class="d-inline entity-type"
+>
+  {{ type.toLowerCase() + ".page.titleprefix" | translate }}
+</div> -->
+<!-- <h2 class="item-page-title-field">
+  <span class="dont-break-out">{{ dsoNameService.getName(item) }}</span>
+</h2> -->
+<div class="row" *ngIf="!isFull">
+  <div class="col-3 title-col">
+    Title
+  </div>
+  <div class="col-9 desc-col">
+    <span class="desc">{{ dsoNameService.getName(item) }}</span>
+  </div>
+</div>
+<div class="d-dlex" *ngIf="isFull">
+  <div class="title-col">
+    <span class="desc">{{ dsoNameService.getName(item) }}</span>
+  </div>
+</div>

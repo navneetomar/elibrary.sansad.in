@@ -1,0 +1,17 @@
+:host {
+  a.link-collection {
+    color: var(--neutral-black, #222);
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; 
+    letter-spacing: 0.25px;
+      }
+    .text-muted.abstract-text{
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+}

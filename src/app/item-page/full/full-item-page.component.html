@@ -1,0 +1,126 @@
+<ng-container *ngVar="breadcrumbs$ | async as breadcrumbs">
+  <nav
+    *ngIf="showBreadcrumbs$ | async"
+    aria-label="breadcrumb"
+    class="nav-breadcrumb cus-breadcrumbs"
+  >
+    <ol class="container breadcrumb sub-breadcrumb  ">
+      <ng-container
+        *ngTemplateOutlet="
+          breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb;
+          context: { text: 'home.breadcrumbs', url: '/' }
+        "
+      ></ng-container>
+      <ng-container *ngFor="let bc of breadcrumbs; let last = last">
+        <ng-container
+          *ngTemplateOutlet="
+            !last ? breadcrumb : activeBreadcrumb;
+            context: bc
+          "
+        ></ng-container>
+      </ng-container>
+    </ol>
+  </nav>
+
+  <ng-template #breadcrumb let-text="text" let-url="url">
+    <li class="breadcrumb-item">
+      <div class="breadcrumb-item-limiter">
+        <a [routerLink]="url" class="text-truncate">{{
+          text | translate
+        }}</a>
+      </div>
+    </li>
+  </ng-template>
+
+  <ng-template #activeBreadcrumb let-text="text">
+    <li class="breadcrumb-item active" aria-current="page">
+      <div class="breadcrumb-item-limiter">
+        <div class="text-truncate">{{ text | translate }}</div>
+      </div>
+    </li>
+  </ng-template>
+</ng-container>
+
+<div class="container" *ngVar="itemRD$ | async as itemRD">
+  <div class="row">
+    <div class="col-12 col-md-2">
+    </div>
+    <div class="col-12 col-md-8">
+      
+      <div class="item-page" *ngIf="itemRD?.hasSucceeded" @fadeInOut>
+        <div *ngIf="itemRD?.payload as item">
+          <ds-item-alerts [item]="item"></ds-item-alerts>
+          <ds-item-versions-notice [item]="item"></ds-item-versions-notice>
+          <ds-view-tracker [object]="item"></ds-view-tracker>
+          <div
+            *ngIf="!item.isWithdrawn || (isAdmin$ | async)"
+            class="full-item-info"
+          >
+            <div class="d-flex flex-row">
+              <ds-item-page-title-field
+                class="mr-auto"
+                [item]="item"
+                [isFull]="true"
+              ></ds-item-page-title-field>
+              <div class="pl-2 space-children-mr">
+                <ds-dso-page-edit-button
+                  [pageRoute]="itemPageRoute$ | async"
+                  [dso]="item"
+                  [tooltipMsg]="'item.page.edit'"
+                ></ds-dso-page-edit-button>
+              </div>
+            </div>
+            <div class="simple-view-link my-3" *ngIf="!fromSubmissionObject">
+              <a
+                class="btn btn-outline-primary"
+                [routerLink]="[itemPageRoute$ | async]"
+              >
+                {{ "item.page.link.simple" | translate }}
+              </a>
+            </div>
+            <div class="table-responsive mb-4">
+              <table class="table table-striped">
+                <tbody>
+                  <ng-container *ngFor="let mdEntry of metadata$ | async | keyvalue">
+                    <tr *ngFor="let mdValue of mdEntry.value">
+                      <td>
+                        {{ getMetadataLabel(mdEntry.key) }}
+                      </td>
+                      <td>{{ mdValue.value }}</td>
+                      <td>{{ mdValue.language }}</td>
+                    </tr>
+                  </ng-container>
+                  
+                </tbody>
+              </table>
+            </div>
+            <ds-item-page-full-file-section
+              [item]="item"
+              [isFull]="true"
+            ></ds-item-page-full-file-section>
+            <ds-item-page-collections [item]="item"></ds-item-page-collections>
+            <ds-item-versions class="mt-2" [item]="item"></ds-item-versions>
+            <div class="button-row bottom" *ngIf="fromSubmissionObject">
+              <div class="text-right">
+                <button class="btn btn-outline-secondary mr-1" (click)="back()">
+                  <i class="fas fa-arrow-left"></i>
+                  {{ "item.page.return" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ds-error
+        *ngIf="itemRD?.hasFailed"
+        message="{{ 'error.item' | translate }}"
+      ></ds-error>
+      <ds-themed-loading
+        *ngIf="itemRD?.isLoading"
+        message="{{ 'loading.item' | translate }}"
+      ></ds-themed-loading>
+    </div>
+    <div class="col-12 col-md-2">
+    </div>
+  </div>
+</div>

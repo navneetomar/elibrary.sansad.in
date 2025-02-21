@@ -1,0 +1,32 @@
+<ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+
+<div *ngIf="results$ | async" class="statistic-item">
+  <div class="see-desc">
+    <p class="title mb-2">Xem mô tả</p>
+    <p class="number mb-2">{{ totalVisits }}</p>
+    <ngx-charts-bar-vertical
+      [view]="view"
+      [results]="single"
+      [scheme]="colorScheme"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [barPadding]="2"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-bar-vertical>
+  </div>
+  <div class="see-download">
+    <p class="title mb-2">Xem & Tải</p>
+    <p class="number mb-2">{{ sumCount(totalDownloads, topViewOnline) }}</p>
+    <ngx-charts-bar-vertical
+      [view]="view"
+      [results]="single2"
+      [scheme]="colorScheme2"
+      [barPadding]="2"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-bar-vertical>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+a {
+    &:hover, &focus {
+        text-decoration: none;
+    }
+    span.badge {
+        vertical-align: text-top;
+    }
+    label span{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        flex: 1 0 0;
+        overflow: hidden;
+        color: var(--neutral-dark-grey, #666);
+        text-overflow: ellipsis;
+        font-family: Poppins;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+        margin-bottom: 6px;
+    }
+    
+    .number-count{
+        color: var(--neutral-white, #FFF);
+
+        font-family: Poppins;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; 
+        letter-spacing: 0.5px;
+        display: flex;
+        padding: var(--spacing-4, 4px) var(--spacing-8, 8px);
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-4, 4px);
+        border-radius: var(--spacing-8, 8px);
+        background: var(--primary-orange-o-300, #DE5431);
+    }
+}

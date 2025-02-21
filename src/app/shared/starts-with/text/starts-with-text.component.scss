@@ -1,0 +1,99 @@
+// temporary fix for bootstrap 4 beta btn color issue
+.opt{
+
+  .number-opt{
+    display: flex;
+    height: 24px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: var(--primary-blue-b-200, #629FD3);
+    background: transparent;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+  }
+  .number-opt.active{
+    background: var(--neutral-dark-grey, #666);
+    color: var(--neutral-white, #FFF);
+  }
+  .text-opts{
+    .text-opt{
+      display: flex;
+      width: 20px;
+      height: 24px;
+      padding: 10px 4px;
+      justify-content: center;
+      align-items: center;
+      color: var(--primary-blue-b-200, #629FD3);
+      font-size: 14px;
+      font-weight: 400;
+      cursor: pointer;
+      &:hover{
+        color: #008080;
+      }
+    
+    }
+    .text-opt.active{
+      background: var(--neutral-dark-grey, #666);
+      color: var(--neutral-white, #FFF);
+      border-radius: 4px;
+    }
+  }
+}
+
+.btn-secondary {
+  background-color: var(--bs-input-bg);
+  color: var(--bs-input-color);
+}
+.btn-search-start-with {
+  background: var(--ds-sub-small-color);
+  border-radius: 0px 6px 6px 0px;
+  border: 1px solid var(--ds-sub-small-color);
+  padding-left: 21px;
+  padding-right: 21px;
+  font-size: 18px;
+}
+.input-search-start-with {
+  display: flex;
+  height: 48px;
+  padding: var(--spacing-12, 12px) var(--spacing-8, 8px) var(--spacing-12, 12px) var(--spacing-12, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-4, 4px);
+  flex: 1 0 0;
+}
+.text-title{
+  color: var(--neutral-black, #222);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; 
+  letter-spacing: 0.15px;
+}
+
+.input-group{
+  position: relative;
+  .form-control{
+    border-radius: 4px !important;
+   
+  }
+  .btn-search-start-with{
+    position: absolute;
+    right: 24px;
+    top: 6px;
+    display: flex;
+    padding: 11px;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--spacing-4, 4px);
+    background: var(--primary-green-g-300, #008080);
+    color: #fff;
+    height: 36px;
+    width: 36px;
+    border: 0;
+    z-index: 9999;
+  }
+}

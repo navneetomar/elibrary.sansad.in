@@ -1,0 +1,79 @@
+<div class="container">
+  <ds-themed-loading
+    *ngIf="results$ | async"
+    [message]="'loading.content-source' | translate"
+  ></ds-themed-loading>
+  <!-- <div class="row mt-4 recent-items" *ngIf="!(results$ | async)">
+    <div
+      class="recent-item col-md-4 col-12"
+      *ngFor="let item of listItemTopView; let index = index"
+    >
+      <a [routerLink]="['/items/' + item.id]" class="d-flex">
+        <div class="img-item">
+          <img
+            [src]="
+              item.thumbnail
+                ? item.thumbnail
+                : 'assets/images/cover_book_enhira.png'
+            "
+            [alt]="item.label"
+          />
+        </div>
+        <div class="content-item">
+          <p class="item-type">
+            {{ item.type }}
+          </p>
+          <p class="item-label">{{ item.label }}</p>
+        </div>
+      </a>
+    </div>
+  </div> -->
+  <div class="mt-4 recent-items" *ngIf="!(results$ | async)">
+    <ngb-carousel
+      #carousel
+      [interval]="4000"
+      [pauseOnHover]="pauseOnHover"
+      [pauseOnFocus]="pauseOnFocus"
+      (slide)="onSlide($event)"
+    >
+      <ng-template ngbSlide *ngFor="let item of listItemTopView">
+        <div class="container">
+          <div class="row p-sm-1">
+            <div class="recent-item col-md-4 col-12" *ngFor="let it of item">
+              <a [routerLink]="['/items/' + it.id]" class="d-flex">
+                <div class="img-item">
+                  <img
+                    [src]="
+                      it.thumbnail
+                        ? it.thumbnail
+                        : 'assets/images/cover_book_enhira.png'
+                    "
+                    [alt]="it.label"
+                  />
+                </div>
+                <div class="content-item">
+                  <p class="item-type">
+                    {{ it.type }}
+                  </p>
+                  <p class="item-label">{{ it.label }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <div class="d-flex justify-content-center mt-3">
+      <button (click)="carousel.prev()" class="btn-carosel-click">
+        <span aria-label="Previous" href="" class="page-link prev"
+          ><i class="fa fa-arrow-left"></i
+        ></span>
+      </button>
+      <button (click)="carousel.next()" class="btn-carosel-click">
+        <span aria-label="Previous" href="" class="page-link next"
+          ><i class="fa fa-arrow-right"></i
+        ></span>
+      </button>
+    </div>
+  </div>
+</div>

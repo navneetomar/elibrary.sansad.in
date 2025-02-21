@@ -1,0 +1,202 @@
+<!-- <ds-banner
+[imgUrl]="'assets/images/banner_search.png'"
+[title]="mainTitle" *ngIf="isShowBanner"
+></ds-banner> -->
+
+
+
+
+<ng-container *ngVar="breadcrumbs$ | async as breadcrumbs">
+  <nav
+    *ngIf="showBreadcrumbs$ | async"
+    aria-label="breadcrumb"
+    class="nav-breadcrumb cus-breadcrumbs"
+  >
+    <ol class="container breadcrumb sub-breadcrumb  ">
+      <ng-container
+        *ngTemplateOutlet="
+          breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb;
+          context: { text: 'home.breadcrumbs', url: '/' }
+        "
+      ></ng-container>
+      <ng-container *ngFor="let bc of breadcrumbs; let last = last">
+        <ng-container
+          *ngTemplateOutlet="
+            !last ? breadcrumb : activeBreadcrumb;
+            context: bc
+          "
+        ></ng-container>
+      </ng-container>
+    </ol>
+  </nav>
+
+  <ng-template #breadcrumb let-text="text" let-url="url">
+    <li class="breadcrumb-item">
+      <div class="breadcrumb-item-limiter">
+        <a [routerLink]="url" class="text-truncate">{{
+          text | translate
+        }}</a>
+      </div>
+    </li>
+  </ng-template>
+
+  <ng-template #activeBreadcrumb let-text="text">
+    <li class="breadcrumb-item active" aria-current="page">
+      <div class="breadcrumb-item-limiter">
+        <div class="text-truncate">{{ text | translate }}</div>
+      </div>
+    </li>
+  </ng-template>
+</ng-container>
+<div
+  class="container"
+  *ngIf="isXsOrSm$ | async"
+  [ngClass]="isAuthorProfileSearch ? 'p-0' : ''"
+>
+  <!-- <div class="row">
+    <div class="col-9">
+      <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+    </div>
+  </div> -->
+</div>
+
+<!-- <div *ngIf="!showSidebar && (initialized$ | async)">
+  <ng-template *ngTemplateOutlet="searchContent"></ng-template>
+</div> -->
+<div class="col-12">
+  <ds-page-with-sidebar
+  *ngIf="showSidebar && (initialized$ | async)"
+  [id]="'search-page'"
+  [sidebarContent]="sidebarContent"
+  [isAuthorProfileSearch]="isAuthorProfileSearch"
+>
+  <ng-template *ngTemplateOutlet="searchContent"></ng-template>
+</ds-page-with-sidebar>
+</div>
+
+
+
+
+<ng-template #searchContent>
+  <div class="row">
+    <div class="col-12" style="padding: 0;">
+      <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+      <ng-content select="[additionalSearchOptions]"></ng-content>
+    </div>
+
+
+<!-- <div *ngIf="isCollectionDetails">
+
+
+  <div class="d-none d-sm-block border-bottom">
+    <div class="list-group list-group-horizontal">
+      <a
+        *ngFor="let option of allOptions"
+        class="list-group-item"
+        [routerLink]="option.routerLink"
+        [queryParams]="option.params"
+        routerLinkActive="active"
+        >{{ option.label | translate }}</a
+      >
+    </div>
+  </div>
+</div> -->
+
+
+    <div id="search-content" class="col-12 mt-3" >
+      <!-- <div class="d-none d-md-none search-controls clearfix">
+        <ds-view-mode-switch
+          [viewModeList]="viewModeList"
+          [inPlaceSearch]="inPlaceSearch"
+        ></ds-view-mode-switch>
+        <button
+          (click)="openSidebar()"
+          aria-controls="#search-body"
+          class="btn btn-outline-primary float-right open-sidebar"
+        >
+          <i class="fas fa-sliders"></i> {{ "search.sidebar.open" | translate }}
+        </button>
+      </div> -->
+      <ds-themed-search-results
+        [searchResults]="resultsRD$ | async"
+        [searchConfig]="searchOptions$ | async"
+        [configuration]="currentConfiguration$ | async"
+        [disableHeader]="!searchEnabled"
+        [linkType]="linkType"
+        [context]="currentContext$ | async"
+        [selectable]="selectable"
+        [selectionConfig]="selectionConfig"
+        (contentChange)="onContentChange($event)"
+        (deselectObject)="deselectObject.emit($event)"
+        (selectObject)="selectObject.emit($event)"
+      ></ds-themed-search-results>
+      
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #sidebarContent>
+  <!-- *ngIf="!(isXsOrSm$ | async)" -->
+  <ds-search-sidebar
+    id="search-sidebar"
+    
+    [configurationList]="configurationList"
+    [configuration]="currentConfiguration$ | async"
+    [currentScope]="currentScope$ | async"
+    [filters]="filtersRD$.asObservable()"
+    [refreshFilters]="refreshFilters"
+    [resultCount]="(resultsRD$ | async)?.payload?.totalElements"
+    [searchOptions]="searchOptions$ | async"
+    [sortOptionsList]="sortOptionsList$ | async"
+    [currentSortOption]="currentSortOptions$ | async"
+    [inPlaceSearch]="inPlaceSearch"
+    [viewModeList]="viewModeList"
+    [showViewModes]="showViewModes"
+    (changeConfiguration)="changeContext($event.context)"
+    (changeViewMode)="changeViewMode()"
+  ></ds-search-sidebar>
+  <!-- <ds-search-sidebar
+    id="search-sidebar-sm"
+    *ngIf="isXsOrSm$ | async"
+    [configurationList]="configurationList"
+    [configuration]="currentConfiguration$ | async"
+    [currentScope]="currentScope$ | async"
+    [filters]="filtersRD$.asObservable()"
+    [refreshFilters]="refreshFilters"
+    [resultCount]="(resultsRD$ | async)?.payload.totalElements"
+    [searchOptions]="searchOptions$ | async"
+    [sortOptionsList]="sortOptionsList$ | async"
+    [currentSortOption]="currentSortOptions$ | async"
+    [viewModeList]="viewModeList"
+    [showViewModes]="showViewModes"
+    (toggleSidebar)="closeSidebar()"
+    (changeConfiguration)="changeContext($event.context)"
+    (changeViewMode)="changeViewMode()"
+  >
+  </ds-search-sidebar> -->
+</ng-template>
+
+<ng-template #searchForm>
+  <ds-search-form
+    *ngIf="searchEnabled"
+    id="search-form"
+    [query]="(searchOptions$ | async)?.query"
+    [scope]="(searchOptions$ | async)?.scope"
+    [currentUrl]="searchLink"
+    [showScopeSelector]="showScopeSelector"
+    [inPlaceSearch]="inPlaceSearch"
+    [searchPlaceholder]="searchFormPlaceholder | translate"
+    [hasAdvanced] = true
+    [hasChooseType]= true
+    [hasBackGround]="true"
+  >
+  </ds-search-form>
+  <div class="row mb-3 mt-3 list-type-search">
+    <div class="labels col-sm-9">
+      <ds-search-labels
+        *ngIf="searchEnabled"
+        [inPlaceSearch]="inPlaceSearch"
+      ></ds-search-labels>
+    </div>
+  </div>
+</ng-template>

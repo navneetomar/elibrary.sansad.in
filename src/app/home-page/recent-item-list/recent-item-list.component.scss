@@ -1,0 +1,46 @@
+:host ::ng-deep {
+  .recent-items {
+    justify-content: center;
+  }
+  .recent-items .recent-item:nth-child(n + 4) {
+    display: none !important;
+  }
+  .btn.btn-primary.search-button {
+    border: 1px solid #333333;
+    background-color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #333333;
+    padding: 10px;
+    &:hover {
+      border: 1px solid var(--ds-sub-small-color);
+      background: var(--ds-sub-small-color);
+      color: #fff;
+    }
+  }
+  @media screen and (max-width: 1599.98px) {
+    .container-search-view {
+      width: 65%;
+      top: 380px;
+    }
+    .container-link-doc {
+      top: 620px;
+    }
+  }
+  @media screen and (max-width: 1199.98px) {
+  }
+  @media (max-width: 991.98px) {
+  }
+  @media (max-width: 767.98px) {
+  }
+  @media (max-width: 575.98px) {
+    .recent-item {
+      padding-left: 0;
+      padding-right: 0;
+      margin-bottom: 15px;
+    }
+  }
+}

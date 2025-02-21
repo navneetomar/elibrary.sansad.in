@@ -1,0 +1,67 @@
+:host {
+  .box-link-file {
+    display: flex;
+  }
+  .box-item-file {
+    margin-bottom: 30px;
+  }
+  .file-section {
+    .file-name {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      color: #333333;
+      margin-bottom: 8px;
+    }
+    .file-format {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #6c757d;
+
+      display: flex;
+      gap: 30px;
+      margin-bottom: 8px;
+      .file-format-number {
+        color: #333;
+      }
+    }
+
+    .file-statistics {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #6c757d;
+
+      display: flex;
+      gap: 30px;
+      margin-bottom: 8px;
+      .file-statistics-number {
+        color: #333;
+      }
+    }
+    .image-file {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 10px;
+      img {
+        width: 75px;
+        height: 100px;
+      }
+    }
+    .desc-file {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #6c757d;
+      margin-bottom: 8px;
+    }
+  }
+}

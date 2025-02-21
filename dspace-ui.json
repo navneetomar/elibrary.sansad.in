@@ -1,0 +1,16 @@
+{
+    "apps": [{
+            "name": "dspace-ui",
+            "cwd": "/opt/dspace-7-angular",
+            "script": "dist/server/main.js",
+            "env": {
+                "NODE_ENV": "production",
+                "DSPACE_REST_SSL": "false",
+                "DSPACE_REST_HOST": "192.168.177.130",
+                "DSPACE_REST_PORT": "8080",
+                "DSPACE_REST_NAMESPACE": "/server"
+            }
+        }
+
+    ]
+}

@@ -1,0 +1,89 @@
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-12">
+        <ng-container *ngVar="parent$ | async as parent">
+          <ng-container *ngIf="parent?.payload as parentContext">
+            <!-- <header class="comcol-header mb-4 pb-4">
+              <ds-comcol-page-header [name]="parentContext.name">
+              </ds-comcol-page-header>
+              <ds-themed-comcol-page-handle
+                [content]="parentContext.handle"
+                [title]="parentContext.type + '.page.handle'"
+              >
+              </ds-themed-comcol-page-handle>
+              <ds-comcol-page-content
+                [content]="parentContext.introductoryText"
+                [hasInnerHtml]="true"
+              >
+              </ds-comcol-page-content>
+              <ds-comcol-page-content
+                [content]="parentContext.sidebarText"
+                [hasInnerHtml]="true"
+                [title]="'community.page.news'"
+              >
+              </ds-comcol-page-content>
+            </header> -->
+            <ds-themed-comcol-page-browse-by
+              [id]="parentContext.id"
+              [contentType]="parentContext.type"
+            ></ds-themed-comcol-page-browse-by> </ng-container
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <section class="comcol-page-browse-section">
+    <div class="browse-by-metadata w-100">
+      <ds-browse-by
+        *ngIf="startsWithOptions"
+        class="col-xs-12 w-100"
+        title="{{
+          'browse.title'
+            | translate
+              : {
+                  collection: (parent$ | async)?.payload?.name || '',
+                  field: 'browse.metadata.' + browseId | translate,
+                  startsWith: startsWith
+                    ? ('browse.startsWith'
+                      | translate
+                        : { startsWith: '&quot;' + startsWith + '&quot;' })
+                    : '',
+                  value: value ? '&quot;' + value + '&quot;' : ''
+                }
+        }}"
+        parentname="{{ (parent$ | async)?.payload?.name || '' }}"
+        descBanner="{{ (parent$ | async)?.payload?.introductoryText || '' }}"
+        [objects$]="items$ !== undefined ? items$ : browseEntries$"
+        [paginationConfig]="currentPagination$ | async"
+        [sortConfig]="currentSort$ | async"
+        [type]="startsWithType"
+        [startsWithOptions]="startsWithOptions"
+        (prev)="goPrev()"
+        (next)="goNext()"
+      >
+      </ds-browse-by>
+      <div class="container">
+        <ds-themed-loading
+        *ngIf="!startsWithOptions"
+        message="{{ 'loading.browse-by-page' | translate }}"
+      ></ds-themed-loading>
+      </div>
+    </div>
+  </section>
+  <ng-container *ngVar="parent$ | async as parent">
+    <ng-container *ngIf="parent?.payload as parentContext">
+      <footer
+        *ngIf="parentContext.copyrightText"
+        class="border-top my-5 pt-4 d-none"
+      >
+        <div>
+          <!-- Copyright -->
+          <ds-comcol-page-content
+            [content]="parentContext.copyrightText"
+            [hasInnerHtml]="true"
+          >
+          </ds-comcol-page-content>
+        </div>
+      </footer>
+    </ng-container>
+  </ng-container>

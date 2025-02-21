@@ -1,0 +1,15 @@
+<!-- The outer div acts as a container for the navigation bar and its components. 
+     The 'ngClass' directive dynamically adds the 'open' class based on the 
+     asynchronous value of 'isNavBarCollapsed'. If the navigation bar is not 
+     collapsed, the 'open' class will be applied, allowing for expanded styles. -->
+<div [ngClass]="{'open': !(isNavBarCollapsed | async)}">
+    <!-- The themed header component is included to provide a consistent 
+         branding and title area for the application. It may also contain 
+         elements like the application logo or main title. -->
+    <ds-themed-header></ds-themed-header>
+    
+    <!-- The themed navbar component is included for primary navigation 
+         links within the application. It allows users to navigate to 
+         different sections or features of the app. -->
+    <ds-themed-navbar></ds-themed-navbar>
+</div>

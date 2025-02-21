@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>
+    {{
+      "bitstream.view.page"
+        | translate : { bitstream: (bitstream$ | async)?.name }
+    }}
+  </h3>
+  <div class="pt-3">
+    <button (click)="back()" class="btn btn-outline-secondary">
+      <i class="fas fa-arrow-left"></i>
+      {{ "bitstream.view.page.back" | translate }}
+    </button>
+  </div>
+</div>

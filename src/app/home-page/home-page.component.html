@@ -1,0 +1,265 @@
+<!-- <ds-themed-home-news></ds-themed-home-news> -->
+
+<div class="banner" style="
+background-image: url('assets/images/banner_india.png'); 
+">
+  <div class="container-search-view">
+    <!-- <p class="title-search">
+{{ "home.discovery.bigtitle" | translate }}
+</p>
+<p class="search-desc">
+{{ "home.discovery.search.desc" | translate }}
+</p>  -->
+    <ng-container *ngIf="site$ | async as site">
+      <ds-view-tracker [object]="site"></ds-view-tracker>
+    </ng-container>
+    <div class="search-field row">
+      <div class="col-lg-1 col-md-12"></div>
+      <div class="col-lg-10 col-md-12">
+        <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"
+          [hasChooseType]=" true" style="width: 100%;"></ds-search-form>
+      </div>
+      <div class="col-lg-1 col-md-12"></div>
+
+    </div>
+
+  </div>
+</div>
+<div class="content-home-top">
+  <div class="home-community">
+    <div class="container wrapper-community">
+      <div class="title-wrapper-community">
+        <span>Digital Library</span>
+      </div>
+      <div class="text-center" *ngIf="loadingCommunity$ | async"><ds-themed-loading></ds-themed-loading></div>
+      <!-- <div class="dropdown-wrap">
+        <div class="dropdown-list" *ngIf="!(loadingCommunity$ | async)">
+          <select class="dropdown-toggle" id="listcommunity" name="listcommunity" [(ngModel)]="selectedCommunity"
+            (ngModelChange)="getCollectionsByCommunityId($event)" style="text-transform: capitalize;">
+            <ng-container *ngFor="let community of communityListGroup">
+              <option *ngIf="community?.name === 'Digital Library'" [ngValue]="community?.id">
+                {{community?.name}}
+              </option>
+            </ng-container>
+          </select>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="desc-title card-text" style="text-align:justify">
+
+            The second phase of the journey of Digitization is enabling accessibility of more than one
+            lakh digitized documents comprising approx. 1 crore pages from selective collections of the
+            Parliament Library viz. Papers Laid on the Table of House, Reports, Books, Acts, Bills and
+            Periodicals etc. 89,000 documents are already made available and shortly all the digitized
+            documents will be uploaded. The documents have been digitized through a NICSI vendor and
+            are placed in DSpace technology. </div>
+          <div class="btn-title" style="display: flex; justify-content: flex-end;margin-bottom:20px;">
+            <button class="read-more-btn" (click)="routeToWeb('assets/images/DigitalLibrary.pdf');"
+              style="border-radius:10px; background: #D3D3D3; color: black; align-items: center; padding: 12px 20px; display: flex; justify-content: center; margin-left: auto;">
+              <span>Read more &nbsp;<i class="fa-solid fa-plus"></i></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+
+      <div class="view-wrap">
+        <div class="text-center" *ngIf="loadingCollection$ | async">
+          <ds-themed-loading [spinner]="true"></ds-themed-loading>
+        </div>
+        <div class="row" *ngIf="!(loadingCollection$ | async)">
+          <div class="view-community col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let view of collectionPerPage"
+            (click)="routeToCommunity(view?.handle)" style="cursor: pointer;">
+            <div class="col-inner">
+              <div class="fit-outer view-img">
+                <img class="image-fit-cover fit-abs img-thumb" [src]="view.img">
+              </div>
+              <div class="view-detail">
+                <div class="view-name">
+                  {{view.name}}
+                </div>
+                <div class="view-desc">
+                  {{view.desc}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+  <div class="home-collection" style="margin-top:-80px;">
+    <div class="container wrapper-collection">
+      <div class="title-wrapper-collection">
+        <span>Digital Business Document(E-Parlib)</span>
+      </div>
+
+      <!-- <div class="dropdown-wrap">
+        <div class="dropdown-list">
+          <select class="dropdown-toggle" id="listCollection" name="listCollection" [(ngModel)]="selectedCollection"
+            (ngModelChange)="renderView(selectedCollection)" style="text-transform: capitalize;">
+            <option *ngFor="let collection of collectionListGroup" [ngValue]="collection.code">
+              {{collection.name}}
+            </option>
+          </select>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="desc-title" style="text-align:justify">
+
+            The digitized version of treasured and historic legislative debates, tracing the growth and
+            development of modern parliamentary institutions in India, from 1854 to 1952, debates
+            from 1 st to 18 th Lok Sabha, Reports of several Parliamentary Committees, Presidential
+            Addresses to the Parliament, PM Speeches, Budget Speeches, and several other
+            publications of the Lok Sabha, comprising more than 12 lakh documents having approx.
+            50 lakh digitized pages are being migrated to this segment of the website in 7.4 version
+            of DSpace technology with customized features.
+          </div>
+
+          <div class="btn-title" style="display: flex; justify-content: flex-end;margin-bottom:20px;">
+            <button class="read-more-btn" (click)="routeToWeb('assets/images/EParlib.pdf');"
+              style="border-radius:10px; background: #D3D3D3; color: black; align-items: center; padding: 12px 20px; display: flex; justify-content: center; margin-left: auto;">
+              <span>Read more &nbsp;<i class="fa-solid fa-plus"></i></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+
+
+      <div class="view-wrap">
+
+        <div class="row">
+          <div class="view-collection col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let view of itemsPerpage"
+            (click)="routeToCollection(view.path)" style="cursor: pointer;">
+
+            <div class="col-inner">
+              <div class="fit-outer view-img">
+                <img class="image-fit-cover fit-abs img-thumb" [src]="view.img">
+              </div>
+              <!-- <div class="view-img" [ngStyle]="{'background-image': 'url(\'' + view.img + '\')'}"> 
+
+                </div> -->
+                              <!-- <div class="view-img">
+                <img src="
+                {{view.img}}
+                " alt="">
+                </div> -->
+              <div class="view-detail">
+                <div class="view-name">
+                  {{view.name}}
+                </div>
+                <div class="view-desc">
+                  {{view.desc}}
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="pagi-view">
+          <ngb-pagination *ngIf="pageSize && _collectionListById.length > pageSize"
+            [collectionSize]="_collectionListById.length" [page]="currentPage" (pageChange)="doPageChange($event)"
+            [pageSize]="pageSize" [rotate]="true" [maxSize]="sizePagi">
+            <ng-template ngbPaginationPrevious>
+              <i class="fa fa-angle-left"></i>
+            </ng-template>
+            <ng-template ngbPaginationNext>
+              <i class="fa fa-angle-right"></i>
+            </ng-template>
+          </ngb-pagination>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--
+
+<div class="home-carousel container">
+<div class="title-carousel">
+<span>Featured Content</span>
+</div>
+<p-carousel [value]="featuredContent" [numVisible]="4" [numScroll]="4" [responsiveOptions]="responsiveOptions">
+<ng-template let-content pTemplate="item">
+
+<div class="wrapper-featured" (click)="routeToCollection(content.path)" style="cursor: pointer;">
+<div class="box-image-carousel">
+<img class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(content.img)">
+</div>
+
+
+<div class="desc-featured">
+<span class="style-desc">
+{{content.name}}
+</span>
+</div>
+</div>
+
+</ng-template>
+</p-carousel>
+
+</div>
+-->
+  <div class="banner-middle">
+    <img src="assets/images/banner-middle.png" alt="" style="width:100%;">
+  </div>
+  <!--
+
+<div class="row" style="background-color:#e6f2f2;">
+<div class="col-2"></div>
+<div class="col-8">
+<button class="arrow left-arrow" (click)="previousSlide()">&#10094;</button>
+<div class="carousel">
+<div class="slider" [ngStyle]="{'transform': 'translateX(' + transformValue + ')'}">
+<div *ngFor="let image of images" class="slide">
+<img [src]="image" alt="banner" style="width:1000px;height:500px;">
+</div>
+</div>
+</div>
+<button class="arrow right-arrow" (click)="nextSlide()">&#10095;</button>
+
+</div>
+<div class="col-2"></div>
+</div>
+
+
+
+-->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-1 col-lg-1 col-md-12"></div>
+      <div class="wrapper-helpful col-xl-10 col-lg-10 col-md-12 col-12">
+        <p class="helpful-title">
+          Helpful Resources
+        </p>
+        <div class="helpful-banner row" *ngIf="helpfulImage">
+          <div class="helpful-img col-xl-4 col-lg-6 col-sm-6 col-12" *ngFor="let item of helpfulImage">
+            <button type="button" class="btn btn-primary"
+              [ngStyle]="{'backgroundColor': item.backgroundColor,'color': item.textColor}" style="display: flex;"
+              (click)="routeToWeb(item.url)">
+              <img [src]="item.imgUrl" alt="">
+              <span class="helpful-name">{{item.name}}</span>
+              <div class="ver-line" [ngStyle]="{'backgroundColor' : item.textColor}" *ngIf="item.description"></div>
+              <div class="helpful-desc" *ngIf="item.description">
+                <p class="helpul-desc-title" [ngStyle]="{'color': item.textColor}">{{item.description}}</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

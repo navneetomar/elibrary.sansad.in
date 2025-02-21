@@ -1,0 +1,58 @@
+:host {
+  img.img-community {
+    object-fit: cover;
+    width: 140px;
+    border-radius: 6px 0px 0px 6px;
+  }
+  img.img-community.no-home {
+    object-fit: cover;
+    width: 122px;
+    height: 163px !important;
+    border-radius: 0;
+  }
+  .thumbnail-content {
+    position: relative;
+    width: 120px;
+    height: 100%;
+    > .inner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      > .centered {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  }
+  @media screen and (max-width: 1199.98px) {
+    img.img-community {
+      width: 120px;
+      border-radius: 6px 0px 0px 6px;
+    }
+  }
+  @media (max-width: 991.98px) {
+    img.img-community {
+      width: 85px;
+      object-fit: cover;
+    }
+  }
+  @media (max-width: 575.98px) {
+    .box-image {
+      max-width: 180px;
+      padding: 18px 0 0 0;
+    }
+    img.img-community {
+      width: 122px;
+      height: 163px !important;
+      object-fit: cover;
+      border-radius: 0;
+    }
+  }
+}

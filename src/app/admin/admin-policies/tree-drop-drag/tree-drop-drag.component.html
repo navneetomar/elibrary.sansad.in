@@ -1,0 +1,132 @@
+<ng-template #tmplNode let-node="node">
+  <div class="node-item" [attr.data-id]="node.id" [attr.id]="'node-' + node.id">
+    <input
+      type="radio"
+      [value]="node"
+      class="check-node"
+      (change)="handleChangeSelectNode($event)"
+      [(ngModel)]="nodeCheckbox"
+    />
+
+    <div class="node-title" (click)="handleClick(node)">
+      <span *ngIf="node.type === 'item' || counter === 0; else notItem">
+        <i
+          class="fas"
+          [ngClass]="!!node.isExpanded ? 'fa-chevron-down' : 'fa-chevron-right'"
+        ></i>
+        <!-- <i
+          class="fas"
+          [ngClass]="
+            node.type === 'item'
+              ? 'd-none'
+              : node.isExpanded !== undefined
+              ? !!node.isExpanded
+                ? 'fa-chevron-down'
+                : 'fa-chevron-right'
+              : 'fa-chevron-right'
+          "
+        ></i
+        > -->
+        &nbsp;&nbsp;&nbsp;
+
+        <span class="node-title-sub">{{ node.name }}</span
+        >&nbsp;&nbsp;({{ node.type | translate
+        }}{{ node.bundleName && "/" + node.bundleName }})
+        <span class="item-notes d-none">
+          ({{ node.children.length
+          }}{{
+            node.children.length ? ", expanded: " + !!node.isExpanded : ""
+          }})</span
+        >
+      </span>
+
+      <ng-template #notItem>
+        <ds-themed-loading
+          *ngIf="!(loadDept$ | async) && node.children.length > 0"
+        ></ds-themed-loading>
+
+        <span>
+          <!-- <i
+            class="fas"
+            [ngClass]="
+              node.type !== 'item'
+                ? !!node.isExpanded
+                  ? 'fa-chevron-down'
+                  : 'fa-chevron-right'
+                : 'd-none'
+            "
+          ></i> -->
+          <i
+            class="fas"
+            [ngClass]="
+              node.type !== 'bitstream'
+                ? !!node.isExpanded
+                  ? 'fa-chevron-down'
+                  : 'fa-chevron-right'
+                : 'd-none'
+            "
+          ></i>
+          &nbsp;&nbsp;&nbsp; <span class="node-title-sub">{{ node.name }}</span
+          >&nbsp;&nbsp;({{ node.type | translate
+          }}{{ node.bundleName && "/" + node.bundleName }})
+          <span class="item-notes d-none">
+            ({{ node.children.length
+            }}{{
+              node.children.length ? ", expanded: " + !!node.isExpanded : ""
+            }})</span
+          >
+        </span>
+      </ng-template>
+    </div>
+    <div
+      *ngIf="node.isExpanded && node.children.length"
+      class="node-children"
+      cdkDropList
+      [cdkDropListData]="node.children"
+      [id]="node.id"
+      [cdkDropListConnectedTo]="dropTargetIds"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListSortingDisabled]="true"
+    >
+      <div
+        *ngFor="let child of node.children"
+        cdkDrag
+        [cdkDragData]="child.id"
+        (cdkDragMoved)="dragMoved($event)"
+      >
+        <ng-container
+          *ngTemplateOutlet="tmplNode; context: { node: child }"
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  cdkDropList
+  [cdkDropListData]="nodesBuilder"
+  [id]="'main'"
+  [cdkDropListConnectedTo]="dropTargetIds"
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListSortingDisabled]="true"
+>
+  <div
+    *ngFor="let node of nodesBuilder"
+    cdkDrag
+    [cdkDragData]="node.id"
+    (cdkDragMoved)="dragMoved($event)"
+  >
+    <ng-container
+      *ngTemplateOutlet="tmplNode; context: { node: node }"
+    ></ng-container>
+  </div>
+</div>
+<div class="text-center">
+  <button
+    class="btn btn-secondary text-light mt-3 mb-3"
+    *ngIf="nodeCurrent && nodeCurrent.type === 'collection' && isLoadmore"
+    (click)="handleLoadMoreItem(nodeCurrent)"
+  >
+    {{ "load.more.item.in" | translate }} {{ nodeCurrent.name }}
+  </button>
+</div>

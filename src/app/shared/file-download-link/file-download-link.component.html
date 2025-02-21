@@ -1,0 +1,25 @@
+
+
+  <!-- <span *ngIf="canDownload$ | async"
+    ><i class="fas fa-download text-primary"></i>&nbsp;</span
+  > -->
+  <a
+    [routerLink]="(bitstreamPath$ | async)?.routerLink"
+    class="dont-break-out link-download-doc"
+    [queryParams]="(bitstreamPath$ | async)?.queryParams"
+    [target]="isBlank ? '_blank' : '_self'"
+    [ngClass]="cssClasses"
+  >
+
+  <span *ngIf="canDownload$ | async"
+    ><i class="fas fa-download text-light"></i>&nbsp;</span
+  >
+  <span *ngIf="!(canDownload$ | async)"
+  ><i class="fas fa-lock text-light"></i>&nbsp;</span>
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

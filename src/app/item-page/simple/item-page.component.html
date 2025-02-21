@@ -1,0 +1,85 @@
+<ng-container *ngVar="breadcrumbs$ | async as breadcrumbs">
+  <nav
+    *ngIf="showBreadcrumbs$ | async"
+    aria-label="breadcrumb"
+    class="nav-breadcrumb cus-breadcrumbs"
+  >
+    <ol class="container breadcrumb sub-breadcrumb">
+      <ng-container
+        *ngTemplateOutlet="
+          breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb;
+          context: { text: 'home.breadcrumbs', url: '/' }
+        "
+      ></ng-container>
+      <ng-container *ngFor="let bc of breadcrumbs; let last = last">
+        <ng-container
+          *ngTemplateOutlet="
+            !last ? breadcrumb : activeBreadcrumb;
+            context: bc
+          "
+        ></ng-container>
+      </ng-container>
+    </ol>
+  </nav>
+
+  <ng-template #breadcrumb let-text="text" let-url="url">
+    <li class="breadcrumb-item">
+      <div class="breadcrumb-item-limiter">
+        <a [routerLink]="url" class="text-truncate">{{
+          text | translate
+        }}</a>
+      </div>
+    </li>
+  </ng-template>
+
+  <ng-template #activeBreadcrumb let-text="text">
+    <li class="breadcrumb-item active" aria-current="page">
+      <div class="breadcrumb-item-limiter">
+        <div class="text-truncate">{{ text | translate }}</div>
+      </div>
+    </li>
+  </ng-template>
+</ng-container>
+<div class="container" *ngVar="itemRD$ | async as itemRD">
+  <div class="nav-sub-page">
+   
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-2"></div>
+    <div class="col-12 col-md-8">
+   
+      <div class="item-page" *ngIf="itemRD?.hasSucceeded" @fadeInOut>
+        <div *ngIf="itemRD?.payload as item">
+          <ds-item-alerts [item]="item"></ds-item-alerts>
+          <ds-item-versions-notice [item]="item"></ds-item-versions-notice>
+          <ds-view-tracker [object]="item"></ds-view-tracker>
+
+          <ng-container *ngIf="!item.isWithdrawn || (isAdmin$ | async)">
+            <ds-listable-object-component-loader
+              [object]="item"
+              [viewMode]="viewMode"
+            >
+            </ds-listable-object-component-loader>
+          </ng-container>
+          
+          
+
+          <ds-item-versions
+            class="mt-2"
+            [item]="item"
+            [displayActions]="false"
+          ></ds-item-versions>
+        </div>
+      </div>
+      <ds-error
+        *ngIf="itemRD?.hasFailed"
+        message="{{ 'error.item' | translate }}"
+      ></ds-error>
+      <ds-themed-loading
+        *ngIf="itemRD?.isLoading"
+        message="{{ 'loading.item' | translate }}"
+      ></ds-themed-loading>
+    </div>
+    <div class="col-12 col-md-2"></div>
+  </div>
+</div>

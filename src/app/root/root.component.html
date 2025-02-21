@@ -1,0 +1,44 @@
+<!-- Start of Selection -->
+<!-- The outer wrapper div contains the main layout of the application. 
+     It is hidden when the fullscreen loader is active. -->
+<div class="outer-wrapper" [class.d-none]="shouldShowFullscreenLoader">
+  <!-- The themed admin sidebar component is included here for navigation. -->
+  <ds-themed-admin-sidebar></ds-themed-admin-sidebar>
+  <!-- The inner wrapper contains the main content and is animated based on the sidebar visibility. -->
+  <div class="inner-wrapper" [@slideSidebarPadding]="{
+      value: !(sidebarVisible | async) 
+        ? 'hidden'
+        : (slideSidebarOver | async) 
+        ? 'shown'
+        : 'expanded', 
+      params: {
+        collapsedSidebarWidth: (collapsedSidebarWidth | async), 
+        totalSidebarWidth: (totalSidebarWidth | async) 
+      }
+    }">
+    <!-- The themed header navbar wrapper component is included for navigation and theming support. -->
+    <ds-themed-header-navbar-wrapper></ds-themed-header-navbar-wrapper>
+    <!-- Main content area where the main application content will be displayed. -->
+    <main class="main-content">
+      <!-- The themed breadcrumbs component shows the current page's location in the app. -->
+      <ds-themed-breadcrumbs></ds-themed-breadcrumbs>
+      <!-- Loader displayed when the route is loading. Centered in the container. -->
+      <div class="container d-flex justify-content-center align-items-center h-100" *ngIf="shouldShowRouteLoader">
+        <ds-themed-loading [showMessage]="false"></ds-themed-loading>
+      </div>
+      <!-- Main content area that is hidden when the route loader is active. -->
+      <div [class.d-none]="shouldShowRouteLoader" class="main-div-page">
+        <router-outlet></router-outlet> <!-- Router outlet for displaying routed components -->
+      </div>
+    </main>
+    <!-- The themed footer component is included at the bottom of the page. -->
+    <ds-themed-footer></ds-themed-footer>
+  </div>
+</div>
+<!-- The notifications board component displays notifications based on the provided options. -->
+<ds-notifications-board [options]="notificationOptions">
+</ds-notifications-board>
+<!-- Fullscreen loader displayed when shouldShowFullscreenLoader is true. -->
+<div class="ds-full-screen-loader" *ngIf="shouldShowFullscreenLoader">
+  <ds-themed-loading [showMessage]="false"></ds-themed-loading>
+</div><!-- End of Selection -->

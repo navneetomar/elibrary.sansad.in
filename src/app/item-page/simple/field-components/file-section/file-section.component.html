@@ -1,0 +1,60 @@
+<ng-container *ngVar="bitstreams$ | async as bitstreams">
+  <div *ngIf="!(isXsOrSm$)">
+    <div style="border-bottom: 1px solid #ddd;">
+      <div class="row header-row">
+        <div class="col-6 d-flex align-items-center justify-content-start title-text">
+          File
+        </div>
+        <div class="col-4 d-flex align-items-center justify-content-start title-text">
+          Size
+        </div>
+        <div class="col-2 d-flex align-items-center justify-content-start title-text">
+          Action
+        </div>
+      </div>
+    
+      <div class="row py-2" *ngFor="let file of bitstreams; let i = index">
+        <div class="col-6 name-file d-flex align-items-center col-data">
+          <span>{{ file?.name || '' }}</span>
+        </div>
+        <div class="col-4 size-file d-flex align-items-center col-data">
+          <span>{{ file?.sizeBytes | dsFileSize }}</span>
+        </div>
+        <div class="col-2 action-file col-data d-flex flex-column">
+          <ds-file-view-link [bitstream]="file" [item]="item" [isBlank]="true">
+            <span>{{ "item.file.views.online" | translate }}</span>
+          </ds-file-view-link>
+          <ds-file-download-link [bitstream]="file" [item]="item" [isBlank]="false">
+            <span>{{ "item.file.views.download" | translate }}</span>
+          </ds-file-download-link>
+        </div>
+      </div>
+    </div>
+    
+    <div class="noti">
+      <span class="noti-title">
+        Items in Parliament Digital Library are protected by copyright, with all rights reserved, unless otherwise indicated.
+      </span>
+    </div>
+  </div>
+  
+  <div *ngIf="isXsOrSm$" class="mt-3 px-2">
+    <div class="row py-2" *ngFor="let file of bitstreams; let i = index">
+      <div class="col-12 name-file d-flex align-items-center col-data">
+        File: <span>{{ file?.name || '' }}</span>
+      </div>
+      <div class="col-12 size-file d-flex align-items-center col-data">
+        Size: <span>{{ file?.sizeBytes | dsFileSize }}</span>
+      </div>
+      <div class="col-2"> Action:</div>
+      <div class="col-10 action-file col-data d-flex flex-row">
+        <ds-file-view-link [bitstream]="file" [item]="item" [isBlank]="true" cssClasses="link-view-doc">
+          <span>{{ "item.file.views.online" | translate }}</span>
+        </ds-file-view-link>
+        <ds-file-download-link [bitstream]="file" [item]="item" [isBlank]="false">
+          <span>{{ "item.file.views.download" | translate }}</span>
+        </ds-file-download-link>
+      </div>
+    </div>
+  </div>
+</ng-container>

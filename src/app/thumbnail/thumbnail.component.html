@@ -1,0 +1,29 @@
+<div
+  class="thumbnail h-100 " [ngClass]="{ 'thumbnail-grid': thumbnailGrid}"
+  [class.limit-width]="limitWidth"
+  *ngVar="isLoading$ | async as isLoading"
+>
+  <div *ngIf="isLoading" class="thumbnail-content outer thumbnail-loading">
+    <div class="inner">
+      <div class="centered">
+        <ds-themed-loading [spinner]="true"></ds-themed-loading>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngVar="src$ | async as src">
+    <!-- don't use *ngIf="!isLoading" so the thumbnail can load in while the animation is playing -->
+    <div *ngIf="src !== null" class="fit-outer ratio-16-9" [ngClass]="{'thumbnail-full-file': thumbnailFullFile}">
+      <img class="image-fit-cover fit-abs img-thumb" [src]="src | dsSafeUrl" [alt]="alt | translate" [ngClass]="{ 'd-none': isLoading }"
+      (error)="errorHandler()"
+      (load)="successHandler()">
+    </div>
+    
+    <div *ngIf="src === null && !isLoading" class="fit-outer ratio-16-9" [ngClass]="{'thumbnail-full-file': thumbnailFullFile}">
+          <img class="image-fit-cover fit-abs img-thumb" src="../../assets/images/cover_book_enhira.png"
+          (error)="errorHandler()"
+          (load)="successHandler()">
+     
+    </div>
+
+  </ng-container>
+</div>

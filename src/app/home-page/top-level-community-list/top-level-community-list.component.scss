@@ -1,0 +1,19 @@
+:host ::ng-deep {
+  .heading-communities {
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 35px;
+    color: #333333;
+
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    a.title-list-comm:hover {
+      text-decoration: none;
+      color: #333333;
+    }
+    a.title-list-comm {
+      color: #333333;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<div class="container">
+  <ds-resource-policies
+    [resourceType]="'topic'"
+    [resourceUUID]="(dsoRD$ | async)?.payload?.id"
+  ></ds-resource-policies>
+</div>

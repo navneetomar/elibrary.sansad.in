@@ -1,0 +1,105 @@
+<ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+<div *ngIf="results$ | async" class="d-flex mt-4 box-statistic-person">
+  <div class="see-desc">
+    <p class="title mb-3">{{ "statistic.viewdescription" | translate }}</p>
+    <p *ngIf="view_total.length > 0" class="number-view">{{ total_view }}</p>
+    <div *ngIf="view_total.length > 0">
+      <ngx-charts-bar-vertical
+        [view]="view"
+        [results]="view_total"
+        [scheme]="colorScheme"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        (select)="onSelect($event)"
+        [barPadding]="0"
+      >
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+
+  <div class="see-download">
+    <p class="title mb-3">{{ "statistic.download" | translate }}</p>
+    <p *ngIf="viewonline_total.length > 0" class="number-download">
+      {{ total_download }}
+    </p>
+    <div *ngIf="viewonline_total.length > 0">
+      <ngx-charts-bar-vertical
+        [view]="view"
+        [results]="viewonline_total"
+        [scheme]="colorScheme2"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        (select)="onSelect($event)"
+        [barPadding]="0"
+      >
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+  <div class="see-top-content">
+    <p class="title mb-2">{{ "statistic.content" | translate }}</p>
+    <div *ngIf="entityTypes.length > 0">
+      <ngx-charts-pie-chart
+        [view]="viewPie"
+        [scheme]="colorScheme3"
+        [results]="entityTypes"
+        [doughnut]="doughnut"
+        [gradient]="gradient"
+      ></ngx-charts-pie-chart>
+    </div>
+  </div>
+  <div class="see-top-countries">
+    <p class="title mb-2">
+      {{ "statistic.authorprofile.top.country" | translate }}
+    </p>
+
+    <div *ngIf="geoChart.dataTable.length > 1">
+      <div class="box-top-country">
+        <!-- <pan-zoom [config]="panZoomConfig">
+          <div style="position: relative">
+            <google-chart [data]="geoChart"></google-chart>
+          </div>
+        </pan-zoom> -->
+        <google-chart [data]="geoChart"></google-chart
+        ><button
+          (click)="open(content)"
+          style="
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border: 0;
+            outline: none;
+            background: transparent;
+            color: black;
+            font-size: 15px;
+          "
+        >
+          <i class="fas fa-search-plus"></i>
+        </button>
+      </div>
+    </div>
+    <ng-template #content let-modal class="custom-modal">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          {{ "statistic.authorprofile.top.country" | translate }}
+        </h4>
+        <button
+          type="button"
+          class="btn-close-modal"
+          (click)="modal.dismiss('Cross click')"
+          style="
+            background: transparent !important;
+            border: 0 !important;
+            outline: none !important;
+            color: red !important;
+            font-size: 30px !important;
+          "
+        >
+          <i class="far fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <google-chart [data]="geoChart"></google-chart>
+      </div>
+    </ng-template>
+  </div>
+</div>

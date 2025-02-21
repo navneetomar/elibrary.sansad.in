@@ -1,0 +1,17 @@
+<div *ngIf="!(results$ | async)" class="thumbnail-content outer">
+  <div class="inner">
+    <div class="centered">
+      <ds-themed-loading [spinner]="true"></ds-themed-loading>
+    </div>
+  </div>
+</div>
+<div class="h-100 box-image" *ngIf="results$ | async">
+  <img
+    [src]="logoCommDefault"
+    class="img-community h-100"
+    [ngClass]="isHomePage === false ? 'no-home' : ''"
+    alt="..."
+  />
+
+  <!-- <img [src]="object._links.logo.href" class="img-community" alt="..." /> -->
+</div>

@@ -1,0 +1,78 @@
+<!-- <ds-pagination
+  [paginationOptions]="config"
+  [pageInfoState]="objects?.payload"
+  [collectionSize]="objects?.payload?.totalElements"
+  [sortOptions]="sortConfig"
+  [hideGear]="hideGear"
+  [objects]="objects"
+  [hidePagerWhenSinglePage]="hidePagerWhenSinglePage"
+  [hidePaginationDetail]="hidePaginationDetail"
+  [showPaginator]="showPaginator"
+  (pageChange)="onPageChange($event)"
+  (pageSizeChange)="onPageSizeChange($event)"
+  (sortDirectionChange)="onSortDirectionChange($event)"
+  (sortFieldChange)="onSortFieldChange($event)"
+  (paginationChange)="onPaginationChange($event)"
+  (prev)="goPrev()"
+  (next)="goNext()"
+  >
+    <div class="card-wrapper row" *ngIf="objects?.hasSucceeded">
+      <div class="row card-row" *ngFor="let column of (columns$ | async)" @fadeIn>
+        <div class="card-element col col-sm-6 col-lg-3" *ngFor="let object of column" [attr.data-test]="'grid-object' | dsBrowserOnly">
+          <div class="col-inner">
+            <ds-listable-object-component-loader 
+            [object]="object"
+            [viewMode]="viewMode" 
+            [context]="context" 
+            [linkType]="linkType"
+            style="display: block; height: 100%;"
+            ></ds-listable-object-component-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  <ds-error *ngIf="objects.hasFailed" message="{{'error.objects' | translate}}"></ds-error>
+  <ds-themed-loading *ngIf="objects.isLoading" message="{{'loading.objects' | translate}}"></ds-themed-loading>
+</ds-pagination>
+
+ -->
+
+ <ds-pagination
+  [paginationOptions]="config"
+  [pageInfoState]="objects?.payload"
+  [collectionSize]="objects?.payload?.totalElements"
+  [sortOptions]="sortConfig"
+  [hideGear]="hideGear"
+  [objects]="objects"
+  [hidePagerWhenSinglePage]="hidePagerWhenSinglePage"
+  [hidePaginationDetail]="hidePaginationDetail"
+  [showPaginator]="showPaginator"
+  (pageChange)="onPageChange($event)"
+  (pageSizeChange)="onPageSizeChange($event)"
+  (sortDirectionChange)="onSortDirectionChange($event)"
+  (sortFieldChange)="onSortFieldChange($event)"
+  (paginationChange)="onPaginationChange($event)"
+  (prev)="goPrev()"
+  (next)="goNext()"
+  >
+    <div class="card-wrapper" *ngIf="objects?.hasSucceeded">
+      <div class="card-row row" @fadeIn>
+        <div class="card-element col-lg-3 col-sm-6 col-md-6 col-6" *ngFor="let object of objects.payload.page" [attr.data-test]="'grid-object' | dsBrowserOnly">
+          <div class="col-inner">
+            <ds-listable-object-component-loader 
+            [object]="object"
+            [viewMode]="viewMode" 
+            [context]="context" 
+            [linkType]="linkType"
+            style="display: block; height: 100%;"
+            ></ds-listable-object-component-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  <ds-error *ngIf="objects.hasFailed" message="{{'error.objects' | translate}}"></ds-error>
+  <ds-themed-loading *ngIf="objects.isLoading" message="{{'loading.objects' | translate}}"></ds-themed-loading>
+</ds-pagination>
+
+
+

@@ -1,0 +1,41 @@
+:host {
+  .simple-view-element {
+    margin-bottom: 15px;
+  }
+  .simple-view-element-body.email-person span.dont-break-out {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #207698 !important;
+  }
+  .title-col{
+    display: flex;
+    padding: var(--spacing-16, 16px);
+    align-items: flex-start;
+    gap: 8px;
+    border: 1px solid var(--neutral-white, #FFF);
+    background: var(--primary-green-g-300, #008080);
+    color: var(--neutral-white, #FFF);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; 
+    letter-spacing: 0.15px;
+    border-top-style:none ;
+  }
+  .desc-col{
+    display: flex;
+    padding: var(--spacing-16, 16px);
+    align-items: flex-start;
+    gap: 8px;
+    background: var(--neutral-white, #FFF);
+    color: var(--neutral-black, #222);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    border: 0.5px solid var(--neutral-dark-grey, #666); 
+    border-left-style:none ;
+  }
+}

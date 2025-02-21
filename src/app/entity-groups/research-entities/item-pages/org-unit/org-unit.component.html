@@ -1,0 +1,168 @@
+<div class="d-flex flex-row">
+  <ds-item-page-title-field [item]="object" class="mr-auto">
+  </ds-item-page-title-field>
+  <div class="pl-2 space-children-mr">
+    <ds-dso-page-version-button
+      (newVersionEvent)="onCreateNewVersion()"
+      [dso]="object"
+      [tooltipMsgCreate]="'item.page.version.create'"
+      [tooltipMsgHasDraft]="'item.page.version.hasDraft'"
+    ></ds-dso-page-version-button>
+    <ds-dso-page-edit-button
+      [pageRoute]="itemPageRoute"
+      [dso]="object"
+      [tooltipMsg]="'orgunit.page.edit'"
+    ></ds-dso-page-edit-button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-3">
+    <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+      <ds-thumbnail
+        [thumbnail]="object?.thumbnail | async"
+        [defaultImage]="'assets/images/cover_book_enhira.png'"
+        [alt]="'thumbnail.orgunit.alt'"
+        [placeholder]="'thumbnail.orgunit.placeholder'"
+      >
+      </ds-thumbnail>
+    </ds-metadata-field-wrapper>
+    <ds-download-view-wrapper [object]="object"></ds-download-view-wrapper>
+  </div>
+  <div class="col-xs-12 col-md-9">
+    <div *ngIf="!!showMore === false" class="mb-3 mt-2">
+      <button (click)="handleShowMore()" class="btn btn-outline-primary">
+        {{ "button.details.showmore" | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="!!showMore === true">
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.description']"
+        [label]="'orgunit.page.description'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['organization.foundingDate']"
+        [label]="'orgunit.page.dateestablished'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['organization.address.addressLocality']"
+        [label]="'orgunit.page.city'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['organization.adress.addressCountry']"
+        [label]="'orgunit.page.country'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.identifier']"
+        [label]="'orgunit.page.id'"
+      >
+      </ds-generic-item-page-field>
+      <ds-item-page-file-section-other
+        [item]="object"
+      ></ds-item-page-file-section-other>
+      <div class="mb-3 mt-2">
+        <a
+          class="btn btn-outline-primary"
+          [routerLink]="[itemPageRoute + '/full']"
+        >
+          {{ "item.page.link.full" | translate }}
+        </a>
+        <button
+          (click)="handleShowMore()"
+          class="btn btn-primary ml-3 btn-collapse-item"
+        >
+          {{ "button.details.collapse" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="mt-5 w-100">
+    <h2 class="title-entity">{{ "author.link.entity" | translate }}</h2>
+    <ds-tabbed-related-entities-search
+      [item]="object"
+      [relationTypes]="[
+        {
+          label: 'isOrgUnitOfPerson',
+          filter: 'isOrgUnitOfPerson',
+          configuration: 'person-relationships'
+        },
+        {
+          label: 'isOrgUnitOfProject',
+          filter: 'isOrgUnitOfProject',
+          configuration: 'project-relationships'
+        }
+      ]"
+    >
+    </ds-tabbed-related-entities-search>
+  </div> -->
+  <div class="col-xs-12 col-md-12 mt-4 box-nav">
+    <h2 class="title-entity">{{ "author.link.entity" | translate }}</h2>
+    <nav ngbNav #nav="ngbNav" class="nav-tabs w-100">
+      <ng-container ngbNavItem>
+        <a ngbNavLink>{{ "author.tab.entity" | translate }}</a>
+        <ng-template ngbNavContent>
+          <div class="pt-2 w-100">
+            <ds-tabbed-related-entities-search
+              [item]="object"
+              [relationTypes]="[
+                {
+                  label: 'isOrgUnitOfPerson',
+                  filter: 'isOrgUnitOfPerson',
+                  configuration: 'person-relationships'
+                }
+              ]"
+            >
+            </ds-tabbed-related-entities-search>
+          </div>
+        </ng-template>
+      </ng-container>
+      <ng-container ngbNavItem>
+        <a ngbNavLink>{{ "home.doc.list" | translate }}</a>
+        <ng-template ngbNavContent>
+          <div class="pt-2 w-100">
+            <ds-tabbed-related-entities-search
+              [item]="object"
+              [relationTypes]="[
+                {
+                  label: 'isOrgUnitOfPublication',
+                  filter: 'isOrgUnitOfPublication',
+                  configuration: 'publication-relationships'
+                }
+              ]"
+            >
+            </ds-tabbed-related-entities-search>
+          </div>
+        </ng-template>
+      </ng-container>
+      <ng-container ngbNavItem>
+        <a ngbNavLink>{{ "home.project.list" | translate }} </a>
+        <ng-template ngbNavContent>
+          <div class="pt-2 w-100">
+            <ds-tabbed-related-entities-search
+              [item]="object"
+              [relationTypes]="[
+                {
+                  label: 'isOrgUnitOfProject',
+                  filter: 'isOrgUnitOfProject',
+                  configuration: 'project-relationships'
+                }
+              ]"
+            >
+            </ds-tabbed-related-entities-search>
+          </div>
+        </ng-template>
+      </ng-container>
+    </nav>
+
+    <div [ngbNavOutlet]="nav" class="mt-2 w-100"></div>
+  </div>
+</div>

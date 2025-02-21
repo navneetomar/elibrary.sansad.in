@@ -1,0 +1,86 @@
+  <div class="row">
+    <!-- <div *ngIf="showThumbnails" class="col-6 col-md-3"></div> -->
+    <!-- <div *ngIf="showThumbnails" class="box-logo-item col-12 col-xl-2 col-lg-4">
+      <a
+        class="d-block"
+        *ngIf="linkType != linkTypes.None"
+        [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+        rel="noopener noreferrer"
+        [routerLink]="['/collections/' + dso.id]"
+        class="dont-break-out"
+      >
+        <div *ngIf="!(logo$ | async)" class="thumbnail-content outer">
+          <div class="inner">
+            <div class="centered">
+              <ds-themed-loading [spinner]="true"></ds-themed-loading>
+            </div>
+          </div>
+        </div>
+        <img [src]="logoCollection" class="img-collection" alt="dso.id" />
+      </a>
+    </div> -->
+    <!-- <div class="col-lg-2 col-sm-4">
+        {{fullTime}}
+    </div>
+    <div class="col-lg-7 col-sm-8"> -->
+      <!-- <a
+        *ngIf="linkType != linkTypes.None"
+        [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+        rel="noopener noreferrer"
+        class="lead item-list-title"
+        [innerHTML]="dsoTitle"
+      ></a>
+      <span
+        *ngIf="linkType == linkTypes.None"
+        class="lead item-list-title"
+        [innerHTML]="dsoTitle"
+      ></span> -->
+      <!-- <span
+      class="lead item-list-title"
+      [innerHTML]="dsoTitle"
+    ></span>
+    </div>
+    <div class="col-xl-2 col-sm-4 d-flex align-items-center">
+      <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+
+    </div>
+    <div class="col-1 d-flex align-items-center">      
+      <button type="button" class="btn btn-view" 
+      [routerLink]="['/collections/' + dso.id]"
+      >View</button>
+    </div> -->
+    
+
+    <div class="col-lg-2 col-sm-4">
+      <span
+      [innerHTML]="firstMetadataValue('dc.date.issued')"
+      ></span>
+    </div>
+    <div class="col-lg-7 col-sm-8">
+      <a
+      class="lead item-list-title" [routerLink]="['/collections/' + dso.id]"
+      [innerHTML]="dsoTitle"></a>
+    </div>
+    <div class="col-lg-2 col-sm-4 d-flex align-items-center">
+        <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+    </div>
+    <div class="col-1 d-flex align-items-center">
+      <button type="button" class="btn btn-view"
+      [routerLink]="['/collections/' + dso.id]">View</button>
+    </div>
+
+    <!-- <div
+      class="detail-item"
+      [ngClass]="showThumbnails ? 'col-12 col-xl-10 col-lg-8' : 'col-md-12'"
+    >
+      <div class="box-type-item">
+        <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+      </div>
+      
+      <div
+        *ngIf="dso.shortDescription"
+        class="text-muted abstract-text"
+        [innerHTML]="firstMetadataValue('dc.description.abstract')"
+      ></div>
+    </div> -->
+  </div>

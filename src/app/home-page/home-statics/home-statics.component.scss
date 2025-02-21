@@ -1,0 +1,38 @@
+.statics-numbers {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+
+  .statics-number {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    span {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 35px;
+      color: #ffe62e;
+      &.number {
+        font-style: normal;
+        font-weight: 900;
+        font-size: 60px;
+        line-height: 70px;
+
+        color: #ffffff;
+        border-bottom: 3px solid #ffe62e;
+      }
+    }
+  }
+}
+@media (max-width: 575.98px) {
+  .statics-numbers {
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+  }
+}

@@ -1,0 +1,30 @@
+<div class="space-children-mr my-1">
+  <button [ngClass]="{'btn-sm': small}" class="btn btn-secondary move-link" (click)="handleActionItem(getMoveRoute())" [title]="'admin.search.item.move' | translate">
+    <i class="fa fa-arrow-circle-right"></i><span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.move" | translate}}</span>
+  </button>
+
+  <button [ngClass]="{'btn-sm': small}" *ngIf="item && item.isDiscoverable" class="btn btn-secondary private-link" (click)="handleActionItem(getPrivateRoute())"  [title]="'admin.search.item.make-private' | translate">
+    <i class="fa fa-eye-slash"></i><span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.make-private" | translate}}</span>
+  </button>
+
+  <button [ngClass]="{'btn-sm': small}" *ngIf="item && !item.isDiscoverable" class="btn btn-secondary public-link" (click)="handleActionItem(getPublicRoute())"  [title]="'admin.search.item.make-public' | translate">
+    <i class="fa fa-eye"></i><span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.make-public" | translate}}</span>
+  </button>
+
+  <button [ngClass]="{'btn-sm': small}" class="btn btn-secondary edit-link"  (click)="handleActionItem(getEditRoute())" [title]="'admin.search.item.edit' | translate">
+    <i class="fa fa-edit"></i><span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.edit" | translate}}</span>
+  </button>
+
+  <button [ngClass]="{'btn-sm': small}" *ngIf="item && !item.isWithdrawn" class="btn btn-warning t withdraw-link" (click)="handleActionItem(getWithdrawRoute())"  [title]="'admin.search.item.withdraw' | translate">
+    <i class="fa fa-ban"></i><span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.withdraw" | translate}}</span>
+  </button>
+
+  <button [ngClass]="{'btn-sm': small}" *ngIf="item && item.isWithdrawn" class="btn btn-warning reinstate-link" (click)="handleActionItem(getReinstateRoute())"  [title]="'admin.search.item.reinstate' | translate">
+    <i class="fa fa-undo"></i><span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.reinstate" | translate}}</span>
+  </button>
+
+  <button [ngClass]="{'btn-sm': small}" class="btn btn-danger delete-link" (click)="handleActionItem(getDeleteRoute())" [title]="'admin.search.item.delete' | translate">
+    <i class="fa fa-trash"></i><span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.delete" | translate}}</span>
+  </button>
+</div>
+

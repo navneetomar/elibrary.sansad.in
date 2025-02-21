@@ -1,0 +1,39 @@
+<ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+<div class="statics-numbers" *ngIf="results$ | async">
+  <h3 class="text-center heading-author">featured author</h3>
+  <ngb-carousel
+    #carousel
+    [interval]="4000"
+    [pauseOnHover]="pauseOnHover"
+    [pauseOnFocus]="pauseOnFocus"
+    (slide)="onSlide($event)"
+  >
+    <ng-template ngbSlide *ngFor="let item of dataResult; index as i">
+      <div
+        *ngIf="
+          item._embedded.indexableObject._embedded.thumbnail !== null;
+          else noThumbnails
+        "
+      >
+        <img
+          [src]="
+            item._embedded.indexableObject._embedded.thumbnail._links.content
+              .href
+          "
+          style="width: 200px; height: 200px; border-radius: 50%"
+          [alt]="item._embedded.indexableObject.name"
+        />
+      </div>
+      <ng-template #noThumbnails>
+        <div>
+          <img
+            [src]="logoDefault"
+            style="width: 200px; height: 200px; border-radius: 50%"
+            [alt]="item._embedded.indexableObject.name"
+          /></div
+      ></ng-template>
+      <div>{{ item._embedded.indexableObject.name }}</div>
+      <div><button class="btn btn-default">View Profile</button></div>
+    </ng-template>
+  </ngb-carousel>
+</div>

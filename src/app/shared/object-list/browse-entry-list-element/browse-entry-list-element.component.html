@@ -1,0 +1,22 @@
+<div class="d-flex flex-row">
+  <div class="mb-2 w-100">
+    <a
+    *ngIf="linkType != linkTypes.None"
+    [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+    rel="noopener noreferrer"
+    [routerLink]="[]"
+    [queryParams]="queryParams$ | async"
+    [queryParamsHandling]="'merge'"
+    class="lead item-subject mb-2"
+  >
+    {{ object.value }} 
+    </a>
+    <div class="wrap-count">
+      <span class="count">{{ object.count }}</span>
+    </div>
+  </div>
+ 
+  <span *ngIf="linkType == linkTypes.None" class="lead item-subject">
+    {{ object.value }} <span>({{ object.count }})</span>
+  </span>
+</div>

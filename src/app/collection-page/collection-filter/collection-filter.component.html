@@ -1,0 +1,83 @@
+<ds-themed-loading *ngIf="(isLoading$| async)"></ds-themed-loading>
+
+<div *ngIf="!(isLoading$| async)">
+    <h2 class="title-discover">Discover</h2>
+    <ngb-accordion #acc="ngbAccordion" activeIds={{panelId}}>
+        <!-- <ds-collection-filter-type *ngFor="let facet of filterOptions" [facet]="facet">
+        </ds-collection-filter-type> -->
+    
+        <ngb-panel *ngFor="let facet of filterOptions" [title]="'search.filters.filter.' + facet.type + '.head' | translate" [id]="facet.type">
+            <ng-template ngbPanelContent>
+                <div class="filters py-2"  *ngIf="facet.type === 'dateIssued'">
+                    <form  class="add-filter row" #form="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="col-6 form-group mb-0">
+                            <label>
+                                <span class="range-title">
+                                Start
+                                </span>
+                                <input type="text" 
+                                        class="form-control"
+                                        aria-label="Mininum value"
+                                        [(ngModel)]="formDataSearchYear.MinYear"
+                                        [name]="'f.'+facet.type+'.min'"
+                                />
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <span class="range-title">
+                                    End
+                                </span>
+                                <input type="text"
+                                        class="form-control"
+                                        [(ngModel)]="formDataSearchYear.MaxYear"
+                                        aria-label="Maximum value"
+                                        [name]="'f.'+facet.type+'.max'"
+                                />
+                            </label>
+                        </div>
+                        <label class="d-none">
+                            <input type="submit" class="d-none"/>
+                            <span>{{'search.filters.search.submit' | translate}}</span>
+                        </label>
+                    </form>
+                    <nouislider [connect]="true" [min]="min" [max]="max" [step]="1"
+                        [dsDebounce]="250" (onDebounce)="onSubmitRange()"
+                        (keydown)="startKeyboardControl()" (keyup)="stopKeyboardControl()"
+                        [(ngModel)]="range" ngDefaultControl>
+                    </nouislider>
+                            <!-- <ng-container *ngIf="shouldShowSlider()">
+                                <nouislider [connect]="true" [min]="min" [max]="max" [step]="1"
+                                            [dsDebounce]="250" (onDebounce)="onSubmit()"
+                                            (keydown)="startKeyboardControl()" (keyup)="stopKeyboardControl()"
+                                            [(ngModel)]="range" ngDefaultControl>
+                                </nouislider>
+                            </ng-container>
+                          <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
+                            <div [@facetLoad]="animationState">
+                              <ds-search-facet-range-option *ngFor="let value of page.page; trackBy: trackUpdate" [filterConfig]="filterConfig" [filterValue]="value" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-range-option>
+                              </div>
+                            </ng-container> -->
+                </div>
+            
+                <a *ngFor="let item of facet.values" class="d-flex justify-content-between link-search" (click)="redirectSearch(item.label,facet.type)">
+                    <span class="label">{{item.label}}</span> 
+                    <span class="count">{{item.count}}</span>
+                </a>
+                <div class="toggle-more-filters d-flex">
+                    <a (click)="showMore(facet.type)" class="show-more" [ngClass]="facet.type" *ngIf="facet.showMore">{{'search.filters.filter.show-more'| translate}}</a>
+    
+                    <a (click)="showLess(facet.type)" class="show-less ml-auto" [ngClass]="facet.type" *ngIf="facet.collapse">{{'search.filters.filter.show-less'| translate}}</a>
+                </div>
+                <ng-container *ngIf="checkTypeHaveSearch(facet.type)">
+                    <h5 class="search-title">{{'search.filters.filter.'+facet.type+'.label' | translate}}</h5>
+                    <form  class="add-filter add-filter-search"  #form="ngForm" (ngSubmit)="onSubmitSearchText(facet.type)">
+                        <input  class="form-control" [name]="facet.type" [(ngModel)]="formDataSearchText[facet.type]"/>
+                    </form>
+                </ng-container>
+    
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+    
+</div>

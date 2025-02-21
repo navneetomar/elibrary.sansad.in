@@ -1,0 +1,114 @@
+.loginDropdownMenu,
+.logoutDropdownMenu {
+  min-width: 330px;
+  z-index: 1002;
+}
+
+.loginDropdownMenu {
+  min-height: 260px;
+}
+
+.dropdown-item.active,
+.dropdown-item:active,
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: transparent !important;
+}
+
+.dropdown-toggle {
+  color: var(--ds-header-icon-color) !important;
+  color: #fff !important;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 17px;
+  &:hover,
+  &focus {
+    color: var(--ds-header-icon-color) !important;
+    color: #fff !important;
+    text-decoration: none;
+  }
+}
+.dropdown-toggle.user-infor{
+  color: #008080 !important;
+
+  border: 1px solid #008080;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 100px;
+  text-transform: none;
+  padding: 6px;
+  gap: 6px;
+  i{
+    font-size: 16px;
+    text-align: center;
+  }
+  &::after{
+    margin-left: 0;
+    display: none !important;
+  }
+}
+:host ::ng-deep {
+  .dropdown-toggle:after {
+    border: 0;
+  }
+}
+@media screen and (max-width: 1199.98px) {
+  .dropdown-toggle {
+    color: var(--ds-header-icon-color) !important;
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+  }
+}
+@media (max-width: 575.98px) {
+  .container.navbar.navbar-expand-md {
+    background-color: #000;
+  }
+  .navbar-nav {
+    li {
+      a {
+        color: #fff;
+        font-size: 19px;
+      }
+    }
+  }
+  .dropdown-toggle.user-infor{
+    color: #fff !important;
+  
+    border: 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+    text-transform: none;
+    padding: 6px;
+    gap: 6px;
+    i{
+      font-size: 16px;
+      text-align: center;
+    }
+    &::after{
+      margin-left: 0;
+      display: none !important;
+    }
+  }
+  .dropdown-toggle.user-infor.user-infor-mobile{
+    text-align: left;
+    justify-content: flex-start;
+    font-weight: 400;
+    padding-left: 0;
+    font-size: 16px !important;
+  }
+  .dropdown-menu-user-infor{
+    a.dropdown-item{
+      color: #666 !important;
+      font-size: 16px !important;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.autocomplete {
+    width: 100%;
+
+    .dropdown-item {
+        white-space: normal;
+        word-break: break-word;
+        padding: var(--bs-input-padding-y) var(--bs-input-padding-x);
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+form {
+    position: relative;
+}
+.search-title{
+    color: var(--neutral-black, #222);
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px; 
+    letter-spacing: 0.1px;
+}
+.suggestion_input{
+    color: var(--neutral-silver, #C0C0C0);
+
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px; 
+    letter-spacing: 0.25px;
+    border-radius: var(--spacing-4, 4px);
+    border: 1px solid var(--neutral-light-grey, #DDD);
+    background: var(--neutral-white, #FFF);
+    &::placeholder{
+        opacity: .5;
+    }
+    }

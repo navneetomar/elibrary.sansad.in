@@ -1,0 +1,45 @@
+
+
+<form
+  class="w-100"
+  [formGroup]="formData"
+  (ngSubmit)="submitForm(formData.value)"
+>
+  <div class="row">
+    <div class="d-flex ml-3 opt flex-wrap">
+      <span>
+        Jump to: 
+      </span>
+      <div class="number-opt ml-3" [ngClass]="{
+        'active': startsWith === '0' || startsWith === undefined
+      }" (click)="chooseChar(0)">
+        {{ startsWithOptions[0] }}
+      </div>
+      <div class="text-opts" *ngFor="let text of startsWithOptions; let i = index">
+        <div class="text-opt" [ngClass]="startsWith === text ? 'active': ''" *ngIf="i > 0" (click)="chooseChar(text)">
+          {{text}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-title mt-3 mb-1">
+      <span>
+        or enter first few letters:
+      </span>
+    </div>
+    <div class="form-group input-group col-12 col-sm-12 col-md-8">
+      <input
+        class="form-control input-search-start-with"
+        placeholder="{{ 'browse.startsWith.type_text' | translate }}"
+        type="text"
+        name="startsWith"
+        formControlName="startsWith"
+        [value]="getStartsWith()"
+      />
+      <span class="input-group-append">
+        <button class="btn btn-primary btn-search-start-with" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+</form>

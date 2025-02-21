@@ -1,0 +1,59 @@
+:host ::ng-deep {
+  --ds-wrapper-grid-spacing: calc(var(--bs-spacer) / 2);
+
+  div.card {
+    margin-top: var(--ds-wrapper-grid-spacing);
+    margin-bottom: var(--ds-wrapper-grid-spacing);
+
+    div.thumbnail > .thumbnail-content {
+      height: var(--ds-card-thumbnail-height);
+      width: 100%;
+      display: block;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: 50% 15%;
+    }
+  }
+}
+
+.card-columns {
+  margin-left: calc(-1 * var(--ds-wrapper-grid-spacing));
+  margin-right: calc(-1 * var(--ds-wrapper-grid-spacing));
+  column-gap: 0;
+
+  .card-column {
+    padding-left: var(--ds-wrapper-grid-spacing);
+    padding-right: var(--ds-wrapper-grid-spacing);
+  }
+  
+}
+
+.card-wrapper{
+  .card-row{
+    .card-element{
+      margin-bottom: 21px;
+      padding-right: 6px;
+      .col-inner{
+        height: 100%;
+      }
+      
+    }
+  }
+}
+::ng-deep{
+  .tooltip-inner{
+    color: var(--neutral-white, #FFF);
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    background: rgba(34, 34, 34, 0.90);
+    padding: var(--spacing-16, 16px);
+  }
+  ngb-tooltip-window.bs-tooltip-top .arrow{
+    opacity: .75;
+  }
+}

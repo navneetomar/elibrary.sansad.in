@@ -1,0 +1,15 @@
+.err-msg-container{
+    // display: grid;
+    // place-items: center;
+    // height: 81vh;
+    display: flex;
+    height: 77vh;
+    justify-content: center;
+    align-items: center;
+}
+
+*{overflow:hidden}
+
+.nav-link{
+    cursor: pointer;
+}

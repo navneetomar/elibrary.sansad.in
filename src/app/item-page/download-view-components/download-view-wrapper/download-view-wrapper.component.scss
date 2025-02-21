@@ -1,0 +1,87 @@
+:host {
+  .simple-view-element {
+    margin-bottom: 15px;
+  }
+  .see-desc::after {
+    content: "";
+    width: 123px;
+    height: 3px;
+    display: block;
+    border-bottom: 1px dotted #159277;
+    position: absolute;
+    bottom: 10px;
+    z-index: -9999;
+  }
+  .see-download::after {
+    border-bottom: 1px dotted #7d0141;
+
+    content: "";
+    width: 123px;
+    height: 3px;
+    display: block;
+
+    position: absolute;
+    bottom: 10px;
+    z-index: -9999;
+  }
+  .see-desc {
+    position: relative;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+
+      color: #000000;
+    }
+    .number {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #159277;
+    }
+    img {
+      width: 112px;
+    }
+  }
+  .see-download {
+    position: relative;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+
+      color: #000000;
+    }
+    .number {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #7d0141;
+    }
+    img {
+      width: 112px;
+    }
+  }
+  .statistic-item {
+    display: flex;
+    flex-direction: column;
+  }
+  @media (max-width: 575.98px) {
+    .statistic-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    .see-download {
+      margin: 0;
+    }
+  }
+}

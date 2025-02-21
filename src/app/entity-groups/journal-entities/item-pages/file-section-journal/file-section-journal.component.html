@@ -1,0 +1,87 @@
+<ng-container *ngVar="bitstreams$ | async as bitstreams">
+  <ds-metadata-field-wrapper
+    *ngIf="bitstreams?.length > 0"
+    [label]="label | translate"
+  >
+    <div class="file-section">
+      <div
+        class="row box-item-file"
+        *ngFor="let file of bitstreams; let last = last"
+      >
+        <div class="col-md-2 col-12">
+          <div class="image-file">
+            <img
+              src="../../../../../assets/images/thumbnail-default.png"
+              class="img-thumbnail"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="col-md-10 col-12">
+          <p class="file-name" *ngIf="file?.name">
+            {{ file?.name }}
+          </p>
+          <p
+            class="desc-file"
+            *ngIf="
+              file?.metadata &&
+              file?.metadata['dc.description'] &&
+              file?.metadata['dc.description'][0]
+            "
+          >
+            {{ file?.metadata["dc.description"][0]?.value }}
+          </p>
+          <p class="file-format" *ngIf="file?.sizeBytes && file?.name">
+            <span
+              >{{ "item.file.size" | translate }}:
+              <span class="text-uppercase file-format-number">{{
+                file?.sizeBytes | dsFileSize
+              }}</span></span
+            >
+            <span
+              >{{ "item.file.format" | translate }}:
+              <span class="text-uppercase file-format-number">{{
+                file?.name.split(".").pop()
+              }}</span></span
+            >
+          </p>
+          <ds-item-page-file-statistics
+            [bitstream]="file"
+            [item]="item"
+          ></ds-item-page-file-statistics>
+          <div class="box-link-file">
+            <ds-file-view-link [bitstream]="file" [item]="item" [isBlank]="true" cssClasses="link-view-doc">
+              <span>{{ "item.file.views.online" | translate }} </span>
+            </ds-file-view-link>
+            <span style="color: #333">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            <ds-file-download-link [bitstream]="file" [item]="item">
+              <span>{{ "item.file.views.download" | translate }}</span>
+            </ds-file-download-link>
+          </div>
+        </div>
+      </div>
+
+      <ds-themed-loading
+        *ngIf="isLoading"
+        message="{{ 'loading.default' | translate }}"
+        [showMessage]="false"
+      ></ds-themed-loading>
+      <div *ngIf="!isLastPage" class="mt-1" id="view-more">
+        <a
+          class="bitstream-view-more btn btn-outline-secondary btn-sm"
+          [routerLink]="[]"
+          (click)="getNextPage()"
+          >{{ "item.page.bitstreams.view-more" | translate }}</a
+        >
+      </div>
+      <div *ngIf="isLastPage && currentPage != 1" class="mt-1" id="collapse">
+        <a
+          class="bitstream-collapse btn btn-outline-secondary btn-sm"
+          [routerLink]="[]"
+          (click)="currentPage = undefined; getNextPage()"
+          >{{ "item.page.bitstreams.collapse" | translate }}</a
+        >
+      </div>
+    </div>
+  </ds-metadata-field-wrapper>
+</ng-container>

@@ -1,0 +1,42 @@
+<div class="sidebar-left w-75">
+  <h2>{{ "browse.comcol.head" | translate }}</h2>
+  <ul>
+    <li>
+      <a [routerLink]="['/community-list']">{{
+        "menu.section.browse_global_communities_and_collections" | translate
+      }}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/browse/dateissued']">
+        {{ "browse.metadata.dateissued" | translate }}</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/browse/author']">
+        {{ "browse.metadata.author" | translate }}</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/browse/title']">
+        {{ "browse.metadata.title" | translate }}</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/browse/subject']">
+        {{ "browse.metadata.subject" | translate }}</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/browse/type']">
+        {{ "browse.metadata.type" | translate }}</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/browse/topic']">
+        {{ "browse.metadata.topic" | translate }}</a
+      >
+    </li>
+  </ul>
+  <!-- <ds-author-profile></ds-author-profile> -->
+  <!-- <ds-topic-info></ds-topic-info> -->
+</div>

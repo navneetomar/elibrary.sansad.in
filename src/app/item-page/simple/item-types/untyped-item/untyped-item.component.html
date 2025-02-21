@@ -1,0 +1,259 @@
+<div class="row" *ngIf="iiifEnabled">
+  <div class="col-12">
+    <ds-mirador-viewer
+      id="iiif-viewer"
+      [object]="object"
+      [searchable]="iiifSearchEnabled"
+      [query]="iiifQuery$ | async"
+    >
+    </ds-mirador-viewer>
+  </div>
+</div>
+<div class="show-full-metadata py-4 row d-flex justify-content-between">
+    <a
+    class="btn btn-outline-primary btn-full-metadata"
+    [routerLink]="[itemPageRoute + '/full']"
+    role="button"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="6" height="16" viewBox="0 0 6 16" fill="none">
+      <path d="M1.5 2.5C1.5 1.96875 1.78125 1.5 2.25 1.21875C2.6875 0.9375 3.28125 0.9375 3.75 1.21875C4.1875 1.5 4.5 1.96875 4.5 2.5C4.5 3.0625 4.1875 3.53125 3.75 3.8125C3.28125 4.09375 2.6875 4.09375 2.25 3.8125C1.78125 3.53125 1.5 3.0625 1.5 2.5ZM0 7C0 6.46875 0.4375 6 1 6H3C3.53125 6 4 6.46875 4 7V14H5C5.53125 14 6 14.4688 6 15C6 15.5625 5.53125 16 5 16H1C0.4375 16 0 15.5625 0 15C0 14.4688 0.4375 14 1 14H2V8H1C0.4375 8 0 7.5625 0 7Z" fill="#666666"/>
+    </svg>
+    {{ "item.page.link.full.metadata" | translate }}
+  </a>
+  <div class="space-children-mr d-flex justify-content-end">
+    <ds-dso-page-version-button
+      (newVersionEvent)="onCreateNewVersion()"
+      [dso]="object"
+      [tooltipMsgCreate]="'item.page.version.create'"
+      [tooltipMsgHasDraft]="'item.page.version.hasDraft'"
+    ></ds-dso-page-version-button>
+    <ds-dso-page-edit-button
+      [pageRoute]="itemPageRoute"
+      [dso]="object"
+      [tooltipMsg]="'item.page.edit'"
+    ></ds-dso-page-edit-button>
+  </div>
+</div>
+
+
+<ng-container *ngFor="let dc of metaData; index as i; first as isFirst">
+  <ds-generic-item-page-field
+  [item]="object"
+  [fields]="[dc]"
+  [label]="'item.page'+ dc.toString().replace('dc.','.')"
+  >
+  </ds-generic-item-page-field>
+</ng-container>
+
+
+<!-- <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+<ds-item-page-title-field [item]="object" class="mr-auto">
+ </ds-item-page-title-field>
+
+    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['dc.contributor.author', 'dc.creator']"
+      [label]="'relationships.isAuthorOf' | translate"
+    >
+    </ds-metadata-representation-list>
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.publisher']"
+      [label]="'item.page.publisher'"
+    >
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.identifier.citation']"
+      [label]="'item.page.citation'"
+    >
+    </ds-generic-item-page-field>
+    <ds-item-page-collections [item]="object"></ds-item-page-collections>
+    <ds-item-page-uri-field
+      [item]="object"
+      [fields]="['dc.identifier.uri']"
+      [label]="'item.page.uri'"
+    >
+    </ds-item-page-uri-field> -->
+
+   
+
+    <!-- <div *ngIf="!!showMore === false" class="mb-3 mt-2">
+      <button (click)="handleShowMore()" class="btn btn-outline-primary">
+        {{ "button.details.showmore" | translate }}
+      </button>
+    </div> -->
+
+    <div *ngIf="!!showMore === true">
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.subject']"
+        [separator]="','"
+        [label]="'item.page.subject'"
+      >
+      </ds-generic-item-page-field>
+
+      <ng-container *ngIf="mediaViewer.image">
+        <ds-media-viewer
+          [item]="object"
+          [videoOptions]="mediaViewer.video"
+        ></ds-media-viewer>
+      </ng-container>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.title']"
+        [label]="'item.page.journal-title'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.identifier.issn']"
+        [label]="'item.page.journal-issn'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journalvolume.identifier.name']"
+        [label]="'item.page.volume-title'"
+      >
+      </ds-generic-item-page-field>
+
+      <div class="mb-3 mt-2">
+        <a
+          class="btn btn-outline-primary"
+          [routerLink]="[itemPageRoute + '/full']"
+          role="button"
+        >
+          <i class="fas fa-info-circle"></i>
+          {{ "item.page.link.full" | translate }}
+        </a>
+        <button
+          (click)="handleShowMore()"
+          class="btn btn-primary ml-3 btn-collapse-item"
+        >
+          {{ "button.details.collapse" | translate }}
+        </button>
+      </div>
+    </div>
+  
+
+  <div class="row">
+     <ds-themed-item-page-file-section 
+      style="width: 100%;"
+      [item]="object"
+    ></ds-themed-item-page-file-section>
+  </div>
+<!-- <div class="row">
+  <div class="col-xs-12 col-md-3">
+    <ng-container *ngIf="!mediaViewer.image">
+      <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+        <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+      </ds-metadata-field-wrapper>
+    </ng-container>
+    <ds-download-view-wrapper [object]="object"></ds-download-view-wrapper>
+  </div>
+  <div class="col-xs-12 col-md-9">
+    <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.description']"
+      [label]="'item.page.description'"
+    >
+    </ds-generic-item-page-field>
+    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['dc.contributor.author', 'dc.creator']"
+      [label]="'relationships.isAuthorOf' | translate"
+    >
+    </ds-metadata-representation-list>
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.publisher']"
+      [label]="'item.page.publisher'"
+    >
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.identifier.citation']"
+      [label]="'item.page.citation'"
+    >
+    </ds-generic-item-page-field>
+    <ds-item-page-collections [item]="object"></ds-item-page-collections>
+    <ds-item-page-uri-field
+      [item]="object"
+      [fields]="['dc.identifier.uri']"
+      [label]="'item.page.uri'"
+    >
+    </ds-item-page-uri-field>
+
+    <ds-themed-item-page-file-section
+      [item]="object"
+    ></ds-themed-item-page-file-section>
+
+    <div *ngIf="!!showMore === false" class="mb-3 mt-2">
+      <button (click)="handleShowMore()" class="btn btn-outline-primary">
+        {{ "button.details.showmore" | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="!!showMore === true">
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.subject']"
+        [separator]="','"
+        [label]="'item.page.subject'"
+      >
+      </ds-generic-item-page-field>
+
+      <ng-container *ngIf="mediaViewer.image">
+        <ds-media-viewer
+          [item]="object"
+          [videoOptions]="mediaViewer.video"
+        ></ds-media-viewer>
+      </ng-container>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.title']"
+        [label]="'item.page.journal-title'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.identifier.issn']"
+        [label]="'item.page.journal-issn'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journalvolume.identifier.name']"
+        [label]="'item.page.volume-title'"
+      >
+      </ds-generic-item-page-field>
+
+      <div class="mb-3 mt-2">
+        <a
+          class="btn btn-outline-primary"
+          [routerLink]="[itemPageRoute + '/full']"
+          role="button"
+        >
+          <i class="fas fa-info-circle"></i>
+          {{ "item.page.link.full" | translate }}
+        </a>
+        <button
+          (click)="handleShowMore()"
+          class="btn btn-primary ml-3 btn-collapse-item"
+        >
+          {{ "button.details.collapse" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->

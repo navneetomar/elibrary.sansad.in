@@ -1,0 +1,52 @@
+<div class="container">
+  <h1 class="my-3 display-5">{{ "policy.title.heading" | translate }}</h1>
+  <ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+  <div class="row" *ngIf="results$ | async">
+    <div class="col-md-6">
+      <div class="mb-2 pl-4">
+        <div
+          class="form-group d-flex justify-content-center align-items-center"
+          style="gap: 15px"
+        >
+          <span
+            (click)="resetSearch()"
+            class="reset-search"
+            style="
+              display: inline-block;
+              padding: 5px 8px;
+              background-color: #ff0000;
+              color: #fff;
+              border-radius: 50%;
+              font-size: 15px;
+              cursor: pointer;
+            "
+            ><i class="fas fa-retweet"></i
+          ></span>
+          <input
+            type="text"
+            class="form-control"
+            [placeholder]="'enter.search.community.top' | translate"
+            [(ngModel)]="querySearch"
+            (keyup.enter)="searchNode($event)"
+          />
+        </div>
+        <div
+          style="max-height: 700px; overflow-y: scroll; overflow-x: scroll"
+          *ngIf="dataResult && dataResult.length > 0"
+        >
+          <ds-tree-drop-drag
+            [dataInput]="dataResult"
+            [querySearch]="querySearchOutput"
+            (nodeCheckedOutput)="addNewItem($event)"
+            (refreshDataParent)="handleProcessedData($event)"
+          ></ds-tree-drop-drag>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="node">
+        <ds-content-policies [node]="node"></ds-content-policies>
+      </div>
+    </div>
+  </div>
+</div>

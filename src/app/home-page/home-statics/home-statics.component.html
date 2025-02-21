@@ -1,0 +1,13 @@
+<ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+<div class="statics-numbers" *ngIf="results$ | async">
+  <div class="statics-number" *ngFor="let item of dataResult">
+    <a
+      [routerLink]="['/browse', item.type]"
+      [queryParams]="{ value: item.label }"
+      style="pointer-events: none"
+    >
+      <span class="number">{{ item.count }}</span>
+      <span>{{ item.label }}</span>
+    </a>
+  </div>
+</div>

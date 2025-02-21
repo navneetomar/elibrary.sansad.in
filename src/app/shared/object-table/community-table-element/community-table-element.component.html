@@ -1,0 +1,25 @@
+<div class="row result-search-list" [routerLink]="['/communities/', object.id]" >
+  <div class="col-2 thumb">
+      <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/communities/', object.id]" class="card-img-top" [attr.title]="'search.results.view-result' | translate">
+        <ds-thumbnail [thumbnail]="(object.logo | async)?.payload" [limitWidth]="false">
+        </ds-thumbnail>
+      </a>
+      <span *ngIf="linkType == linkTypes.None" class="card-img-top">
+        <ds-thumbnail [thumbnail]="(object.logo | async)?.payload" [limitWidth]="false">
+        </ds-thumbnail>
+      </span>
+  </div>
+  <div class="col-10">
+    <div class="content-wrapper">
+      <div class="card-body" [ngbTooltip]="tipContent">
+        <span class="card-title">{{object.name}}</span>
+        <p *ngIf="object.shortDescription" class="card-text limit-p">{{object.shortDescription}}</p>
+        <!-- <div *ngIf="linkType != linkTypes.None" class="text-center">
+          <a [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/communities/', object.id]" class="lead btn btn-primary viewButton">{{ 'search.results.view-result' | translate}}</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+</div>
+<ng-template #tipContent>{{object.name}}</ng-template>

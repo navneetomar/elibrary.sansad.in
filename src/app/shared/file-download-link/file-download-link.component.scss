@@ -1,0 +1,20 @@
+:host {
+  a.link-download-doc {
+    display: flex;
+    padding: 4px 12px;
+    border-radius: var(--spacing-4, 4px);
+    background: var(--primary-blue-b-300, #666);
+    color: var(--neutral-white, #FFF);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    text-align: center;
+    align-items: center;
+    &:hover{
+      background: #666;
+      text-decoration: none;
+    }
+  }
+}
+

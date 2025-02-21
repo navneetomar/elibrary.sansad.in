@@ -1,0 +1,104 @@
+:host ::ng-deep {
+  p.community-type {
+    background-color: var(--ds-main-color);
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .box-detail-community {
+    padding-top: 15px;
+  }
+  .box-container-community-home.no-home .box-detail-community {
+    padding-top: 0;
+  }
+  p.community-title {
+    color: var(--neutral-black, #222);
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; // số dòng muốn hiển thị
+    -webkit-box-orient: vertical;
+    text-overflow: ellipse;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover{
+      color: #008080;
+    }
+  }
+  .box-container-community-home {
+    gap: 0 18px;
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 25%);
+    border-radius: 6px;
+  }
+  .box-container-community-home.no-home {
+    box-shadow: none;
+  }
+  .box-container-community {
+    gap: 0 18px;
+    border-radius: 6px;
+  }
+  a.link-item-community {
+    height: 220px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  a.link-item-community.no-home {
+    display: inline-block !important;
+  }
+  .community-description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4; // số dòng muốn hiển thị
+    -webkit-box-orient: vertical;
+    text-overflow: ellipse;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 1199.98px) {
+    a.link-item-community {
+      height: 140px;
+    }
+    p.community-title {
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 575.98px) {
+    .box-container-community-home {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .box-detail-community {
+      padding-top: 5px;
+    }
+    p.community-title {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    a.link-item-community {
+      height: auto;
+      min-height: 220px;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .community-description {
+      display: none;
+    }
+  }
+}

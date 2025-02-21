@@ -1,0 +1,23 @@
+:host ::ng-deep {
+  // .content.dont-break-out.preserve-line-breaks{
+  //   font-style: normal;
+  //   font-weight: 400;
+  //   font-size: 16px;
+  //   line-height: 19px;
+  //   color: #000000;
+  // }
+  .clamp-default-1 .content {
+    max-height: 4.5rem !important;
+  }
+}
+.content:not(.truncated) ~ button.expandButton {
+  display: none;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.removeFaded.content::after {
+  display: none;
+}

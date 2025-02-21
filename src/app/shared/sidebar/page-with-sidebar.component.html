@@ -1,0 +1,53 @@
+<div class="container" [ngClass]="isAuthorProfileSearch ? 'p-0' : ''">
+  <div class="row" style="position: relative">
+    <div
+      class="row"
+      [@pushInOut]="(isSidebarCollapsed$ | async) ? 'collapsed' : 'expanded'"
+    >
+      <!-- <div id="{{id}}-sidebar-content"
+           class="col-12 col-md-{{sideBarWidth}} sidebar-content {{sidebarClasses | async}}">
+        <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
+      </div> -->
+      <!-- <div class="col-12 col-md-{{12 - sideBarWidth}}">
+        <ng-content></ng-content>
+      </div> -->
+      <div class="col-12 col-md-9">
+        <!-- <div
+          *ngIf="!!isShowFilter === false"
+          class="d-none d-md-block button-filter"
+        >
+          <button (click)="toggleShowFilter()" class="filter-btn">
+            <i class="fas fa-filter"></i>
+          </button>
+        </div> -->
+        <ng-content></ng-content>
+      </div>
+
+        <div
+          id="sidebar-content"
+          class="col-12 col-md-3 sidebar-content pb-3 {{
+            sidebarClasses | async
+          }}"
+          style="padding-left: 24px;"
+        >
+          <!-- <button (click)="toggleShowFilter()" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button> -->
+          <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
+        </div>
+
+      <!-- <div class="col-12 col-md-12">
+        <div
+          *ngIf="!!isShowFilter === false"
+          class="d-none d-md-block button-filter"
+        >
+          <button (click)="toggleShowFilter()" class="filter-btn">
+            <i class="fas fa-filter"></i>
+          </button>
+        </div>
+        <ng-content></ng-content>
+      </div> -->
+    </div>
+  </div>
+  <div style="height: 150px;"></div>
+</div>

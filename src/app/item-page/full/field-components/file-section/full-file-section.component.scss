@@ -1,0 +1,15 @@
+@media screen and (min-width: map-get($grid-breakpoints, md)) {
+  dt {
+    text-align: left;
+  }
+  .simple-view-element-header.title-file-bundle {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #000000;
+    margin-top: 12px;
+    margin-bottom: 18px;
+  }
+}

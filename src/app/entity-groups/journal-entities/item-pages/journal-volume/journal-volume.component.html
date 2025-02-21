@@ -1,0 +1,115 @@
+<div class="d-flex flex-row">
+  <ds-item-page-title-field [item]="object" class="mr-auto">
+  </ds-item-page-title-field>
+  <div class="pl-2 space-children-mr">
+    <ds-dso-page-version-button
+      (newVersionEvent)="onCreateNewVersion()"
+      [dso]="object"
+      [tooltipMsgCreate]="'item.page.version.create'"
+      [tooltipMsgHasDraft]="'item.page.version.hasDraft'"
+    ></ds-dso-page-version-button>
+    <ds-dso-page-edit-button
+      [pageRoute]="itemPageRoute"
+      [dso]="object"
+      [tooltipMsg]="'journalvolume.page.edit'"
+    ></ds-dso-page-edit-button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+      <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+    </ds-metadata-field-wrapper>
+    <ds-download-view-wrapper [object]="object"></ds-download-view-wrapper>
+  </div>
+  <div class="col-xs-12 col-md-8">
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.description']"
+      [label]="'journalvolume.page.description'"
+    >
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['creativework.datePublished']"
+      [label]="'journalvolume.page.issuedate'"
+    >
+    </ds-generic-item-page-field>
+
+    <div *ngIf="!!showMore === false" class="mb-3 mt-2">
+      <button (click)="handleShowMore()" class="btn btn-outline-primary">
+        {{ "button.details.showmore" | translate }}
+      </button>
+    </div>
+    <div *ngIf="!!showMore === true">
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['publicationvolume.volumeNumber']"
+        [label]="'journalvolume.page.volume'"
+      >
+      </ds-generic-item-page-field>
+      <ds-item-page-file-section-journal
+        [item]="object"
+      ></ds-item-page-file-section-journal>
+      <div class="mb-3 mt-2">
+        <a
+          class="btn btn-outline-primary"
+          [routerLink]="[itemPageRoute + '/full']"
+        >
+          {{ "item.page.link.full" | translate }}
+        </a>
+        <button
+          (click)="handleShowMore()"
+          class="btn btn-primary ml-3 btn-collapse-item"
+        >
+          {{ "button.details.collapse" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-12 mt-4 box-nav">
+    <h2 class="title-entity">{{ "author.link.entity" | translate }}</h2>
+    <nav ngbNav #nav="ngbNav" class="nav-tabs w-100">
+      <!-- <ng-container ngbNavItem>
+        <a ngbNavLink>{{ "relationships.isSingleJournalOf" | translate }}</a>
+        <ng-template ngbNavContent>
+          <div class="pt-2">
+            <ds-related-items
+              [parentItem]="object"
+              [relationType]="'isJournalOfVolume'"
+              [label]="'relationships.isSingleJournalOf' | translate"
+            >
+            </ds-related-items>
+          </div>
+        </ng-template>
+      </ng-container> -->
+
+      <ng-container ngbNavItem>
+        <a ngbNavLink>{{ "relationships.isIssueOf" | translate }}</a>
+        <ng-template ngbNavContent>
+          <div class="pt-2 w-100">
+            <ds-related-items
+              [parentItem]="object"
+              [relationType]="'isIssueOfJournalVolume'"
+              [label]="'relationships.isIssueOf' | translate"
+            >
+            </ds-related-items>
+          </div>
+          <!-- <ds-tabbed-related-entities-search
+            [item]="object"
+            [relationTypes]="[
+              {
+                label: 'IsIssueOfJournalVolume',
+                filter: 'IsIssueOfJournalVolume',
+                configuration: 'journalissue-relationships'
+              }
+            ]"
+          >
+          </ds-tabbed-related-entities-search> -->
+        </ng-template>
+      </ng-container>
+    </nav>
+
+    <div [ngbNavOutlet]="nav" class="mt-2 w-100"></div>
+  </div>
+</div>

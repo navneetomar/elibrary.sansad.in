@@ -1,0 +1,214 @@
+// Add any global css for the theme here
+
+// imports the base global style
+@import "../../../styles/_global-styles.scss";
+
+.facet-filter,
+.setting-option {
+  background-color: var(--bs-light);
+  border-radius: var(--bs-border-radius);
+
+  &.p-3 {
+    // Needs !important because the original bootstrap class uses it
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  .badge-secondary {
+    background-color: var(--bs-primary);
+  }
+
+  h5 {
+    font-size: 1.1rem;
+  }
+}
+
+header {
+  .navbar-navigation > li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+}
+.custom-dialog-class.p-dialog{
+  max-height: 100% !important;
+  font-family: 'Poppins',sans-serif;
+}
+.custom-dialog-class.p-dialog{
+  .container-firstpage{
+    width: 100vw;
+    height: 100vh;
+    background: url('../../../assets/images/bg_first_page.png') center no-repeat;
+    background-size: cover;
+    .container-firstpage-content{
+        position: relative;
+        .container-firstpage-logo{
+            background: #fff;
+            width: max-content;
+            // padding: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            img{
+                width: 270px;
+                height: 80px;
+            }
+        }
+        .container-form-option{
+            background-color: #fff;
+            box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            padding: 72px 48px;
+            width: max-content;
+            min-width: 504px;
+            position: absolute;
+            right: 0;
+            top: 80px;
+            .welcome{
+                color: #000;
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 28px; /* 127.273% */
+            }
+            .library-name{
+                color: var(--primary-green-g-300, #008080);
+                font-size: 36px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 44px; /* 122.222% */
+                margin-bottom: 48px;
+            }
+            .option-detail{
+                padding: 24px 0;
+                border-bottom: 1px solid var(--neutral-light-grey, #DDD);
+                .intro{
+                    color: #000;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: 24px; /* 150% */
+                    letter-spacing: 0.5px;
+  
+                    margin-bottom: 4px;
+                    position: relative;
+                    &::after{
+                        content: "";
+                        background:url('../../../assets/images/chevron-right.svg') center no-repeat;                
+                        background-size: cover;
+                        width: 10px;
+                        height: 16px;
+                        display: block;
+                        position: absolute;
+                        right: 0;
+                        top: 5px;
+                    }
+                }
+                button{
+                    color: var(--neutral-black, #222);
+                    
+                    font-size: 28px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 36px; /* 128.571% */
+  
+                    background: transparent;
+                    outline: none;
+                    border: 0;
+                    padding: 0;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .custom-dialog-class.p-dialog{
+    .container-firstpage{
+      .container-firstpage-content{
+          .container-firstpage-logo{
+              left: 50%;
+              transform: translate(-50%,0);
+              img{
+                  width: 270px;
+                  height: 80px;
+              }
+          }
+          .container-form-option{
+              background: rgb(237 237 237 / 80%);
+              box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.12);
+              border-radius: 8px;
+              width: max-content;
+              min-width: auto;
+              position: absolute;
+              padding: 35px 35px;
+              left: 50%;
+              transform: translate(-50%,0);
+              top: 160px;
+              .welcome{
+                  color: #000;
+                  font-size: 22px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: 28px; /* 127.273% */
+              }
+              .library-name{
+                  color: var(--primary-green-g-300, #008080);
+                  font-size: 36px;
+                  font-style: normal;
+                  font-weight: 600;
+                  line-height: 44px; /* 122.222% */
+                  margin-bottom: 0;
+              }
+              .option-detail{
+                  padding: 24px 0;
+                  border-bottom: 1px solid var(--neutral-light-grey, #DDD);
+                  .intro{
+                      color: #000;
+                      font-size: 16px;
+                      font-style: normal;
+                      font-weight: 300;
+                      line-height: 24px; /* 150% */
+                      letter-spacing: 0.5px;
+  
+                      margin-bottom: 4px;
+                      position: relative;
+                      &::after{
+                          content: "";
+                          background:url('../../../assets/images/chevron-right.svg') center no-repeat;                
+                          background-size: cover;
+                          width: 10px;
+                          height: 16px;
+                          display: block;
+                          position: absolute;
+                          right: 0;
+                          top: 5px;
+                      }
+                  }
+                  button{
+                      color: var(--neutral-black, #222);
+                      
+                      font-size: 28px;
+                      font-style: normal;
+                      font-weight: 400;
+                      line-height: 36px; /* 128.571% */
+  
+                      background: transparent;
+                      outline: none;
+                      border: 0;
+                      padding: 0;
+                      &:hover{
+                          text-decoration: underline;
+                      }
+                  }
+              }
+          }
+      }
+  }
+  }
+}

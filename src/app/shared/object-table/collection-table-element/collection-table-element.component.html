@@ -1,0 +1,36 @@
+<!-- <div class="card" [routerLink]="['/collections/', object.id]">
+  <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/collections/', object.id]" class="card-img-top" [attr.title]="'search.results.view-result' | translate">
+    <ds-thumbnail [thumbnail]="(object.logo | async)?.payload" [limitWidth]="false">
+    </ds-thumbnail>
+  </a>
+  <span *ngIf="linkType == linkTypes.None" class="card-img-top">
+    <ds-thumbnail [thumbnail]="(object.logo | async)?.payload" [limitWidth]="false">
+    </ds-thumbnail>
+  </span>
+  <div class="card-body" [ngbTooltip]="tipContent">
+    <h4 class="card-title limit-p">{{object.name}}</h4>
+    <p *ngIf="object.shortDescription" class="card-text limit-p">{{object.shortDescription}}</p>
+    <div *ngIf="linkType != linkTypes.None" class="text-center">
+      <a [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/collections/', object.id]" class="lead btn btn-primary viewButton">{{ 'search.results.view-result' | translate}}</a>
+    </div>
+  </div>
+</div>
+<ng-template #tipContent>{{object.name}}</ng-template> -->
+
+<div class="row result-search-list" [routerLink]="['/collections/',  object.id]">
+  <div class="col-2 thumb">
+    <ds-thumbnail [thumbnail]="(object.logo | async)?.payload" [limitWidth]="false">
+    </ds-thumbnail>
+  </div>
+  <div class="col-10">
+    <div class="content-wrapper">
+      <ds-type-badge *ngIf="showLabel" [object]="object" [viewMode]="'table'"></ds-type-badge>
+      <span class="result-title">{{object.name}}</span>
+      <p *ngIf="object.firstMetadataValue('dc.description')" class="result-desc">
+        {{
+          object.firstMetadataValue('dc.description')
+        }}
+      </p>
+    </div>
+  </div>
+</div>

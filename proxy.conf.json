@@ -1,0 +1,9 @@
+{
+    "/server": {
+    "target": "https://rh1.enhdspace.com",
+    "secure": false,
+  
+    "changeOrigin": true,
+    "logLevel": "debug"
+    }
+    }

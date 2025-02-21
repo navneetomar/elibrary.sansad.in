@@ -1,0 +1,28 @@
+<h2 class="title-topic"><a [routerLink]="['/topic-list']">Topics</a></h2>
+<ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+
+<ul *ngIf="topics && topics.length > 0">
+  <li *ngFor="let topic of topics">
+    <a
+      [routerLink]="['/browse/topic']"
+      [queryParams]="{ value: topic.name }"
+      *ngIf="topic.name"
+      [ngClass]="topic?.total > 0 ? '' : 'd-none'"
+      >{{ topic.name }} ({{ topic?.total }})</a
+    >
+  </li>
+</ul>
+
+<p
+  class="text-left d-none"
+  style="
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(30, 99, 227);
+    font-size: 14px;
+  "
+  (click)="handleClick()"
+  *ngIf="isLoadMore"
+>
+  Load More
+</p>

@@ -1,0 +1,43 @@
+:host ::ng-deep {
+  .badge.badge-info {
+    background-color: var(--ds-main-color);
+    border-radius: 6px;
+    color: #fff;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .badge-infos{
+    color: var(--neutral-black, #222);
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.25px;
+  }
+  .badge-infos-grid{
+    color: var(--neutral-white, #FFF);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  .badge-wrapper-grid{
+    display: flex;
+    padding: var(--spacing-4, 4px) var(--spacing-8, 8px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-4, 4px);
+    border-radius: var(--spacing-8, 8px);
+    background: var(--primary-green-g-100, #6BB5B5);
+    margin-bottom: 20px;
+    width: max-content;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+  .badge-wrapper-grid.view-grid{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

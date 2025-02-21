@@ -1,0 +1,148 @@
+  <!-- <div class="card" [@focusShadow]="(isCollapsed$ | async)?'blur':'focus'">
+    <div class="position-absolute ml-1">
+        <ng-content></ng-content>
+    </div>
+    <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="[itemPageRoute]"
+        class="card-img-top full-width" [attr.title]="'search.results.view-result' | translate">
+        <div>
+            <ds-thumbnail [thumbnail]="dso?.thumbnail | async" [limitWidth]="false">
+            </ds-thumbnail>
+        </div>
+    </a>
+    <span *ngIf="linkType == linkTypes.None" class="card-img-top full-width">
+        <div>
+            <ds-thumbnail [thumbnail]="dso?.thumbnail | async" [limitWidth]="false">
+            </ds-thumbnail>
+        </div>
+    </span>
+    <div class="card-body" [ngbTooltip]="tipContent">
+        <ds-type-badge *ngIf="showLabel" [object]="dso" [viewMode]="'grid'"></ds-type-badge>
+        <ds-access-status-badge [item]="dso"></ds-access-status-badge>
+        <ds-truncatable [id]="dso.id">
+            <ds-truncatable-part [id]="dso.id" [minLines]="3" type="h4">
+                <h4 class="card-title limit-p" [innerHTML]="dsoTitle"></h4>
+            </ds-truncatable-part>
+            <ds-truncatable-part [id]="dso.id" [minLines]="1" *ngIf="dso.hasMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*'])">
+                <p class="item-authors card-text text-muted">
+                    <span *ngIf="dso.hasMetadata('dc.date.issued')" class="item-date">{{firstMetadataValue('dc.date.issued')}}</span>
+                    <span *ngFor="let author of allMetadataValues(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']);">,
+                        <span [innerHTML]="author"></span>
+                    </span>
+                </p>
+            </ds-truncatable-part>
+            <ds-truncatable-part *ngIf="dso.hasMetadata('dc.description.abstract')" [id]="dso.id" [minLines]="3">
+                <p class="item-abstract card-text limit-p">
+                    <span [innerHTML]="firstMetadataValue('dc.description.abstract')"></span>
+                </p>
+            </ds-truncatable-part>
+        </ds-truncatable>
+        <div *ngIf="linkType != linkTypes.None" class="text-center">
+            <a [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="[itemPageRoute]"
+                class="lead btn btn-primary viewButton">{{ 'search.results.view-result' | translate}}</a>
+        </div>
+    </div>
+    <ng-content></ng-content>
+  </div>
+<ng-template #tipContent>
+    {{dsoTitle}}
+</ng-template> -->
+<div class="row result-search-list" [routerLink]="[itemPageRoute]">
+    <div class="col-2 thumb">
+      <ds-thumbnail [thumbnail]="(dso.thumbnail | async)?.payload" [limitWidth]="false">
+      </ds-thumbnail>
+    </div>
+    <div class="col-10">
+      <div class="content-wrapper">
+        <!-- <ds-type-badge *ngIf="showLabel" [object]="dso" [viewMode]="'grid'"></ds-type-badge> -->
+        <!-- <ds-access-status-badge [item]="dso"></ds-access-status-badge>
+        <br> -->
+
+        <div *ngIf="isShowStatus && status">
+          <span class="badge-success">
+            {{ 'mydspace.status.archived' | translate}}
+          </span>
+        </div>
+
+        <span *ngIf="dso.firstMetadataValue('dc.type')" class="item-type" [innerHTML]="firstMetadataValue('dc.type')"></span> <br/>
+        
+        <span class="result-title">{{dso.name}}</span>
+        <div
+      class="detail-item"
+    >
+      <div class="d-flex box-type-item">
+      <ds-truncatable
+        [id]="dso.id"
+        *ngIf="object !== undefined && object !== null"
+      >
+        <span class="text-muted year-author-item">
+          <ds-truncatable-part [id]="dso.id" [minLines]="1">
+            
+            <span
+              *ngIf="
+                dso.allMetadata([
+                  'dc.contributor.author',
+                  'dc.creator',
+                  'dc.contributor.*'
+                ]).length > 0
+              "
+              class="item-list-authors"
+            >
+              <span
+                *ngFor="
+                  let author of allMetadataValues([
+                    'dc.contributor.author',
+                    'dc.creator',
+                    'dc.contributor.*'
+                  ]);
+                  let last = last
+                "
+              >
+                <span [innerHTML]="author"
+                  ><span [innerHTML]="author"></span
+                ></span>
+                <span *ngIf="!last">; </span>
+              </span>
+            </span>
+            <ng-container
+              *ngIf="
+                dso.firstMetadataValue('dc.publisher') ||
+                dso.firstMetadataValue('dc.date.issued')
+              "
+            >
+              (<span
+                *ngIf="dso.firstMetadataValue('dc.publisher')"
+                class="item-list-publisher"
+                [innerHTML]="firstMetadataValue('dc.publisher') + ', '"
+              ></span>
+              <span
+                *ngIf="dso.firstMetadataValue('dc.date.issued')"
+                class="item-list-date"
+                [innerHTML]="firstMetadataValue('dc.date.issued')"
+              ></span
+              >)
+            </ng-container>
+          </ds-truncatable-part>
+        </span>
+
+        <!-- <div
+          *ngIf="dso.firstMetadataValue('dc.description.abstract')"
+          class="item-list-abstract"
+        >
+          <ds-truncatable-part [id]="dso.id" [minLines]="3"
+            ><span
+              class="detail-abstract-item"
+              [innerHTML]="firstMetadataValue('dc.description.abstract')"
+            ></span>
+          </ds-truncatable-part>
+        </div> -->
+      </ds-truncatable>
+    </div>
+  </div>
+        <p *ngIf="dso.firstMetadataValue('dc.description')" class="result-desc">
+          {{
+            dso.firstMetadataValue('dc.description')
+          }}
+        </p>
+      </div>
+    </div>
+</div>

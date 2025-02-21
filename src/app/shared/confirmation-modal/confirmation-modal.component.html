@@ -1,0 +1,75 @@
+<div>
+  <div class="modal-header">
+    {{ headerLabel | translate : { dsoName: dso?.name } }}
+    <button type="button" class="close" (click)="close()" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{ infoLabel | translate : { dsoName: dso?.name } }}</p>
+    <div *ngIf="isComfirmPolicy">
+      <!-- Option xác định cách kế thừa phân quyền của dsobj được di chuyển:
+      * -1: Giữ nguyên
+      * 0: Thay bằng quyền của parent mới
+      * 1: Bổ sung thêm quyền của parent mới với các quyền đã có sẵn -->
+      <div
+        *ngFor="let item of inheritPolicies; let i = index"
+        class="form-check"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          [value]="item"
+          name="inheritPolicy"
+          [(ngModel)]="inheritPolicy"
+          id="inheritPolicy{{ i }}"
+        />
+        <label
+          *ngIf="item === -1"
+          for="inheritPolicy0"
+          class="form-check-label"
+        >
+          Giữ nguyên
+        </label>
+        <label *ngIf="item === 0" for="inheritPolicy1" class="form-check-label">
+          Thay bằng phân quyền của đối tượng đích
+        </label>
+        <label *ngIf="item === 1" for="inheritPolicy2" class="form-check-label">
+          Thêm vào các quyền của đối tượng đích
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input
+          type="checkbox"
+          [(ngModel)]="applyToSub"
+          id="flexCheckDefault"
+          class="form-check-input"
+        /><label class="form-check-label" for="flexCheckDefault">
+          Áp dụng cho đối tượng con
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="cancel btn btn-outline-secondary"
+      (click)="cancelPressed()"
+      aria-label="Cancel"
+    >
+      <i class="fas fa-times"></i>
+      {{ cancelLabel | translate : { dsoName: dso?.name } }}
+    </button>
+    <button
+      type="button"
+      class="confirm btn btn-{{ brandColor }}"
+      (click)="confirmPressed()"
+      aria-label="Confirm"
+      ngbAutofocus
+    >
+      <i *ngIf="confirmIcon" class="{{ confirmIcon }}"></i>
+      {{ confirmLabel | translate : { dsoName: dso?.name } }}
+    </button>
+  </div>
+</div>

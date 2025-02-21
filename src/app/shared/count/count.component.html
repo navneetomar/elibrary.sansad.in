@@ -1,0 +1,14 @@
+<div class="item-count-container" style="font-size: 12px;">
+  <!-- Global Loader (Only One for All) -->
+  <!-- <p *ngIf="isLoading" class="loading"><span class="dots">...</span></p> -->
+
+  <!-- Jab Loading Complete Ho Jaye -->
+  <ng-container *ngIf="!isLoading">
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+      <p *ngIf="!errorMessage">
+        {{ label }} - {{ totalItems }};&nbsp;
+      </p>
+  </ng-container>
+</div>
+
+

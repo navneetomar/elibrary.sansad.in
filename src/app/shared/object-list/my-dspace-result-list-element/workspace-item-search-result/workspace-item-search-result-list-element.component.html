@@ -1,0 +1,50 @@
+<ng-container *ngIf="derivedSearchResult$ | async">
+  <!-- <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div [ngClass]="showThumbnails ? 'offset-3 offset-md-2  pl-2' : ''">
+          <ds-mydspace-item-status [status]="status"></ds-mydspace-item-status>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <ds-listable-object-component-loader
+        [viewMode]="currentMode$ | async"
+        [object]="derivedSearchResult$ | async"
+        [linkType]="LinkTypes.None"
+      ></ds-listable-object-component-loader>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div [ngClass]="showThumbnails ? 'offset-3 offset-md-2  pl-2' : ''">
+          <ds-workspaceitem-actions
+            [object]="dso"
+            (processCompleted)="reloadedObject.emit($event.reloadedObject)"
+          ></ds-workspaceitem-actions>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="row result-search-list">
+    <div class="col-12">
+      <div [ngClass]="showThumbnails ? 'offset-3 offset-md-2  pl-2' : ''">
+        <ds-mydspace-item-status [status]="status"></ds-mydspace-item-status>
+      </div>
+      <ds-listable-object-component-loader
+        [viewMode]="currentMode$ | async"
+        [object]="derivedSearchResult$ | async"
+        [linkType]="LinkTypes.None"
+      ></ds-listable-object-component-loader>
+      <div [ngClass]="showThumbnails ? 'offset-3 offset-md-2  pl-2' : ''">
+        <ds-workspaceitem-actions
+          [object]="dso"
+          (processCompleted)="reloadedObject.emit($event.reloadedObject)"
+        ></ds-workspaceitem-actions>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ds-themed-loading
+  *ngIf="!(derivedSearchResult$ | async)"
+  [showMessage]="false"
+></ds-themed-loading>

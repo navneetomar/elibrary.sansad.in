@@ -1,0 +1,18 @@
+<div *ngIf="logo; else notLogo" class="dso-logo mb-3">
+  <img
+    [src]="logo._links.content.href"
+    class="img-fluid logo-comcol-page-logo"
+    [attr.alt]="alternateText ? alternateText : null"
+    (error)="errorHandler($event)"
+    [ngClass]="{'thumb-coll-comm':isCollComm}"
+  />
+</div>
+<ng-template #notLogo>
+  <div class="dso-logo dso-logo-no-thumbnail mb-3" [ngClass]="{'d-none':isCollComm}">
+    <!-- <img
+      src="../../../../assets/images/thumbnail-default.png"
+      class="img-fluid logo-comcol-page-logo"
+    /> -->
+    <ds-thumbnail [thumbnail]="null" [limitWidth]="false"></ds-thumbnail>
+  </div>
+</ng-template>

@@ -1,0 +1,109 @@
+<div class="container box-ranking">
+  <ngb-accordion #acc="ngbAccordion" [activeIds]="activePanelIds">
+    <ngb-panel
+      id="toggle-1"
+      [title]="'admin.statistics.ranking.most.accessed' | translate"
+    >
+      <ng-template ngbPanelContent>
+        <div class="row">
+          <div class="col-md-12 col-12">
+            <div class="box-item">
+              <div class="title text-center mt-2 mb-2">
+                {{ "communities" | translate }}
+              </div>
+              <ds-themed-loading
+                *ngIf="!(results$ | async)"
+              ></ds-themed-loading>
+              <div *ngIf="results$ | async">
+                <div *ngIf="communitiesViewOnlineTop.length > 0">
+                  <ngx-charts-bar-horizontal-2d
+                    [view]="view_columns"
+                    [scheme]="colorScheme"
+                    [results]="communitiesViewOnlineTop"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [animations]="true"
+                  >
+                  </ngx-charts-bar-horizontal-2d>
+                </div>
+                <div
+                  *ngIf="
+                    communitiesViewOnlineTop &&
+                    communitiesViewOnlineTop.length === 0
+                  "
+                  class="alert alert-danger"
+                  role="alert"
+                >
+                  {{ "admin.statistics.no.data" | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-12">
+            <div class="box-item">
+              <div class="title text-center mt-5 mb-2">
+                {{ "collection" | translate }}
+              </div>
+              <ds-themed-loading
+                *ngIf="!(results$ | async)"
+              ></ds-themed-loading>
+              <div *ngIf="results$ | async">
+                <div *ngIf="collectionsViewOnlineTop.length > 0">
+                  <ngx-charts-bar-horizontal-2d
+                    [view]="view_columns"
+                    [scheme]="colorScheme"
+                    [results]="collectionsViewOnlineTop"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [animations]="true"
+                  >
+                  </ngx-charts-bar-horizontal-2d>
+                </div>
+                <div
+                  *ngIf="
+                    collectionsViewOnlineTop &&
+                    collectionsViewOnlineTop.length === 0
+                  "
+                  class="alert alert-danger"
+                  role="alert"
+                >
+                  {{ "admin.statistics.no.data" | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-12">
+            <div class="box-item">
+              <div class="title text-center mt-5 mb-2">
+                {{ "item" | translate }}
+              </div>
+              <ds-themed-loading
+                *ngIf="!(results$ | async)"
+              ></ds-themed-loading>
+              <div *ngIf="results$ | async">
+                <div *ngIf="itemsViewOnlineTop.length > 0">
+                  <ngx-charts-bar-horizontal-2d
+                    [view]="view_columns"
+                    [scheme]="colorScheme"
+                    [results]="itemsViewOnlineTop"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [animations]="true"
+                  >
+                  </ngx-charts-bar-horizontal-2d>
+                </div>
+                <div
+                  *ngIf="itemsViewOnlineTop && itemsViewOnlineTop.length === 0"
+                  class="alert alert-danger"
+                  role="alert"
+                >
+                  {{ "admin.statistics.no.data" | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>

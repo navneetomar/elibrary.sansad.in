@@ -1,0 +1,283 @@
+<div #myScrollContainer>
+  <ng-container *ngVar="breadcrumbs$ | async as breadcrumbs">
+    <nav
+      *ngIf="showBreadcrumbs$ | async"
+      aria-label="breadcrumb"
+      class="nav-breadcrumb cus-breadcrumbs"
+      
+    >
+      <ol class="container breadcrumb sub-breadcrumb box-navigation-browse-by">
+        <ng-container
+          *ngTemplateOutlet="
+            breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb;
+            context: { text: 'home.breadcrumbs', url: '/' }
+          "
+        ></ng-container>
+        <ng-container *ngFor="let bc of breadcrumbs; let last = last">
+          <ng-container
+            *ngTemplateOutlet="
+              !last ? breadcrumb : activeBreadcrumb;
+              context: bc
+            "
+          ></ng-container>
+        </ng-container>
+      </ol>
+    </nav>
+  
+    <ng-template #breadcrumb let-text="text" let-url="url">
+      <li class="breadcrumb-item">
+        <div class="breadcrumb-item-limiter">
+          <a [routerLink]="url" class="text-truncate">{{
+            text | translate
+          }}</a>
+        </div>
+      </li>
+    </ng-template>
+  
+    <ng-template #activeBreadcrumb let-text="text">
+      <li class="breadcrumb-item active" aria-current="page">
+        <div class="breadcrumb-item-limiter">
+          <div class="text-truncate">{{ text | translate }}</div>
+        </div>
+      </li>
+    </ng-template>
+  </ng-container>
+</div>
+<div class="container">
+  <div class="row">
+    <!-- <div class="col-xl-3 col-lg-4 col-md-12 col-12">
+      <ds-themed-sidebar-left></ds-themed-sidebar-left>
+    </div> -->
+    <div class="col-xl-9 col-lg-8 col-md-12 col-12">
+      <div class="box-infor-collection" *ngVar="collectionRD$ | async as collectionRD">
+        <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut>
+          <div *ngIf="collectionRD?.payload as collection">
+            <div class="d-flex w-100 box-infor-collection-sub">
+              <div class="box-thumbnail-collection">
+                <ds-comcol-page-logo
+                  *ngIf="logoRD$"
+                  [logo]="(logoRD$ | async)?.payload"
+                  [isCollComm]="true"
+                  [alternateText]="'Collection Logo'"
+                >
+                </ds-comcol-page-logo>
+              </div>
+              <div class="box-detail-infor flex-full">
+                <p class="title-coll">{{titleBanner}}</p>
+                <p
+                  *ngIf="itemRD$ | async as itemRD"
+                  class="number-publications"
+                >
+                <span>
+                  {{ itemRD?.payload && itemRD?.payload?.pageInfo && itemRD?.payload?.pageInfo?.totalElements  ?  itemRD?.payload?.pageInfo?.totalElements : 0}}
+                  {{ "publications available" | translate }}</span
+                >
+                </p>
+                <!-- <ds-themed-comcol-page-handle
+                [content]="collection.handle"
+                [title]="'collection.page.handle'"
+                >
+                </ds-themed-comcol-page-handle> -->
+               <p> <a [href]="[collection.handle]" *ngIf="collection.handle" class="mb-2 handle-coll">{{collection.handle}}</a></p>
+                <ds-comcol-page-content
+                  [content]="collection.introductoryText"
+                  [hasInnerHtml]="true"
+                >
+                </ds-comcol-page-content>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="nav-sub-page" *ngVar="collectionRD$ | async as collectionRD">
+        
+        <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut>
+          <div class="search-form mt-2" *ngIf="collectionRD?.payload as collection">
+            <ds-search-form
+              [inPlaceSearch]="false"
+              [searchPlaceholder]="'home.search-form.placeholder' | translate"
+              [hasBackGround]="true"
+              [collectionId]="collection.id"
+            style="width: 100%;"></ds-search-form>
+          </div>
+        </div>
+       
+      </div>
+      <div
+        class="collection-page"
+        *ngVar="collectionRD$ | async as collectionRD"
+      >
+        <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut>
+          <div *ngIf="collectionRD?.payload as collection">
+            <ds-view-tracker [object]="collection"></ds-view-tracker>
+            <div class="d-flex flex-row">
+              <header class="comcol-header mr-auto w-100">
+                <!-- Collection Name -->
+                <ds-comcol-page-header [name]="collection.name">
+                </ds-comcol-page-header>
+                <!-- Collection logo -->
+                <!-- <div class="d-flex row w-100 mt-5">
+                  <div class="col-lg-4 col-md-12">
+                    <ds-comcol-page-logo
+                      *ngIf="logoRD$"
+                      [logo]="(logoRD$ | async)?.payload"
+                      [alternateText]="'Collection Logo'"
+                    >
+                    </ds-comcol-page-logo>
+                  </div>
+                  <div class="col-lg-8 col-md-12">
+                    Handle
+
+                    <ds-themed-comcol-page-handle
+                      [content]="collection.handle"
+                      [title]="'collection.page.handle'"
+                    >
+                    </ds-themed-comcol-page-handle>
+                    <div
+                      *ngIf="
+                        collection?.metadata['dc.description.abstract'] &&
+                        collection?.metadata
+                      "
+                    >
+                      <ds-comcol-page-content
+                        [content]="
+                          collection?.metadata['dc.description.abstract'][0]
+                            ?.value
+                        "
+                        [hasInnerHtml]="true"
+                        [title]="'collection.page.description.abstract'"
+                      >
+                      </ds-comcol-page-content>
+                    </div>
+                    Introductory text
+                    <ds-comcol-page-content
+                      [content]="collection.introductoryText"
+                      [hasInnerHtml]="true"
+                    >
+                    </ds-comcol-page-content>
+                    News
+                    <ds-comcol-page-content
+                      [content]="collection.sidebarText"
+                      [hasInnerHtml]="true"
+                      [title]="'collection.page.news'"
+                    >
+                    </ds-comcol-page-content>
+                  </div>
+                </div> -->
+              </header>
+              <div class="pl-2 space-children-mr d-flex align-items-center">
+                <ds-dso-page-edit-button
+                  *ngIf="isCollectionAdmin$ | async"
+                  [pageRoute]="collectionPageRoute$ | async"
+                  [dso]="collection"
+                  [tooltipMsg]="'collection.page.edit'"
+                ></ds-dso-page-edit-button>
+              </div>
+            </div>
+            <section class="comcol-page-browse-section">
+              <!-- Browse-By Links -->
+              <ds-themed-comcol-page-browse-by
+                [id]="collection.id"
+                [contentType]="collection.type"
+              >
+              </ds-themed-comcol-page-browse-by>
+
+              <ng-container *ngVar="itemRD$ | async as itemRD">
+                <div class="mt-4" *ngIf="itemRD?.hasSucceeded" @fadeIn>
+                  <h3 class="sr-only">
+                    {{ "collection.page.browse.recent.head" | translate }}
+                  </h3>
+                  <ds-viewable-collection
+                    [config]="paginationConfig"
+                    [sortConfig]="sortConfig"
+                    [objects]="itemRD"
+                    [hideGear]="false"
+                  >
+                  </ds-viewable-collection>
+                </div>
+                <ds-error
+                  *ngIf="itemRD?.hasFailed"
+                  message="{{ 'error.recent-submissions' | translate }}"
+                ></ds-error>
+                <ds-themed-loading
+                  *ngIf="!itemRD || itemRD.isLoading"
+                  message="{{ 'loading.recent-submissions' | translate }}"
+                ></ds-themed-loading>
+                <div
+                  *ngIf="
+                    !itemRD?.isLoading && itemRD?.payload?.page.length === 0
+                  "
+                  class="alert alert-info w-100"
+                  role="alert"
+                >
+                  {{ "collection.page.browse.recent.empty" | translate }}
+                </div>
+              </ng-container>
+            </section>
+            <footer
+              *ngIf="collection.copyrightText"
+              class="border-top my-5 pt-4 d-none"
+            >
+              <!-- Copyright -->
+              <ds-comcol-page-content
+                [content]="collection.copyrightText"
+                [hasInnerHtml]="true"
+              >
+              </ds-comcol-page-content>
+            </footer>
+          </div>
+        </div>
+        <ds-error
+          *ngIf="collectionRD?.hasFailed"
+          message="{{ 'error.collection' | translate }}"
+        ></ds-error>
+        <ds-themed-loading
+          *ngIf="collectionRD?.isLoading"
+          message="{{ 'loading.collection' | translate }}"
+        ></ds-themed-loading>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-12">
+
+
+
+
+
+    <!-- <ds-search-sidebar
+      id="search-sidebar-sm"
+      *ngIf="isXsOrSm$ | async"
+      [configurationList]="configurationList"
+      [configuration]="currentConfiguration$ | async"
+      [currentScope]="currentScope$ | async"
+      [filters]="filtersRD$.asObservable()"
+      [refreshFilters]="refreshFilters"
+      [resultCount]="(resultsRD$ | async)?.payload.totalElements"
+      [searchOptions]="searchOptions$ | async"
+      [sortOptionsList]="sortOptionsList$ | async"
+      [currentSortOption]="currentSortOptions$ | async"
+      [viewModeList]="viewModeList"
+      [showViewModes]="showViewModes"
+      (toggleSidebar)="closeSidebar()"
+      (changeConfiguration)="changeContext($event.context)"
+      (changeViewMode)="changeViewMode()"
+    >
+    </ds-search-sidebar> -->
+    <div *ngVar="collectionRD$ | async as collectionRD">
+      <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut>
+        <div *ngIf="collectionRD?.payload as collection">
+          <ds-collection-filter [scopeID]="collectionRD?.payload" ></ds-collection-filter>
+        </div>
+      </div>
+    </div>
+   
+   
+    </div>
+  </div>  
+</div>
+
+
+
+<!-- <ds-search-page></ds-search-page> -->

@@ -1,0 +1,11 @@
+<ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+<p *ngIf="results$ | async" class="file-statistics">
+  <span
+    >{{ "item.file.views" | translate }}:
+    <span class="text-uppercase file-statistics-number"> {{ views }} </span>
+  </span>
+  <span class="ml-4"
+    >{{ "item.file.downloads" | translate }}:
+    <span class="text-uppercase file-statistics-number">{{ downloads }} </span>
+  </span>
+</p>

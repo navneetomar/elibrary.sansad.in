@@ -1,0 +1,13 @@
+.desc-abtract.show-more{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.btn.btn-action{
+    background-color: transparent;
+    color:#207698;
+    outline: none;
+    border: 0;
+    padding: 0;
+}

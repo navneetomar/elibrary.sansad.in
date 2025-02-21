@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 id="header">
+    {{
+      this.isDelete
+        ? ("admin.delete.epersons.title" | translate)
+        : ("admin.import.epersons.title" | translate)
+    }}
+  </h2>
+  <ds-file-dropzone-no-uploader
+    (onFileAdded)="setFile($event)"
+    [dropMessageLabel]="'admin.metadata-import.page.dropXLS'"
+    [dropMessageLabelReplacement]="'admin.metadata-import.page.dropXLSReplace'"
+  >
+  </ds-file-dropzone-no-uploader>
+
+  <div class="space-children-mr mb-3">
+    <button class="btn btn-secondary" id="backButton" (click)="this.onReturn()">
+      {{ "admin.metadata-import.page.button.return" | translate }}
+    </button>
+    <button
+      class="btn"
+      id="proceedButton"
+      (click)="this.importMetadata()"
+      [ngClass]="this.isDelete ? 'btn-danger' : 'btn-success'"
+    >
+      {{
+        this.isDelete
+          ? ("admin.delete.epersons.title.submit" | translate)
+          : ("admin.import.epersons.title.submit" | translate)
+      }}
+    </button>
+  </div>
+</div>

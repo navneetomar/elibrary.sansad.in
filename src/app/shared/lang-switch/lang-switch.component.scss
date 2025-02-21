@@ -1,0 +1,70 @@
+.dropdown-toggle::after {
+  display: none;
+}
+img.icon_vn {
+  width: 28px;
+  height: 28px;
+}
+img.icon_en {
+  width: 26px;
+  height: 26px;
+}
+@media screen and (min-width: map-get($grid-breakpoints, md)) {
+  .dropdown-toggle {
+    color: var(--ds-header-icon-color) !important;
+    color: #fff !important;
+    &:hover,
+    &focus {
+      color: var(--ds-header-icon-color-hover);
+    }
+  }
+}
+:host ::ng-deep {
+  .languages {
+    list-style-type: none;
+    display: flex;
+
+    padding: 0;
+    margin: 0;
+    padding-left: 30px;
+    flex-direction: row-reverse;
+    li {
+      cursor: pointer;
+    }
+  }
+  @media screen and (max-width: 1399.98px) {
+    .languages {
+      padding-left: 0;
+    }
+  }
+  @media (max-width: 991.98px) {
+    img.icon_vn {
+      width: 20px;
+      height: 20px;
+    }
+    img.icon_en {
+      width: 19px;
+      height: 19px;
+    }
+  }
+  @media screen and (max-width: 575.98px) {
+    .languages {
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+      padding-left: 61px;
+      flex-direction: row-reverse;
+      margin-top: -4px;
+      gap: 8px;
+    }
+    img.icon_vn {
+      width: 28px;
+      height: 28px;
+    }
+    img.icon_en {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}

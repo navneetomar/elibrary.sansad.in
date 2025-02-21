@@ -1,0 +1,154 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value)" action="/search">
+  <div [ngClass]="{'wrapper-search': hasBackGround}">
+    <span class="title-search" *ngIf="hasAdvanced && !isCollectionDetails">
+      Refine Your Search
+    </span>
+    <div class="form-group input-group box-search mb-0">
+
+      <div
+        class="input-group-prepend select-search-box"
+      >
+        <!-- <button *ngIf="hasChooseType"
+          class="scope-button btn btn-outline-secondary text-truncate"
+          [ngbTooltip]="(selectedScope | async)?.name"
+          type="button"
+          (click)="openScopeModal()"
+        >
+          {{
+            (selectedScope | async)?.name ||
+              ("search.form.scope.all" | translate)
+          }}
+        </button> -->
+     
+          
+      </div>
+      <div class="input-group has-validation box-search-input">
+
+        <div class="custom-dropdown" *ngIf="hasChooseType">
+          <!-- <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-primary btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+              <span *ngIf="!selectedTypeAll">All</span>
+              <span *ngIf="selectedTypeAll">{{'search.filters.filter.' + selectedTypeAll.title + '.head'| translate}}</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem *ngFor="let type of typeSearch" (click)="selectTypeInAll(type)">
+                <span *ngIf="type">{{'search.filters.filter.' + type.title + '.head'| translate}}</span>
+              </button>
+            </div>
+          </div> -->
+          <button *ngIf="hasChooseType"
+          class="scope-button btn btn-outline-secondary text-truncate btn-dropdown"
+          [ngbTooltip]="(selectedScope | async)?.name"
+          type="button"
+          (click)="openScopeModal()"
+        >
+          {{
+            (selectedScope | async)?.name ||
+              ("search.form.scope.all" | translate)
+          }}
+        </button>
+        </div>
+        <div style="width:8px"></div>
+        <!-- <span class="input-group-text"><i class="fa-regular fa-question"></i></span> -->
+        <span *ngIf="!(isXsOrSm$ | async)" class="input-group-text"><i class="fa-regular fa-question"></i></span>
+        <div class="box-enter-search form-floating is-invalid" [ngClass]="{'d-flex': (isXsOrSm$ | async) }">
+          <span *ngIf="isXsOrSm$ | async" class="input-group-text"><i class="fa-regular fa-question"></i></span>
+
+          <div class="wrapper-input w-100">
+            <input
+            type="text"
+            [(ngModel)]="query"
+            name="query"
+            class="form-control search-input"
+            attr.aria-label="{{ searchPlaceholder }}"
+            [attr.data-test]="'search-box' | dsBrowserOnly"
+            [placeholder]="searchPlaceholder"
+            required
+          />
+            <button
+              type="submit"
+              class="search-button btn"
+              [attr.data-test]="'search-button' | dsBrowserOnly"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+        </div>
+     
+        </div>
+        <!-- <div class="advanced"> -->
+          <button *ngIf="hasAdvanced" type="button" class="btn btn-primary advance-btn" (click)="showAdvance()">Advanced Search</button>
+        <!-- </div> -->
+      </div>
+        <p class="sub-title" *ngIf="showAdvanceSearch">
+          Current filter:
+        </p>
+      <div class="sub-search container" *ngIf="showAdvanceSearch">
+        
+        <div class="sub-search__option custom-dropdown row" *ngFor="let item of filterAdvance, let i = index">
+          <select class="dropdown-toggle" id="{{'type'+i}}" name="{{'type'+i}}" [(ngModel)]="item.type" style="text-transform: capitalize;">
+            <option value="all" disabled>All</option>
+            <option *ngFor="let type of typeSearch" [ngValue]="type.id">
+              {{type.title}}
+            </option>
+          </select>
+          <select class="dropdown-toggle ml-2 mr-2 mb-1" id="{{'filter'+i}}" name="{{'filter'+i}}" [(ngModel)]="item.filter" style="text-transform: capitalize;">
+            <option value="pls" disabled>Please select</option>
+            <option *ngFor="let item of filterList" [ngValue]="item.value">
+              {{item.title}}
+            </option>
+          </select>
+            <!-- <div class="col-lg-5" style="display: flex;"> -->
+                <!-- <div class="col-6"> -->
+                    <!-- <div class="custom-dropdown">
+                        <div ngbDropdown class="d-inline-block">
+                          <button type="button" class="btn btn-outline-primary btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                            <span *ngIf="!item[i]">Type</span>
+                            <span *ngIf="item[i].type.length > 0">{{'search.filters.filter.' + item[i].type + '.head'| translate}}</span>
+                          </button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem *ngFor="let type of typeSearch" (click)="selectType(type,i)">
+                              <span *ngIf="type">{{'search.filters.filter.' + type.id + '.head'| translate}}</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div> -->
+                <!-- </div> -->
+                <!-- <div class="col-6"> -->
+                    <!-- <div class="custom-dropdown">
+                        <div ngbDropdown class="d-inline-block">
+                          <button type="button" class="btn btn-outline-primary btn-dropdown drp-right" id="dropdownBasic1" ngbDropdownToggle>
+                            <span *ngIf="!item[i]">Contains</span>
+                            <span *ngIf="item[i].filter.length > 0">{{'search.filters.filter.' + item[i].filter + '.head'| translate}}</span>
+                          </button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem *ngFor="let subFilter of filterList" (click)="selectFilter(subFilter,i)">
+                               <span *ngIf="subFilter">{{subFilter.title}}</span>
+
+                            </button>
+                          </div>
+                        </div>
+                      </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+            <div class="col-lg-12 col-xl-7 input-adv" style="display: flex; padding-left: 0;">
+                <!-- <div class="col-10"> -->
+                    <input id="{{'input' + i}}" name="{{'input' + i}}" type="text" class="form-control sub-search__input" [(ngModel)]="item.stringSearch">
+                <!-- </div> -->
+                <!-- <div class="col-2"> -->
+                    <button type="button" class="btn btn-primary btn-action" (click)="deleteFilter(item, i)">-</button>
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <div class="row">
+          <button type="button" class="btn btn-primary btn-reset" (click)="resetFilter()">Reset filters</button>
+          <button type="button" class="btn btn-primary btn-action" (click)="addFilter()">Add</button>
+        </div>
+    </div>
+
+      <div>
+       
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,18 @@
+<span [ngClass]="isShow ? '' : 'd-none'">
+  <a
+    class="dont-break-out link-view-doc"
+    [target]="isBlank ? '_blank' : '_self'"
+    [ngClass]="cssClasses"
+    [routerLink]="(bitstreamPath$ | async)?.routerLink"
+    [queryParams]="(bitstreamPath$ | async)?.queryParams"
+  >
+    <span *ngIf="!(canView$ | async) && isShow"
+    ><i class="fas fa-lock text-light"></i>&nbsp;</span>
+    <span *ngIf="(canView$ | async) && isShow"
+    ><i class="fas fa-eye text-light"></i>&nbsp;</span>
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+</span>
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

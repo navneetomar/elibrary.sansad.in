@@ -1,0 +1,39 @@
+<h3 class="discover-title">
+  {{ "search.discover.head" | translate }}
+</h3>
+<div *ngIf="(filters | async)?.hasSucceeded">
+  <div
+    *ngFor="
+      let filter of (filters | async)?.payload;
+      let lastIndex = last;
+      trackBy: trackUpdate
+    "
+  >
+    <!-- <div *ngIf="!lastIndex">
+      <ds-search-filter
+        [filter]="filter"
+        [inPlaceSearch]="inPlaceSearch"
+        [refreshFilters]="refreshFilters"
+      ></ds-search-filter>
+    </div> -->
+    <div>
+      <ds-search-filter
+        [filter]="filter"
+        [inPlaceSearch]="inPlaceSearch"
+        [refreshFilters]="refreshFilters"
+      ></ds-search-filter>
+    </div>
+  </div>
+</div>
+<!-- <div class="text-center box-btn-reset">
+  <a
+    class="btn btn-primary reset-search"
+    [routerLink]="[searchLink]"
+    [queryParams]="clearParams | async"
+    queryParamsHandling="merge"
+    role="button"
+  >
+    <i class="fas fa-undo"></i> {{ "search.filters.reset" | translate }}
+    {{ "search.filters.reset" | translate }}
+  </a>
+</div> -->

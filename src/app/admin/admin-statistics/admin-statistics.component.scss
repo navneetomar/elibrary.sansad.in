@@ -1,0 +1,81 @@
+:host ::ng-deep {
+  .title-statistics {
+    display: flex;
+  }
+  .accordion > .card .card-header {
+    background-color: var(--ds-main-color);
+    padding: 0 !important;
+  }
+  .accordion > .card .card-header button::after {
+    content: "-";
+    position: absolute;
+    top: 0;
+    right: 15px;
+
+    font-size: 30px;
+    color: #fff !important;
+  }
+  .accordion > .card .card-header button.collapsed::after {
+    content: "+";
+    position: absolute;
+    top: 0;
+    right: 15px;
+
+    font-size: 30px;
+    color: #fff !important;
+  }
+  .accordion > .card .card-header button {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    color: #fff !important;
+    padding: 0.75rem 1.25rem;
+    position: relative;
+  }
+  .accordion > .card .card-header button:hover {
+    text-decoration: none;
+  }
+  .dp-hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range,
+  .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+  .box-content-statistic {
+    justify-content: space-around;
+  }
+  @media (max-width: 575.98px) {
+    .dp-hidden .dropdown-menu {
+      margin: 0 !important;
+      max-width: 300px;
+      overflow: scroll;
+    }
+    .title-statistics {
+      flex-direction: column;
+    }
+    .box-content-statistic,
+    .boxContainerChartColumn {
+      justify-content: center;
+      flex-direction: column;
+      overflow: scroll;
+    }
+  }
+}

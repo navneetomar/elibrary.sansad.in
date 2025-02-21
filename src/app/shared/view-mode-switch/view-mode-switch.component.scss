@@ -1,0 +1,17 @@
+.btn-view-mode{
+    display: flex;
+    width: 36px;
+    height: 36px;
+    padding: var(--spacing-12, 12px);
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: #666666;
+    transition: 0.3s;
+    &:hover{
+        color: #008080;
+    }
+}
+.mode-active{
+    color: #008080;
+}

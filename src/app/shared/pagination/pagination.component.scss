@@ -1,0 +1,110 @@
+:host {
+  .dropdown-toggle::after {
+    display: none;
+  }
+  .dropdown-item {
+    padding-left: 20px;
+  }
+}
+:host ::ng-deep {
+  .custom-pagi{
+    padding-top: 12px;
+    .page-link {
+    border: 0;
+    color: #666666;
+
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px; /* 150% */
+    letter-spacing: 0.5px;
+    }
+    .page-item.active .page-link{
+      color: var(--neutral-white, #FFF);
+      width: 36px;
+      height: 36px;
+      border-radius: var(--spacing-4, 4px);
+      background: var(--neutral-black, #222);
+      text-align: center;
+    }
+  }
+  .view-mode-title{
+    color: var(--neutral-dark-grey, #666);
+
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+  }
+  .view-mode{
+    border-radius: var(--spacing-4, 4px);
+    border: 1px solid var(--neutral-light-grey, #DDD);
+    background: var(--neutral-smoke, #FAFAFA);
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .pagination-home-page
+    .pagination
+    li.page-item:not(:first-child):not(:last-child) {
+    display: none !important;
+  }
+  .pagination-info{
+    color: var(--neutral-dark-grey, #666);
+
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+  }
+  .page-item.active .page-link {
+    background-color: var(--ds-main-color);
+    color: #fff;
+    border-color: #cfcfcf;
+  }
+  .pagination {
+    gap: 0;
+  }
+  .pagination-home-page .pagination {
+    gap: 10px;
+  }
+  .pagination-home-page .pagination .page-item .page-link {
+    background-color: var(--ds-main-color);
+    color: #fff;
+    border-color: #cfcfcf;
+  }
+  .pagination-home-page .pagination .page-item.disabled .page-link {
+    background: #fff;
+    color: #333;
+    border-color: #cfcfcf;
+  }
+  #paginationControls {
+    border-radius: var(--spacing-4, 4px);
+    border: 1px solid var(--neutral-dark-grey, #666);
+    background: var(--neutral-smoke, #FAFAFA);
+    display: flex;
+    width: 36px;
+    height: 36px;
+    padding: var(--spacing-12, 12px);
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    i {
+      color: #666;
+    }
+    &:hover {
+      background-color: #008080;
+      border: 1px solid #008080;
+      i {
+        color: #fff;
+      }
+    }
+  }
+  @media (max-width: 575.98px) {
+    .box-pagination-number {
+      justify-content: center !important;
+    }
+  }
+}

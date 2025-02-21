@@ -1,0 +1,42 @@
+<h2>{{ "home.aup.list" | translate }}</h2>
+<ds-themed-loading *ngIf="!(results$ | async)"></ds-themed-loading>
+
+<ul *ngIf="persons && persons.length > 0">
+  <li *ngFor="let person of persons">
+    <a
+      [routerLink]="['/entities/person/' + person._embedded.indexableObject.id]"
+      [ngClass]="
+        checkLengthArray(
+          person._embedded.indexableObject.metadata[
+            'relation.isPublicationOfAuthor'
+          ]
+        ) === true
+          ? ''
+          : 'd-none'
+      "
+      >{{ person._embedded.indexableObject.name }} ({{
+        person._embedded.indexableObject.metadata[
+          "relation.isPublicationOfAuthor"
+        ]
+          ? person._embedded.indexableObject.metadata[
+              "relation.isPublicationOfAuthor"
+            ].length
+          : 0
+      }})</a
+    >
+  </li>
+</ul>
+
+<p
+  class="text-left d-none"
+  style="
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(30, 99, 227);
+    font-size: 14px;
+  "
+  (click)="handleClick()"
+  *ngIf="isLoadMore"
+>
+  Load More
+</p>

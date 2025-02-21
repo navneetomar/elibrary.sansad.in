@@ -1,0 +1,76 @@
+<div class="table-responsive">
+  <ds-themed-loading *ngIf="!(resultsData$ | async)"></ds-themed-loading>
+  <div *ngIf="resultsData$ | async">
+    <div *ngIf="!dataResult" class="alert alert-danger no-data" role="alert">
+      {{ "admin.statistics.no.data" | translate }}
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+        <tr>
+          <th scope="row">{{ "item.page.name" | translate }}</th>
+          <td>{{ dataResult?.name }}</td>
+        </tr>
+        <tr *ngIf="dataResult?.handle && dataResult?.handle !== null">
+          <th scope="row">
+            {{ "item.edit.tabs.status.labels.handle" | translate }}
+          </th>
+          <td>{{ dataResult?.handle }}</td>
+        </tr>
+        <tr *ngIf="dataResult?.bundleName && dataResult?.bundleName !== null">
+          <th scope="row">
+            {{ "item.edit.tabs.status.labels.bundleName" | translate }}
+          </th>
+          <td>{{ dataResult?.bundleName }}</td>
+        </tr>
+        <tr
+          *ngIf="
+            dataResult?.type === 'item' &&
+            dataResult?.metadata['dc.contributor.author']
+          "
+        >
+          <th scope="row">{{ "item.page.author" | translate }}</th>
+          <td>{{ dataResult?.metadata["dc.contributor.author"][0]?.value }}</td>
+        </tr>
+        <tr
+          *ngIf="
+            dataResult?.type === 'item' && dataResult?.metadata['dc.subject']
+          "
+        >
+          <th scope="row">{{ "item.page.subject" | translate }}</th>
+          <td>{{ dataResult?.metadata["dc.subject"][0]?.value }}</td>
+        </tr>
+        <tr
+          *ngIf="
+            dataResult?.type === 'item' &&
+            dataResult?.metadata['dc.date.issued']
+          "
+        >
+          <th scope="row">{{ "item.page.date" | translate }}</th>
+          <td>{{ dataResult?.metadata["dc.date.issued"][0]?.value }}</td>
+        </tr>
+        <tr
+          *ngIf="
+            dataResult?.type === 'item' &&
+            dataResult?.metadata['dc.description.abstract']
+          "
+        >
+          <th scope="row">{{ "item.page.abstract" | translate }}</th>
+          <td>
+            {{ dataResult?.metadata["dc.description.abstract"][0]?.value }}
+          </td>
+        </tr>
+        <tr
+          *ngIf="
+            dataResult?.type === 'item' &&
+            dataResult?.metadata['dc.identifier.uri']
+          "
+        >
+          <th scope="row">{{ "item.page.uri" | translate }}</th>
+          <td>
+            {{ dataResult?.metadata["dc.identifier.uri"][0]?.value }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

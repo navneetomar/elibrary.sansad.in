@@ -1,0 +1,8 @@
+<a *ngIf="isVisible | async" class="d-flex flex-row"
+   [routerLink]="[searchLink]"
+   [queryParams]="changeQueryParams" queryParamsHandling="merge">
+  <span class="filter-value">{{filterValue.label}}</span>
+  <span class="float-right filter-value-count ml-auto">
+                        <span class="badge badge-secondary badge-pill number-count">{{filterValue.count}}</span>
+                    </span>
+</a>

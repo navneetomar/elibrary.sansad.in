@@ -1,0 +1,6 @@
+:host {
+  z-index: var(--ds-nav-z-index);
+  @media screen and (max-width: 575.98px) {
+    z-index: none;
+  }
+}

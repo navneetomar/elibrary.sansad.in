@@ -1,0 +1,34 @@
+:host ::ng-deep {
+  ul.nav-tabs.nav {
+    li {
+      .nav-link {
+        padding: 16px 34px;
+        background: #e5e5e5;
+        border: 1px solid #cfcfcf;
+        border-radius: 6px 6px 0px 0px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #333333;
+      }
+      .nav-link.active {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #ffffff;
+        background: var(--ds-sub-small-color);
+        border: 1px solid #cfcfcf;
+        border-radius: 6px 6px 0px 0px;
+      }
+    }
+  }
+  @media (max-width: 575.98px) {
+    ul.nav-tabs.nav {
+      li {
+        width: 100%;
+      }
+    }
+  }
+}

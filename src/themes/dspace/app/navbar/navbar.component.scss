@@ -1,0 +1,259 @@
+
+
+// LARGE
+@media screen and (min-width: 1200px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .nav-wrap {
+        display: none;
+    }
+}
+
+// SMALL
+@media screen and (max-width: 1200px) {
+    .box-bottom-nav {
+        display: none;
+    }
+
+    .box-bottom-nav.show {
+        display: block;
+    }
+
+
+    .nav-wrap {
+        display: block;
+    }
+
+
+}
+
+// SMALL 1024 
+
+@media screen and (max-width: 1024px) {
+.box-top-nav {
+    .home-wrap {
+        display: none !important;
+    }
+    .login-wrap {
+        display: none !important;
+    }
+}
+
+.box-bottom-nav {
+    .home-nav {
+        display: block !important;
+    }
+}
+
+
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .home-wrap {
+        display: none;
+        }
+    
+
+
+
+    .box-top-nav {
+        .date-li,
+        .hour-li {
+            display: none;
+        }
+    }
+
+    .box-bottom-nav{
+        .date-li,
+        .hour-li {
+            display: block !important;
+            color: #fff;
+        }
+    }
+
+}
+
+
+
+
+
+    .dropdown-toggle::after {
+        vertical-align: 0; 
+        content: "+";
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-left: 0;
+        margin-left: 0 !important;
+    }
+
+
+    .dropdown-menu {
+        margin: 0 !important;
+    }
+    ::ng-deep .dropdown-menu.dropdown-menu-header.slug{
+        max-height: 500px !important;
+        overflow-y: scroll !important;
+        
+    }
+
+    .dropdown-menu.dropdown-menu-header.slug::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      
+      /* Track */
+      .dropdown-menu.dropdown-menu-header.slug::-webkit-scrollbar-track {
+        border-radius: 4px;
+        background-color: #fff;
+      }
+       
+      /* Handle */
+      .dropdown-menu.dropdown-menu-header.slug::-webkit-scrollbar-thumb {
+        background: #ccc; 
+        border-radius: 4px;
+      }
+      
+      /* Handle on hover */
+      .dropdown-menu.dropdown-menu-header.slug::-webkit-scrollbar-thumb:hover {
+        background: #ccc; 
+      }
+
+
+
+    .form-inline {
+        flex-flow: inherit !important;
+    }
+
+
+
+    .input-group {
+        flex-wrap: nowrap !important; 
+        .form-control{
+            border: 0;
+            background-color: #f5f5f5;
+            box-shadow: unset;
+        }
+        .input-group-append{
+            .input-group-text{
+                border: 0;
+                background-color: #f5f5f5;
+            }
+        }
+    }
+.box-bottom-nav{
+    .date-li,
+    .hour-li,
+    .home-nav  {
+        display: none;
+    }
+}
+
+.form-inline {
+    margin-left: 5px;
+}
+
+.nav-wrap {
+    margin-left: 5px;
+}
+
+.home-wrap {
+    margin-left: 16px;
+}
+
+.home-btn {
+    white-space: nowrap;
+}
+
+.date-wrap {
+span {
+    white-space: nowrap;
+}
+}
+
+
+.hour-wrap {
+    margin-left: 20px;
+    white-space: nowrap;
+    span {
+        white-space: nowrap;
+    }
+
+    .hour-time {
+        min-width: 100px;
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+
+}
+
+.login-wrap{
+    margin-left: 16px;
+    .login-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--border-radius-8, 8px);
+        border: 1px solid var(--primary-green-g-300, #008080);
+        color: var(--primary-green-g-300, #008080);
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        
+    }
+}
+
+
+.dropdown-menu.show {
+    display: block;
+}
+
+
+.box-bottom-nav .bg-dark {
+    background-color: #008080 !important;
+}
+
+.box-top-outer {
+    background-color: #fff;
+}
+
+.top-nav-outer {
+    .bg-light {
+        background-color: #fff !important;
+    }
+}
+
+.bottom-nav-outer {
+    background-color: #008080;
+}
+
+
+.btn-primary {
+    background-color: #008080;
+    border-color: #008080;
+}
+// SMALL 576 {
+@media screen and (max-width: 576px) {
+    .nav-wrap {
+        display: block !important;
+    }
+    #navbarSupportedContent{
+        display: flex;
+    }
+    .dropdown-menu{
+        a.dropdown-item{
+            white-space: wrap;
+        }
+    }
+    ::ng-deep .dropdown-menu.dropdown-menu-header.slug{
+        max-height: 500px !important;
+        overflow-y: scroll !important;
+        max-width: 330px;
+    }
+}

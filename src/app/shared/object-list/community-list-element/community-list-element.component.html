@@ -1,0 +1,30 @@
+<a
+  *ngIf="linkType != linkTypes.None"
+  [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
+  rel="noopener noreferrer"
+  [routerLink]="['/communities/' + object.id]"
+  class="lead link-item-community d-block"
+  [ngClass]="isHomePage === false ? 'no-home mb-4' : ''"
+>
+  <div
+    class="d-flex box-container-community-home h-100"
+    [ngClass]="isHomePage === false ? 'no-home' : ''"
+  >
+    <!-- <ds-community-logo
+      [logoCommDefault]="logoCommDefault"
+      [isHomePage]="isHomePage"
+      [object]="object"
+    ></ds-community-logo> -->
+    <!-- {{ object | json }} -->
+    <div class="h-100 flex-full box-detail-community">
+      <!-- <p class="community-type">{{ object.type }}</p> -->
+      <p class="community-title">{{ object.name }}</p>
+      <div *ngIf="object.shortDescription" class="community-description">
+        {{ object.shortDescription }}
+      </div>
+    </div>
+  </div>
+</a>
+<span *ngIf="linkType == linkTypes.None" class="lead d-block">
+  {{ object.name }}
+</span>

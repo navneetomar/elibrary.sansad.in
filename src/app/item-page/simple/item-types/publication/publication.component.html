@@ -1,0 +1,206 @@
+<div class="row" *ngIf="iiifEnabled">
+  <div class="col-12">
+    <ds-mirador-viewer
+      id="iiif-viewer"
+      [object]="object"
+      [searchable]="iiifSearchEnabled"
+      [query]="iiifQuery$ | async"
+    >
+    </ds-mirador-viewer>
+  </div>
+</div>
+<div class="flex-row">
+  <ds-item-page-title-field [item]="object" class="mr-auto">
+  </ds-item-page-title-field>
+  <!-- <div class="pl-2 space-children-mr">
+    <ds-dso-page-version-button
+      (newVersionEvent)="onCreateNewVersion()"
+      [dso]="object"
+      [tooltipMsgCreate]="'item.page.version.create'"
+      [tooltipMsgHasDraft]="'item.page.version.hasDraft'"
+    ></ds-dso-page-version-button>
+    <ds-dso-page-edit-button
+      [pageRoute]="itemPageRoute"
+      [dso]="object"
+      [tooltipMsg]="'publication.page.edit'"
+    ></ds-dso-page-edit-button>
+  </div> -->
+
+</div>
+
+<ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+
+  <!-- <div class="col-xs-12 col-md-3">
+    <ng-container *ngIf="!mediaViewer.image">
+      <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+        <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+      </ds-metadata-field-wrapper>
+    </ng-container>
+    <ds-download-view-wrapper [object]="object"></ds-download-view-wrapper>
+  </div> -->
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.description']"
+      [label]="'publication.page.description'"
+    >
+    </ds-generic-item-page-field>
+    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['dc.contributor.author', 'dc.creator']"
+      [label]="'relationships.isAuthorOf' | translate"
+    >
+    </ds-metadata-representation-list>
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.publisher']"
+      [label]="'publication.page.publisher'"
+    >
+    </ds-generic-item-page-field>
+    <ds-item-page-collections [item]="object"></ds-item-page-collections>
+    <ds-item-page-uri-field
+      [item]="object"
+      [fields]="['dc.identifier.uri']"
+      [label]="'item.page.uri'"
+    >
+    </ds-item-page-uri-field>
+    <div class="row file-row">
+      <p class="has-file-title">
+        Files in This item
+      </p>
+      <ds-themed-item-page-file-section
+      [item]="object"
+      style="width: 100%;"
+    ></ds-themed-item-page-file-section>
+    </div>
+    <!-- <div *ngIf="!!showMore === false" class="mb-3 mt-2">
+      <button (click)="handleShowMore()" class="btn btn-outline-primary">
+        {{ "button.details.showmore" | translate }}
+      </button>
+    </div> -->
+
+    <div *ngIf="!!showMore === true">
+      <ng-container *ngIf="mediaViewer.image">
+        <ds-media-viewer
+          [item]="object"
+          [videoOptions]="mediaViewer.video"
+        ></ds-media-viewer>
+      </ng-container>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.title']"
+        [label]="'publication.page.journal-title'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.identifier.issn']"
+        [label]="'publication.page.journal-issn'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journalvolume.identifier.name']"
+        [label]="'publication.page.volume-title'"
+      >
+      </ds-generic-item-page-field>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.subject']"
+        [separator]="','"
+        [label]="'item.page.subject'"
+      >
+      </ds-generic-item-page-field>
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.identifier.citation']"
+        [label]="'item.page.citation'"
+      >
+      </ds-generic-item-page-field>
+
+      <div class="mb-3 mt-2">
+        <a
+          class="btn btn-outline-primary"
+          role="button"
+          [routerLink]="[itemPageRoute + '/full']"
+        >
+          <i class="fas fa-info-circle"></i>
+          {{ "item.page.link.full" | translate }}
+        </a>
+        <button
+          (click)="handleShowMore()"
+          class="btn btn-primary ml-3 btn-collapse-item"
+        >
+          {{ "button.details.collapse" | translate }}
+        </button>
+      </div>
+    </div>
+
+   
+<!-- <div class="row">
+  <div class="col-12">
+    <div class="mt-4 box-nav">
+      <h2 class="title-entity">{{ "author.link.entity" | translate }}</h2>
+      <nav ngbNav #nav="ngbNav" class="nav-tabs w-100">
+        <ng-container ngbNavItem>
+          <a ngbNavLink>{{ "author.tab.entity" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div class="pt-2 w-100">
+              <ds-related-items
+                [parentItem]="object"
+                [relationType]="'isAuthorOfPublication'"
+                [label]="'relationships.isAuthorOf' | translate"
+              >
+              </ds-related-items>
+            </div>
+          </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem>
+          <a ngbNavLink>{{ "home.project.list" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div class="pt-2 w-100">
+              <ds-related-items
+                [parentItem]="object"
+                [relationType]="'isProjectOfPublication'"
+                [label]="'relationships.isProjectOf' | translate"
+              >
+              </ds-related-items>
+            </div>
+          </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem>
+          <a ngbNavLink>{{ "home.ou.list" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div class="pt-2 w-100">
+              <ds-related-items
+                [parentItem]="object"
+                [relationType]="'isOrgUnitOfPublication'"
+                [label]="'relationships.isOrgUnitOf' | translate"
+              >
+              </ds-related-items>
+            </div>
+          </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem>
+          <a ngbNavLink>{{ "relationships.isJournalIssueOf" | translate }}</a>
+          <ng-template ngbNavContent>
+            <div class="pt-2 w-100">
+              <ds-related-items
+                [parentItem]="object"
+                [relationType]="'isJournalIssueOfPublication'"
+                [label]="'relationships.isJournalIssueOf' | translate"
+              >
+              </ds-related-items>
+            </div>
+          </ng-template>
+        </ng-container>
+      </nav>
+
+      <div [ngbNavOutlet]="nav" class="mt-2 w-100"></div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,6 @@
+<div *ngIf="typeMessage && !viewMode" class="badge-wrapper">
+  <span class="badge-infos">{{ typeMessage | translate }}</span>
+</div>
+<div *ngIf="typeMessage && viewMode == 'grid'" class="badge-wrapper-grid" [ngClass]="{'view-grid':  viewMode == 'grid'}">
+  <span class="badge-infos-grid">{{ typeMessage | translate }}</span>
+</div>

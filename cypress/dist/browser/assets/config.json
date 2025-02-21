@@ -1,0 +1,288 @@
+{
+  "production": false,
+  "debug": false,
+  "ui": {
+    "ssl": false,
+    "host": "localhost",
+    "port": 4000,
+    "nameSpace": "/",
+    "rateLimiter": {
+      "windowMs": 60000,
+      "max": 500
+    },
+    "useProxies": true,
+    "baseUrl": "http://localhost:4000/"
+  },
+  "rest": {
+    "ssl": true,
+    "host": "ir.dlcorp.com.vn",
+    "port": 443,
+    "nameSpace": "/server",
+    "baseUrl": "https://ir.dlcorp.com.vn/server"
+  },
+  "actuators": {
+    "endpointPath": "/actuator/health"
+  },
+  "cache": {
+    "msToLive": {
+      "default": 900000
+    },
+    "control": "max-age=60",
+    "autoSync": {
+      "defaultTime": 0,
+      "maxBufferSize": 100,
+      "timePerMethod": {
+        "PATCH": 3
+      }
+    }
+  },
+  "auth": {
+    "ui": {
+      "timeUntilIdle": 900000,
+      "idleGracePeriod": 300000
+    },
+    "rest": {
+      "timeLeftBeforeTokenRefresh": 120000
+    }
+  },
+  "form": {
+    "validatorMap": {
+      "required": "required",
+      "regex": "pattern"
+    }
+  },
+  "notifications": {
+    "rtl": false,
+    "position": [
+      "top",
+      "right"
+    ],
+    "maxStack": 8,
+    "timeOut": 5000,
+    "clickToClose": true,
+    "animate": "scale"
+  },
+  "submission": {
+    "autosave": {
+      "metadata": [],
+      "timer": 0
+    },
+    "typeBind": {
+      "field": "dc.type"
+    },
+    "icons": {
+      "metadata": [
+        {
+          "name": "dc.author",
+          "style": "fas fa-user"
+        },
+        {
+          "name": "default",
+          "style": ""
+        }
+      ],
+      "authority": {
+        "confidence": [
+          {
+            "value": 600,
+            "style": "text-success"
+          },
+          {
+            "value": 500,
+            "style": "text-info"
+          },
+          {
+            "value": 400,
+            "style": "text-warning"
+          },
+          {
+            "value": "default",
+            "style": "text-muted"
+          }
+        ]
+      }
+    }
+  },
+  "defaultLanguage": "en",
+  "languages": [
+    {
+      "code": "en",
+      "label": "English",
+      "active": true
+    },
+    {
+      "code": "cs",
+      "label": "Vietnamese",
+      "active": true
+    },
+    {
+      "code": "de",
+      "label": "Deutsch",
+      "active": false
+    },
+    {
+      "code": "es",
+      "label": "Español",
+      "active": false
+    },
+    {
+      "code": "fr",
+      "label": "Français",
+      "active": false
+    },
+    {
+      "code": "gd",
+      "label": "Gàidhlig",
+      "active": false
+    },
+    {
+      "code": "lv",
+      "label": "Latviešu",
+      "active": false
+    },
+    {
+      "code": "hu",
+      "label": "Magyar",
+      "active": false
+    },
+    {
+      "code": "nl",
+      "label": "Nederlands",
+      "active": false
+    },
+    {
+      "code": "pt-PT",
+      "label": "Português",
+      "active": false
+    },
+    {
+      "code": "pt-BR",
+      "label": "Português do Brasil",
+      "active": false
+    },
+    {
+      "code": "fi",
+      "label": "Suomi",
+      "active": false
+    },
+    {
+      "code": "sv",
+      "label": "Svenska",
+      "active": false
+    },
+    {
+      "code": "tr",
+      "label": "Türkçe",
+      "active": false
+    },
+    {
+      "code": "kk",
+      "label": "Қазақ",
+      "active": false
+    },
+    {
+      "code": "bn",
+      "label": "বাংলা",
+      "active": false
+    },
+    {
+      "code": "hi",
+      "label": "हिंदी",
+      "active": false
+    },
+    {
+      "code": "el",
+      "label": "Ελληνικά",
+      "active": false
+    }
+  ],
+  "browseBy": {
+    "oneYearLimit": 10,
+    "fiveYearLimit": 30,
+    "defaultLowerLimit": 1900,
+    "showThumbnails": true,
+    "pageSize": 20
+  },
+  "communityList": {
+    "pageSize": 20
+  },
+  "topicList": {
+    "pageSize": 20
+  },
+  "homePage": {
+    "recentSubmissions": {
+      "pageSize": 5,
+      "sortField": "dc.date.accessioned"
+    },
+    "topLevelCommunityList": {
+      "pageSize": 5
+    }
+  },
+  "item": {
+    "edit": {
+      "undoTimeout": 10000
+    },
+    "showAccessStatuses": false
+  },
+  "collection": {
+    "edit": {
+      "undoTimeout": 10000
+    }
+  },
+  "themes": [
+    {
+      "name": "dspace",
+      "headTags": [
+        {
+          "tagName": "link",
+          "attributes": {
+            "rel": "icon",
+            "href": "assets/dspace/images/favicons/favicon.ico",
+            "sizes": "any"
+          }
+        },
+        {
+          "tagName": "link",
+          "attributes": {
+            "rel": "icon",
+            "href": "assets/dspace/images/favicons/favicon.svg",
+            "type": "image/svg+xml"
+          }
+        },
+        {
+          "tagName": "link",
+          "attributes": {
+            "rel": "apple-touch-icon",
+            "href": "assets/dspace/images/favicons/apple-touch-icon.png"
+          }
+        },
+        {
+          "tagName": "link",
+          "attributes": {
+            "rel": "manifest",
+            "href": "assets/dspace/images/favicons/manifest.webmanifest"
+          }
+        }
+      ]
+    }
+  ],
+  "bundle": {
+    "standardBundles": [
+      "ORIGINAL",
+      "THUMBNAIL",
+      "LICENSE"
+    ]
+  },
+  "mediaViewer": {
+    "image": false,
+    "video": false
+  },
+  "info": {
+    "enableEndUserAgreement": true,
+    "enablePrivacyStatement": true
+  },
+  "markdown": {
+    "enabled": false,
+    "mathjax": false
+  }
+}

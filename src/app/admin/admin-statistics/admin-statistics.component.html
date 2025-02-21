@@ -1,0 +1,308 @@
+<div class="container mb-2" #elementRef>
+  <div class="title-statistics align-items-center">
+    <p class="mr-2" style="font-size: 24px">
+      {{ "admin.statistics.heading" | translate }}
+    </p>
+    <p>
+      {{ "admin.statistics.control.panel" | translate }}
+    </p>
+  </div>
+
+  <nav ngbNav #nav="ngbNav" class="nav-tabs">
+    <ng-container ngbNavItem>
+      <a ngbNavLink>{{ "admin.statistics.graphs" | translate }}</a>
+
+      <ng-template ngbNavContent>
+        <div class="py-3">
+          <form
+            class="row row-cols-sm-auto mb-2 align-items-center"
+            style="gap: 5px"
+            (ngSubmit)="onSubmit(form.value)"
+            #form="ngForm"
+          >
+            <div class="col-lg-1 col-md-12">
+              {{ "admin.statistics.time.range" | translate }}
+            </div>
+            <div class="col-lg-2 col-md-12">
+              <div class="dp-hidden position-absolute">
+                <div class="input-group">
+                  <input
+                    name="datepicker"
+                    class="form-control"
+                    ngbDatepicker
+                    #datepicker="ngbDatepicker"
+                    [autoClose]="'outside'"
+                    (dateSelect)="onDateSelection($event)"
+                    [displayMonths]="2"
+                    [dayTemplate]="t"
+                    outsideDays="hidden"
+                    [startDate]="fromDate!"
+                    [markDisabled]="isDisabled"
+                    tabindex="-1"
+                  />
+                  <ng-template #t let-date let-focused="focused">
+                    <span
+                      class="custom-day"
+                      [class.focused]="focused"
+                      [class.range]="isRange(date)"
+                      [class.faded]="isHovered(date) || isInside(date)"
+                      (mouseenter)="hoveredDate = date"
+                      (mouseleave)="hoveredDate = null"
+                    >
+                      {{ date.day }}
+                    </span>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="input-group">
+                <input
+                  #dpFromDate
+                  class="form-control"
+                  placeholder="dd-mm-yyyy"
+                  name="dpFromDate"
+                  [value]="formatter.format(fromDate)"
+                  (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+                />
+                <button
+                  class="btn btn-outline-secondary bi bi-calendar3"
+                  (click)="datepicker.toggle()"
+                  type="button"
+                >
+                  <i class="fa-calendar-alt fa-fw fas"></i>
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-3 col-md-12 d-flex align-items-center"
+              style="gap: 30px"
+            >
+              <span class="d-lg-block d-none">{{
+                "admin.statistics.from" | translate
+              }}</span>
+              <div class="input-group">
+                <input
+                  #dpToDate
+                  class="form-control"
+                  placeholder="dd/mm/yyyy"
+                  outsideDays="collapsed"
+                  name="dpToDate"
+                  [value]="formatter.format(toDate)"
+                  (input)="toDate = validateInput(toDate, dpToDate.value)"
+                />
+                <button
+                  class="btn btn-outline-secondary bi bi-calendar3"
+                  (click)="datepicker.toggle()"
+                  type="button"
+                >
+                  <i class="fa-calendar-alt fa-fw fas"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-12 d-none">
+              <div class="d-flex align-items-center">
+                <p class="w-50 pb-0">Kiểu báo cáo</p>
+                <select class="form-control" name="type-form" ngModel>
+                  <option value="0">Số liệu</option>
+                  <option value="1">Quốc gia</option>
+                  <option value="2">Tỉnh/Thành phố</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-12">
+              <button type="submit" class="btn btn-success">
+                <i class="fas fa-retweet"></i>
+                {{ "admin.statistics.refresh" | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+        <ngb-accordion #acc="ngbAccordion" [activeIds]="activePanelIds">
+          <ngb-panel
+            id="toggle-1"
+            [title]="'admin.statistics.all.accesses' | translate"
+          >
+            <ng-template ngbPanelContent>
+              <div class="d-flex box-content-statistic">
+                <ds-themed-loading
+                  *ngIf="
+                    !(results_accesses_statType_and_objectType_list$ | async)
+                  "
+                ></ds-themed-loading>
+                <div
+                  *ngIf="results_accesses_statType_and_objectType_list$ | async"
+                >
+                  <div
+                    *ngIf="
+                      accesses_objectType_list &&
+                      accesses_objectType_list.length === 0
+                    "
+                    class="alert alert-danger no-data"
+                    role="alert"
+                  >
+                    {{ "admin.statistics.no.data" | translate }}
+                  </div>
+                  <div
+                    *ngIf="
+                      accesses_objectType_list &&
+                      accesses_objectType_list.length > 0
+                    "
+                  >
+                    <ngx-charts-pie-chart
+                      [view]="view"
+                      [scheme]="colorScheme"
+                      [results]="accesses_objectType_list"
+                      [legend]="false"
+                      [doughnut]="doughnut"
+                      [labels]="showLabels"
+                      [maxLabelLength]="20"
+                    ></ngx-charts-pie-chart>
+                  </div>
+
+                  <div
+                    *ngIf="
+                      accesses_objectType_list &&
+                      accesses_objectType_list.length > 0
+                    "
+                    class="text-center"
+                  >
+                    {{ "admin.statistics.by.object.type" | translate }}
+                  </div>
+                </div>
+                <ds-themed-loading
+                  *ngIf="
+                    !(results_accesses_statType_and_objectType_list$ | async)
+                  "
+                ></ds-themed-loading>
+                <div
+                  *ngIf="results_accesses_statType_and_objectType_list$ | async"
+                >
+                  <div
+                    *ngIf="
+                      accesses_stattype_list &&
+                      accesses_stattype_list.length === 0
+                    "
+                    class="alert alert-danger no-data"
+                    role="alert"
+                  >
+                    {{ "admin.statistics.no.data" | translate }}
+                  </div>
+                  <div
+                    *ngIf="
+                      accesses_stattype_list &&
+                      accesses_stattype_list.length > 0
+                    "
+                  >
+                    <ngx-charts-pie-chart
+                      [view]="view"
+                      [scheme]="colorScheme"
+                      [results]="accesses_stattype_list"
+                      [legend]="false"
+                      [labels]="showLabels"
+                      [doughnut]="doughnut"
+                      [maxLabelLength]="20"
+                    ></ngx-charts-pie-chart>
+                  </div>
+
+                  <div
+                    *ngIf="
+                      accesses_stattype_list &&
+                      accesses_stattype_list.length > 0
+                    "
+                    class="text-center"
+                  >
+                    {{ "admin.statistics.by.statistics.type" | translate }}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel
+            id="toggle-2"
+            [title]="'admin.statistics.all.accesses.object.type' | translate"
+          >
+            <ng-template ngbPanelContent>
+              <div class="boxContainerChartColumn d-flex">
+                <div
+                  *ngIf="
+                    accesses_objectType_list &&
+                    accesses_objectType_list.length === 0
+                  "
+                  class="alert alert-danger"
+                  role="alert"
+                >
+                  {{ "admin.statistics.no.data" | translate }}
+                </div>
+                <div
+                  *ngIf="
+                    accesses_objectType_list &&
+                    accesses_objectType_list.length > 0
+                  "
+                >
+                  <ngx-charts-bar-vertical
+                    [view]="view_column"
+                    [results]="accesses_objectType_list"
+                    [legend]="true"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="'admin.statistics.views' | translate"
+                    [legendTitle]="'admin.statistics.annotation' | translate"
+                    [barPadding]="200"
+                  >
+                  </ngx-charts-bar-vertical>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel
+            id="toggle-3"
+            [title]="'admin.statistics.daily.accesses' | translate"
+          >
+            <ng-template ngbPanelContent>
+              <div class="boxContainerChartColumn d-flex flex-column">
+                <ds-themed-loading
+                  *ngIf="!(results_daily_access_list$ | async)"
+                ></ds-themed-loading>
+                <div *ngIf="results_daily_access_list$ | async">
+                  <div
+                    *ngIf="
+                      list_series_search.length > 0 &&
+                      list_series_access.length > 0
+                    "
+                  >
+                    <ngx-charts-line-chart
+                      [view]="view_column"
+                      [scheme]="colorScheme"
+                      [results]="dayli_accesses_list"
+                      [xAxis]="true"
+                      [yAxis]="true"
+                      [legend]="true"
+                      [showXAxisLabel]="true"
+                      [showYAxisLabel]="true"
+                      [legendTitle]="'admin.statistics.annotation' | translate"
+                    >
+                    </ngx-charts-line-chart>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
+      <a ngbNavLink>{{ "admin.statistics.ranking" | translate }}</a>
+      <ng-template ngbNavContent>
+        <ds-admin-statistics-ranking
+          [widthChart]="view_column"
+        ></ds-admin-statistics-ranking>
+      </ng-template>
+    </ng-container>
+  </nav>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>
