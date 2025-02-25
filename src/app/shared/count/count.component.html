@@ -6,7 +6,7 @@
   <ng-container *ngIf="!isLoading">
       <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
       <p *ngIf="!errorMessage" [ngStyle]="{'font-size': fontSize}">
-        {{ label }} - {{ totalItems }}
+        {{ label }} - {{ totalItems }} <span class="semicolon">{{ isLargeFont ? '' : ';&nbsp;' }}</span>
       </p>
   </ng-container>
 </div>

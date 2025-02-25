@@ -1,5 +1,10 @@
 footer{
   background-color: #004E4D;
+  background-image: url('./../../assets/images/footer-image.png'); /* Image ka path yahan set karein */
+  background-size: cover; /* Image ko pura fit karne ke liye */
+  background-position: center; /* Image ko center align karne ke liye */
+  background-repeat: no-repeat; /* Image repeat na ho */
+  opacity: 0.9;
   font-size: 13px;
   padding-top: 10px; 
   color: white;
@@ -16,4 +21,15 @@ footer{
   font-weight: bold; /* Optional: Agar bold dikhana ho */
 }
 
+.inline-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.inline-list li {
+  display: inline-block;
+  margin-right: 10px; /* optional spacing */
+}
 

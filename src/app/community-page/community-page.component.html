@@ -77,8 +77,8 @@
                 <app-count [scope]="communityPayload.id" [isLargeFont]="true" [label]="'Publications available'"
                   [dsoType]="DSpaceObjectType.ITEM"></app-count>
               </p>
-              <p><a [href]="[communityPayload.handle]" *ngIf="communityPayload.handle"
-                  class="mb-2 handle-comm">{{communityPayload.handle}}</a></p>
+              <!-- <p><a [href]="[communityPayload.handle]" *ngIf="communityPayload.handle"
+                  class="mb-2 handle-comm">{{communityPayload.handle}}</a></p> -->
               <ds-comcol-page-content [content]="communityPayload.introductoryText" [hasInnerHtml]="true">
               </ds-comcol-page-content>
             </div>

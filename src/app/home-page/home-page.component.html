@@ -4,12 +4,6 @@
 background-image: url('assets/images/banner_india.png'); 
 ">
   <div class="container-search-view">
-    <!-- <p class="title-search">
-{{ "home.discovery.bigtitle" | translate }}
-</p>
-<p class="search-desc">
-{{ "home.discovery.search.desc" | translate }}
-</p>  -->
     <ng-container *ngIf="site$ | async as site">
       <ds-view-tracker [object]="site"></ds-view-tracker>
     </ng-container>
@@ -20,9 +14,7 @@ background-image: url('assets/images/banner_india.png');
           [hasChooseType]=" true" style="width: 100%;"></ds-search-form>
       </div>
       <div class="col-lg-1 col-md-12"></div>
-
     </div>
-
   </div>
 </div>
 <div class="content-home-top">
@@ -32,23 +24,10 @@ background-image: url('assets/images/banner_india.png');
         <span>Digital Library</span>
       </div>
       <div class="text-center" *ngIf="loadingCommunity$ | async"><ds-themed-loading></ds-themed-loading></div>
-      <!-- <div class="dropdown-wrap">
-        <div class="dropdown-list" *ngIf="!(loadingCommunity$ | async)">
-          <select class="dropdown-toggle" id="listcommunity" name="listcommunity" [(ngModel)]="selectedCommunity"
-            (ngModelChange)="getCollectionsByCommunityId($event)" style="text-transform: capitalize;">
-            <ng-container *ngFor="let community of communityListGroup">
-              <option *ngIf="community?.name === 'Digital Library'" [ngValue]="community?.id">
-                {{community?.name}}
-              </option>
-            </ng-container>
-          </select>
-        </div>
-      </div> -->
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
           <div class="desc-title card-text" style="text-align:justify">
-
             The second phase of the journey of Digitization is enabling accessibility of more than one
             lakh digitized documents comprising approx. 1 crore pages from selective collections of the
             Parliament Library viz. Papers Laid on the Table of House, Reports, Books, Acts, Bills and
@@ -64,7 +43,6 @@ background-image: url('assets/images/banner_india.png');
         </div>
         <div class="col-2"></div>
       </div>
-
       <div class="view-wrap">
         <div class="text-center" *ngIf="loadingCollection$ | async">
           <ds-themed-loading [spinner]="true"></ds-themed-loading>
@@ -87,9 +65,19 @@ background-image: url('assets/images/banner_india.png');
             </div>
           </div>
         </div>
+        <!-- <div class="pagi-view">
+        <ngb-pagination *ngIf="pageSize && _collectionListById.length > pageSize"
+          [collectionSize]="_collectionListById.length" [page]="currentPage" (pageChange)="doPageChange($event)"
+          [pageSize]="pageSize" [rotate]="true" [maxSize]="sizePagi">
+          <ng-template ngbPaginationPrevious>
+            <i class="fa fa-angle-left"></i>
+          </ng-template>
+          <ng-template ngbPaginationNext>
+            <i class="fa fa-angle-right"></i>
+          </ng-template>
+        </ngb-pagination>
+      </div> -->
       </div>
-
-
     </div>
   </div>
 
@@ -100,17 +88,6 @@ background-image: url('assets/images/banner_india.png');
       <div class="title-wrapper-collection">
         <span>Digital Business Document(E-Parlib)</span>
       </div>
-
-      <!-- <div class="dropdown-wrap">
-        <div class="dropdown-list">
-          <select class="dropdown-toggle" id="listCollection" name="listCollection" [(ngModel)]="selectedCollection"
-            (ngModelChange)="renderView(selectedCollection)" style="text-transform: capitalize;">
-            <option *ngFor="let collection of collectionListGroup" [ngValue]="collection.code">
-              {{collection.name}}
-            </option>
-          </select>
-        </div>
-      </div> -->
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
@@ -134,10 +111,7 @@ background-image: url('assets/images/banner_india.png');
         </div>
         <div class="col-2"></div>
       </div>
-
-
       <div class="view-wrap">
-
         <div class="row">
           <div class="view-collection col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let view of itemsPerpage"
             (click)="routeToCollection(view.path)" style="cursor: pointer;">
@@ -146,14 +120,6 @@ background-image: url('assets/images/banner_india.png');
               <div class="fit-outer view-img">
                 <img class="image-fit-cover fit-abs img-thumb" [src]="view.img">
               </div>
-              <!-- <div class="view-img" [ngStyle]="{'background-image': 'url(\'' + view.img + '\')'}"> 
-
-                </div> -->
-                              <!-- <div class="view-img">
-                <img src="
-                {{view.img}}
-                " alt="">
-                </div> -->
               <div class="view-detail">
                 <div class="view-name">
                   {{view.name}}
@@ -163,8 +129,6 @@ background-image: url('assets/images/banner_india.png');
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
         <div class="pagi-view">
@@ -178,64 +142,14 @@ background-image: url('assets/images/banner_india.png');
               <i class="fa fa-angle-right"></i>
             </ng-template>
           </ngb-pagination>
-
         </div>
-
       </div>
     </div>
   </div>
-  <!--
 
-<div class="home-carousel container">
-<div class="title-carousel">
-<span>Featured Content</span>
-</div>
-<p-carousel [value]="featuredContent" [numVisible]="4" [numScroll]="4" [responsiveOptions]="responsiveOptions">
-<ng-template let-content pTemplate="item">
-
-<div class="wrapper-featured" (click)="routeToCollection(content.path)" style="cursor: pointer;">
-<div class="box-image-carousel">
-<img class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(content.img)">
-</div>
-
-
-<div class="desc-featured">
-<span class="style-desc">
-{{content.name}}
-</span>
-</div>
-</div>
-
-</ng-template>
-</p-carousel>
-
-</div>
--->
   <div class="banner-middle">
     <img src="assets/images/banner-middle.png" alt="" style="width:100%;">
   </div>
-  <!--
-
-<div class="row" style="background-color:#e6f2f2;">
-<div class="col-2"></div>
-<div class="col-8">
-<button class="arrow left-arrow" (click)="previousSlide()">&#10094;</button>
-<div class="carousel">
-<div class="slider" [ngStyle]="{'transform': 'translateX(' + transformValue + ')'}">
-<div *ngFor="let image of images" class="slide">
-<img [src]="image" alt="banner" style="width:1000px;height:500px;">
-</div>
-</div>
-</div>
-<button class="arrow right-arrow" (click)="nextSlide()">&#10095;</button>
-
-</div>
-<div class="col-2"></div>
-</div>
-
-
-
--->
 
   <div class="container">
     <div class="row">
