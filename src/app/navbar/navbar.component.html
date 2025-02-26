@@ -6,7 +6,7 @@
   }
   </style>
 <!-- ds-topbar will be hidden on small screens -->
-<ds-topbar class="d-none d-md-block"></ds-topbar>
+<ds-topbar class="d-md-block"></ds-topbar>
 <!-- <app-last-updated></app-last-updated> -->
 
 <!-- Main navigation bar with light background -->
@@ -108,7 +108,7 @@
             <div class="dropdown-menu dropdown-menu-header" [ngClass]="{'show': item.isExpanded, 'slug': item.slug}"
               attr.aria-labelledby="{{ 'navbarDropdown' + i }}" *ngIf="item.children">
               <a *ngFor="let subItem of item.children" class="dropdown-item showNavCollapse(true)"
-                style="cursor: pointer; text-align: left; padding-left: 20px;" (click)="removeExpanded(subItem.path)"
+                style="cursor: pointer; text-align: left; padding-left: 20px;" href="javascript.void(0);" (click)="removeExpanded(subItem.path)"
                 [routerLink]="subItem.path">
                 <span>{{ subItem.title }}</span>
               </a>

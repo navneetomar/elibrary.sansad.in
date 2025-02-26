@@ -1,5 +1,4 @@
 <!-- <ds-themed-home-news></ds-themed-home-news> -->
-
 <div class="banner" style="
 background-image: url('assets/images/banner_india.png'); 
 ">
@@ -17,6 +16,7 @@ background-image: url('assets/images/banner_india.png');
     </div>
   </div>
 </div>
+
 <div class="content-home-top">
   <div class="home-community">
     <div class="container wrapper-community">
@@ -47,36 +47,7 @@ background-image: url('assets/images/banner_india.png');
         <div class="text-center" *ngIf="loadingCollection$ | async">
           <ds-themed-loading [spinner]="true"></ds-themed-loading>
         </div>
-        <div class="row" *ngIf="!(loadingCollection$ | async)">
-          <div class="view-community col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let view of collectionPerPage"
-            (click)="routeToCommunity(view?.handle)" style="cursor: pointer;">
-            <div class="col-inner">
-              <div class="fit-outer view-img">
-                <img class="image-fit-cover fit-abs img-thumb" [src]="view.img">
-              </div>
-              <div class="view-detail">
-                <div class="view-name">
-                  {{view.name}}
-                </div>
-                <div class="view-desc">
-                  {{view.desc}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="pagi-view">
-        <ngb-pagination *ngIf="pageSize && _collectionListById.length > pageSize"
-          [collectionSize]="_collectionListById.length" [page]="currentPage" (pageChange)="doPageChange($event)"
-          [pageSize]="pageSize" [rotate]="true" [maxSize]="sizePagi">
-          <ng-template ngbPaginationPrevious>
-            <i class="fa fa-angle-left"></i>
-          </ng-template>
-          <ng-template ngbPaginationNext>
-            <i class="fa fa-angle-right"></i>
-          </ng-template>
-        </ngb-pagination>
-      </div> -->
+        <ds-community-collections [collection_id]="'22af6cf1-fdde-4046-8754-895c6a004a0c'"></ds-community-collections>
       </div>
     </div>
   </div>
@@ -111,39 +82,7 @@ background-image: url('assets/images/banner_india.png');
         </div>
         <div class="col-2"></div>
       </div>
-      <div class="view-wrap">
-        <div class="row">
-          <div class="view-collection col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let view of itemsPerpage"
-            (click)="routeToCollection(view.path)" style="cursor: pointer;">
-
-            <div class="col-inner">
-              <div class="fit-outer view-img">
-                <img class="image-fit-cover fit-abs img-thumb" [src]="view.img">
-              </div>
-              <div class="view-detail">
-                <div class="view-name">
-                  {{view.name}}
-                </div>
-                <div class="view-desc">
-                  {{view.desc}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pagi-view">
-          <ngb-pagination *ngIf="pageSize && _collectionListById.length > pageSize"
-            [collectionSize]="_collectionListById.length" [page]="currentPage" (pageChange)="doPageChange($event)"
-            [pageSize]="pageSize" [rotate]="true" [maxSize]="sizePagi">
-            <ng-template ngbPaginationPrevious>
-              <i class="fa fa-angle-left"></i>
-            </ng-template>
-            <ng-template ngbPaginationNext>
-              <i class="fa fa-angle-right"></i>
-            </ng-template>
-          </ngb-pagination>
-        </div>
-      </div>
+      <ds-community-collections [collection_id]="'ca1f325a-61ab-4d3c-857d-f48a9b78b1a2'"></ds-community-collections>
     </div>
   </div>
 

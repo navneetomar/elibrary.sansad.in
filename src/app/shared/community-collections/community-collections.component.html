@@ -1,0 +1,34 @@
+<div class="collections-container">
+    <div *ngIf="loading" class="loading">
+        <p>Loading collections...</p>
+    </div>
+
+    <div *ngIf="!loading && paginatedCollections.length > 0">
+        <div class="collection-grid">
+            <div *ngFor="let collection of paginatedCollections" class="collection-card" (click)="goToCollection(collection.id)">
+                <img [src]="collection.img" alt="Collection Image" class="collection-image">
+                <div class="collection-details">
+                    <h3>{{ collection.name }}</h3>
+                    <p>{{ collection.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Pagination -->
+        <div class="pagination-container">
+            <ngb-pagination *ngIf="totalItems > pageSize" [collectionSize]="totalItems" [page]="currentPage"
+                (pageChange)="onPageChange($event)" [pageSize]="pageSize" [rotate]="true" [maxSize]="3">
+                <ng-template ngbPaginationPrevious>
+                    <i class="fa fa-angle-left"></i>
+                </ng-template>
+                <ng-template ngbPaginationNext>
+                    <i class="fa fa-angle-right"></i>
+                </ng-template>
+            </ngb-pagination>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && paginatedCollections.length === 0">
+        <p>No collections found.</p>
+    </div>
+</div>

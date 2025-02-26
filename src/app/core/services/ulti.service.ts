@@ -79,6 +79,12 @@ export class UltiService {
       `${this.appConfig.rest.baseUrl}/api/core/communities/${id}/collections?size=99`
     );
   }
+
+   // ✅ Fetch logo details (Fix for your error)
+   getLogoByUrl(logoUrl: string): Observable<any> {
+    return this.http.get(logoUrl);
+  }
+  
   /**
    * Gets all top communities, limited by page, and transforms this in a list of flatNodes.
    * @param findOptions       FindListOptions

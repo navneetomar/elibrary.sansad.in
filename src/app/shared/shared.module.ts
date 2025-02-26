@@ -260,6 +260,7 @@ import { ItemSearchResultTableElementComponent } from './object-table/search-res
 import { recaptcha } from '../core/config/constants';
 import { LastUpdatedComponent } from './last-updated/last-updated.component';
 import { CountComponent } from './count/count.component';
+import { CommunityCollectionsComponent } from './community-collections/community-collections.component';
 
 const MODULES = [
   CommonModule,
@@ -626,6 +627,7 @@ const DIRECTIVES = [
     ItemVersionsDeleteModalComponent,
     LastUpdatedComponent,
     CountComponent,
+    CommunityCollectionsComponent,
   ],
   providers: [...PROVIDERS],
   exports: [
@@ -636,6 +638,7 @@ const DIRECTIVES = [
     ...DIRECTIVES,
     CountComponent,
     LastUpdatedComponent,
+    CommunityCollectionsComponent,
     TranslateModule,
   ],
 })
