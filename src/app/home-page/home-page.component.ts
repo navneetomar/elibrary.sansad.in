@@ -39,13 +39,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
   allCollectionList:any[] = [];
   collectionListGroup:any[] = [];
   selectedCollection:any;
-  // totalCollectionGrouped:any;
+  totalCollectionGrouped:any;
   collectionListById: any[] = [];
   _collectionListById: any[] = [];
 
   communityListGroup:any[] = [];
   selectedCommunity:any;
-  // totalcommunityGrouped:any;
+  totalcommunityGrouped:any;
   communityListById: any[] = [];
   _communityListById: any[] = [];
 
@@ -86,7 +86,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
  
 
   async ngOnInit(): Promise<void> {
-    //this.getAllCommunitiesTop();
+    this.getAllCommunitiesTop();
    
     this.site$ = this.route.data.pipe(map((data) => data.site as Site));
     this.helpfulImage = [
@@ -158,7 +158,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
       }
   ];
   this.collectionListGroup = [];
-  //this.resizeCollectionList();
+  this.resizeCollectionList();
  
   this.results$ = this.http
     .get<any>(
@@ -171,20 +171,20 @@ export class HomePageComponent implements OnInit, OnDestroy {
     );
 
     
-  // this.subcribe = this.results$.subscribe((data) => data);
+  this.subcribe = this.results$.subscribe((data) => data);
  
-  //   this.loadFeaturedList();
-  //   // this.loadAllCollection();
-  //   this.allCollectionList = await this.getAllListCollection();
+    this.loadFeaturedList();
+    // this.loadAllCollection();
+    this.allCollectionList = await this.getAllListCollection();
     
-  //   await this.filterGroup();
-  //   let find = this.collectionListGroup.findIndex(item => item.code == "Featured collections");
-  //   if (find > -1){
-  //     this.selectedCollection = this.collectionListGroup[find]?.code;
-  //   } else {
-  //     this.selectedCollection = this.collectionListGroup[0]?.code;
-  //   }
-  //   this.renderView(this.selectedCollection);
+    await this.filterGroup();
+    let find = this.collectionListGroup.findIndex(item => item.code == "Featured collections");
+    if (find > -1){
+      this.selectedCollection = this.collectionListGroup[find]?.code;
+    } else {
+      this.selectedCollection = this.collectionListGroup[0]?.code;
+    }
+    this.renderView(this.selectedCollection);
     
     
   }
@@ -196,215 +196,215 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
   
   
-  // renderView(id){
-  //   if(id == 'all'){
-  //     this._collectionListById = this.allCollectionList;
-  //   }
-  //   else{
-  //     this._collectionListById = this.collectionListById.filter(item => item.parentName == id)
-  //   }
-  //   this.doPageChange(1);
-  // }
+  renderView(id){
+    if(id == 'all'){
+      this._collectionListById = this.allCollectionList;
+    }
+    else{
+      this._collectionListById = this.collectionListById.filter(item => item.parentName == id)
+    }
+    this.doPageChange(1);
+  }
   
-  // getAllListCollection(): Promise<any[]>{
-  //   return new Promise( (resolve, reject) => {
-  //     this.ultiService.getAllCollection().subscribe(res => {
+  getAllListCollection(): Promise<any[]>{
+    return new Promise( (resolve, reject) => {
+      this.ultiService.getAllCollection().subscribe(res => {
         
-  //       if(res && res._embedded && res._embedded.searchResult && res._embedded.searchResult._embedded && res._embedded.searchResult._embedded.objects){
-  //         let all = res._embedded.searchResult._embedded.objects;
-  //         all.forEach(item => {
-  //           this.getLogo(item._embedded.indexableObject._links['logo'].href).subscribe(logo => {
-  //             if(logo){
-  //               item['img'] = logo._links['content'].href;
+        if(res && res._embedded && res._embedded.searchResult && res._embedded.searchResult._embedded && res._embedded.searchResult._embedded.objects){
+          let all = res._embedded.searchResult._embedded.objects;
+          all.forEach(item => {
+            this.getLogo(item._embedded.indexableObject._links['logo'].href).subscribe(logo => {
+              if(logo){
+                item['img'] = logo._links['content'].href;
                 
-  //             }else{
-  //               item['img'] = 'assets/images/cover_book_enhira.png';
-  //             }
-  //           })
-  //           item['name'] = item._embedded.indexableObject.name;
-  //           item['path'] = `handle/${item._embedded.indexableObject.handle}`;
-  //           item['desc'] = item._embedded.indexableObject.metadata['dc.description.abstract'] ? item._embedded.indexableObject.metadata['dc.description.abstract'][0]['value'] : '',
-  //           item['parentName'] = item._embedded.indexableObject.metadata['dc.description.tableofcontents'] ? item._embedded.indexableObject.metadata['dc.description.tableofcontents'][0]['value'] : undefined
-  //         })
-  //         resolve(all);
-  //       }
-  //     })
-  //   })
-  // }
-  // getCollectionsByCommunityId(id) {
-  //   this.loadingCollection$.next(true);
-  //   this.ultiService.getCollectionsByCommunityId(id).pipe(
-  //     switchMap((data) => {
-  //       if (data?._embedded?.collections && data?._embedded?.collections.length > 0) {
-  //         const requests = data._embedded.collections.map(item => {
-  //           return this.getLogo(item._links['logo'].href).pipe(
-  //             map(logo => {
-  //               if (logo?._links?.content?.href) {
-  //                 item.img = logo._links.content.href;
-  //               } else {
-  //                 item.img = 'assets/images/cover_book_enhira.png';
-  //               }
-  //               return item;
-  //             })
-  //           );
-  //         });
-  //         return forkJoin(requests);
-  //       } else {
-  //         return of([]);
-  //       }
-  //     })
-  //   ).subscribe(
-  //     (collectionByComm: any[]) => {
+              }else{
+                item['img'] = 'assets/images/cover_book_enhira.png';
+              }
+            })
+            item['name'] = item._embedded.indexableObject.name;
+            item['path'] = `handle/${item._embedded.indexableObject.handle}`;
+            item['desc'] = item._embedded.indexableObject.metadata['dc.description.abstract'] ? item._embedded.indexableObject.metadata['dc.description.abstract'][0]['value'] : '',
+            item['parentName'] = item._embedded.indexableObject.metadata['dc.description.tableofcontents'] ? item._embedded.indexableObject.metadata['dc.description.tableofcontents'][0]['value'] : undefined
+          })
+          resolve(all);
+        }
+      })
+    })
+  }
+  getCollectionsByCommunityId(id) {
+    this.loadingCollection$.next(true);
+    this.ultiService.getCollectionsByCommunityId(id).pipe(
+      switchMap((data) => {
+        if (data?._embedded?.collections && data?._embedded?.collections.length > 0) {
+          const requests = data._embedded.collections.map(item => {
+            return this.getLogo(item._links['logo'].href).pipe(
+              map(logo => {
+                if (logo?._links?.content?.href) {
+                  item.img = logo._links.content.href;
+                } else {
+                  item.img = 'assets/images/cover_book_enhira.png';
+                }
+                return item;
+              })
+            );
+          });
+          return forkJoin(requests);
+        } else {
+          return of([]);
+        }
+      })
+    ).subscribe(
+      (collectionByComm: any[]) => {
         
-  //       this.collectionByComm = collectionByComm;
-  //       this.collectionPerPage = this.collectionByComm.slice(0, 4);
-  //       this.loadingCollection$.next(false);
-  //     },
-  //     (err) => {
+        this.collectionByComm = collectionByComm;
+        this.collectionPerPage = this.collectionByComm.slice(0, 4);
+        this.loadingCollection$.next(false);
+      },
+      (err) => {
        
-  //       this.loadingCollection$.next(false);
-  //     }
-  //   );
-  // }
+        this.loadingCollection$.next(false);
+      }
+    );
+  }
   
-  // getAllCommunitiesTop() {
-  //   this.loadingCommunity$.next(true);
-  //   this.ultiService.getAllCommunitiesTop().subscribe(
-  //     (data) => {
-  //       if (data?._embedded?.communities && data._embedded.communities.length > 0) {
-  //         this.communityListGroup = data._embedded.communities.map(item => ({
-  //           id: item?.id,
-  //           name: item?.name,
-  //         }));
+  getAllCommunitiesTop() {
+    this.loadingCommunity$.next(true);
+    this.ultiService.getAllCommunitiesTop().subscribe(
+      (data) => {
+        if (data?._embedded?.communities && data._embedded.communities.length > 0) {
+          this.communityListGroup = data._embedded.communities.map(item => ({
+            id: item?.id,
+            name: item?.name,
+          }));
          
-  //         const digitalComm = data._embedded.communities?.find((item)=> item?.name === 'Digital Library');
+          const digitalComm = data._embedded.communities?.find((item)=> item?.name === 'Digital Library');
 
-  //         if(digitalComm){
+          if(digitalComm){
             
-  //             this.selectedCommunity = digitalComm.id;
-  //             this.getCollectionsByCommunityId(digitalComm.id);
+              this.selectedCommunity = digitalComm.id;
+              this.getCollectionsByCommunityId(digitalComm.id);
            
-  //         }else{
-  //           if (data._embedded.communities[0]) {
-  //             this.selectedCommunity = data._embedded.communities[0].id;
-  //             this.getCollectionsByCommunityId(data._embedded.communities[0].id);
-  //           }
-  //         }
+          }else{
+            if (data._embedded.communities[0]) {
+              this.selectedCommunity = data._embedded.communities[0].id;
+              this.getCollectionsByCommunityId(data._embedded.communities[0].id);
+            }
+          }
          
-  //       }
-  //       this.loadingCommunity$.next(false);
-  //     },
-  //     (err) => {
+        }
+        this.loadingCommunity$.next(false);
+      },
+      (err) => {
        
-  //       this.loadingCommunity$.next(false);
-  //     }
-  //   );
-  // }
+        this.loadingCommunity$.next(false);
+      }
+    );
+  }
 
-  // filterGroup(){
-  //   this.collectionListById = this.allCollectionList.filter(item => item.parentName != undefined)
-  //   const hasGroup = this.collectionListById.filter(item => item._embedded.indexableObject.metadata['dc.description.tableofcontents'] && item._embedded.indexableObject.metadata['dc.description.tableofcontents'][0]['value'] !== '');
-  //   const groupedBy = hasGroup.reduce((acc, coll) => {
-  //     const by = coll._embedded.indexableObject.metadata['dc.description.tableofcontents'][0]['value'];
-  //     if (!acc[by]) {
-  //       acc[by] = [];
-  //     }
-  //     acc[by].push(coll);
-  //     return acc;
-  //   }, {});
+  filterGroup(){
+    this.collectionListById = this.allCollectionList.filter(item => item.parentName != undefined)
+    const hasGroup = this.collectionListById.filter(item => item._embedded.indexableObject.metadata['dc.description.tableofcontents'] && item._embedded.indexableObject.metadata['dc.description.tableofcontents'][0]['value'] !== '');
+    const groupedBy = hasGroup.reduce((acc, coll) => {
+      const by = coll._embedded.indexableObject.metadata['dc.description.tableofcontents'][0]['value'];
+      if (!acc[by]) {
+        acc[by] = [];
+      }
+      acc[by].push(coll);
+      return acc;
+    }, {});
 
-  //   let list = Object.keys(groupedBy).map(key =>{
-  //     const ele = {
-  //       name: key,
-  //       code: key
-  //     }
-  //     this.collectionListGroup.push(ele);
+    let list = Object.keys(groupedBy).map(key =>{
+      const ele = {
+        name: key,
+        code: key
+      }
+      this.collectionListGroup.push(ele);
      
-  //     return key;
-  //   })
+      return key;
+    })
 
-  // }
+  }
 
-  // routeToCollection(path){
-  //   this.router.navigateByUrl(`/handle/${path}`)
-  // }
-  // routeToCommunity(path){
-  //   this.router.navigateByUrl(`/handle/${path}`)
-  // }
+  routeToCollection(path){
+    this.router.navigateByUrl(`/handle/${path}`)
+  }
+  routeToCommunity(path){
+    this.router.navigateByUrl(`/handle/${path}`)
+  }
 
-  // doPageChange(event){
-  //   this.currentPage = event
-  //   this.itemsPerpage = this._collectionListById.slice((event-1)*this.pageSize, this.pageSize*event);
+  doPageChange(event){
+    this.currentPage = event
+    this.itemsPerpage = this._collectionListById.slice((event-1)*this.pageSize, this.pageSize*event);
     
-  // }
-  // doPageChangeComm(event){
-  //   this.currentPageComm = event
-  //   this.collectionPerPage = this.collectionByComm.slice((event-1)*this.pageSize, this.pageSize*event);
-  // }
+  }
+  doPageChangeComm(event){
+    this.currentPageComm = event
+    this.collectionPerPage = this.collectionByComm.slice((event-1)*this.pageSize, this.pageSize*event);
+  }
 
-  // loadFeaturedList(){
+  loadFeaturedList(){
     
-  //   this.featuredAPI().subscribe(res =>{
+    this.featuredAPI().subscribe(res =>{
       
-  //     if(res && res._embedded && res._embedded.searchResult && res._embedded.searchResult._embedded && res._embedded.searchResult._embedded.objects){
-  //       const listFeatured = res._embedded.searchResult._embedded.objects;
-  //       listFeatured.forEach(item =>{
+      if(res && res._embedded && res._embedded.searchResult && res._embedded.searchResult._embedded && res._embedded.searchResult._embedded.objects){
+        const listFeatured = res._embedded.searchResult._embedded.objects;
+        listFeatured.forEach(item =>{
          
-  //         const ele = {
-  //           name: item._embedded.indexableObject.name,
-  //           path: `handle/${item._embedded.indexableObject.handle}`,
-  //           // img: item._embedded.indexableObject._embedded.thumbnail ? imgUrl : 'assets/images/RajyaSabha.png',
-  //           img: item._embedded.indexableObject._embedded.thumbnail ? item._embedded.indexableObject._embedded.thumbnail._links['content'].href : 'assets/images/cover_book_enhira.png',
-  //         }
+          const ele = {
+            name: item._embedded.indexableObject.name,
+            path: `handle/${item._embedded.indexableObject.handle}`,
+            // img: item._embedded.indexableObject._embedded.thumbnail ? imgUrl : 'assets/images/RajyaSabha.png',
+            img: item._embedded.indexableObject._embedded.thumbnail ? item._embedded.indexableObject._embedded.thumbnail._links['content'].href : 'assets/images/cover_book_enhira.png',
+          }
          
-  //         this.featuredContent.push(ele);
-  //       })
-  //     }
-  //   })
+          this.featuredContent.push(ele);
+        })
+      }
+    })
    
-  // }
+  }
 
-  // featuredAPI(){
-  //   return this.http.get<any>(
-  //     `${this.appConfig.rest.baseUrl}/api/discover/search/objects?query=dc.featured.content:true&dsoType=ITEM&embed=thumbnail`
-  //   );
-  // }
+  featuredAPI(){
+    return this.http.get<any>(
+      `${this.appConfig.rest.baseUrl}/api/discover/search/objects?query=dc.featured.content:true&dsoType=ITEM&embed=thumbnail`
+    );
+  }
 
-  // getLogo(link){
-  //   return this.http.get<any>(
-  //     link
-  //   );
-  // }
+  getLogo(link){
+    return this.http.get<any>(
+      link
+    );
+  }
 
-  // resizeCollectionList(){
-  //   // let isXl;
-  //   let isLg;
-  //   let isMd;
-  //   let isSm;
-  //   // this.isLg$.subscribe(res => {
-  //   //   isLg = res
-  //   // })
-  //   this.isLg$.subscribe(res => {
-  //     isLg = res;
-  //   })
-  //   this.isMd$.subscribe(res => {
-  //     isMd = res;
-  //   })
-  //   this.isXsOrSm$.subscribe(res => {
-  //     isSm = res;
-  //   })
-  //  if(isLg){
-  //   this.pageSize = 3;
-  //  }
-  //  if(isMd){
-  //   this.pageSize = 2;
-  //   this.sizePagi = 3
-  //  }
-  //  if(isSm){
-  //   this.pageSize = 1;
-  //   this.sizePagi = 1;
-  //  }
-  // }
+  resizeCollectionList(){
+    // let isXl;
+    let isLg;
+    let isMd;
+    let isSm;
+    // this.isLg$.subscribe(res => {
+    //   isLg = res
+    // })
+    this.isLg$.subscribe(res => {
+      isLg = res;
+    })
+    this.isMd$.subscribe(res => {
+      isMd = res;
+    })
+    this.isXsOrSm$.subscribe(res => {
+      isSm = res;
+    })
+   if(isLg){
+    this.pageSize = 3;
+   }
+   if(isMd){
+    this.pageSize = 2;
+    this.sizePagi = 3
+   }
+   if(isSm){
+    this.pageSize = 1;
+    this.sizePagi = 1;
+   }
+  }
   ngOnDestroy(): void {
     this.subcribe.unsubscribe();
    

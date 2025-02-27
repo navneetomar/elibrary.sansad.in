@@ -1,53 +1,50 @@
-<style>
-  @media (max-width: 600px) {
-    .menu-bar-container {
-      width: 100% !important;
-    }
-  }
-  </style>
-<!-- ds-topbar will be hidden on small screens -->
+
 <ds-topbar class="d-md-block"></ds-topbar>
-<!-- <app-last-updated></app-last-updated> -->
 
-<!-- Main navigation bar with light background -->
-<nav class="navbar navbar-light bg-light" style="padding: 0 !important;">
-  <!-- Brand logo linking to the home page -->
-  <a class="navbar-brand" href="/home">
-    <img src="assets/images/Untitled-1.png" [attr.alt]="'menu.header.image.logo' | translate"
-      style="height: 80px; width: 75%; flex-shrink: 0; margin-left: 40px;" />
-  </a>
-  <div class="d-flex flex-wrap justify-content-between p-2 p-md-0 menu-bar-container">
-    <!-- Container for displaying item counts -->
-    <span [style.fontSize.px]="fontSize" class="d-flex flex-wrap justify-content-end">
-      <!-- Count of items, changes label based on mobile view -->
-      <app-count class="d-block" [label]="isMobile ? 'Total Items' : 'Total Items'" [scope]=""
-        [dsoType]="DSpaceObjectType.ITEM"></app-count>
+ <div class="container-fluid">
+  <div class="row p-1">
+    <div class="logo col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <a href="/home">
+        <img src="assets/images/Untitled-1.png" [attr.alt]="'menu.header.image.logo' | translate"
+          style="height: 80px; width: 75%; flex-shrink: 0;"/>
+      </a>
+    </div>
+    <div class="count col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      <span [style.fontSize.px]="fontSize" class="d-flex flex-wrap justify-content-end">
+        <!-- Count of items, changes label based on mobile view -->
+        <app-count class="d-block" [label]="isMobile ? 'Total Items' : 'Total Items'" [scope]=""
+          [dsoType]="DSpaceObjectType.ITEM"></app-count>
+  
+        <app-count class="d-none d-md-block"
+          [label]="isMobile ? 'Papers Laid' : 'Digitised Document Comprising Papers Laid'"
+          [scope]="'6c17e597-0efc-4518-8076-df80b21a73d3'"></app-count>
+  
+        <!-- This div is used for line break without taking extra space -->
+        <div style="flex-basis: 100%; height: 0; margin: 0; padding: 0;"></div>
+  
+        <!-- Additional counts for various document types, hidden on small screens -->
+        <app-count class="d-none d-md-block" [label]="isMobile ? 'Books & Docs' : 'Books'"
+          [scope]="'c5ba6e19-880d-4fae-accc-7c8851ede5d6'"></app-count>
+  
+        <app-count class="d-none d-md-block" [label]="'Reports'"
+          [scope]="'5923c438-7e2a-4351-9ca9-2d188621ff08'"></app-count>
+  
+        <app-count class="d-none d-md-block" [label]="'Periodicals'"
+          [scope]="'a3332ba9-a2d7-4830-97ca-428bb656287e'"></app-count>
+  
+        <app-count class="d-none d-md-block" [label]="'Bills'"
+          [scope]="'865c088e-f3e9-49ae-8c80-755e5f487a47'"></app-count>
+  
+        <app-count class="d-none d-md-block" [label]="'E-Parlib'"
+          [scope]="'ca1f325a-61ab-4d3c-857d-f48a9b78b1a2'"></app-count>
+      </span>
+    </div>
+    <div class="bar col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
 
-      <app-count class="d-none d-md-block"
-        [label]="isMobile ? 'Papers Laid' : 'Digitised Document Comprising Papers Laid'"
-        [scope]="'6c17e597-0efc-4518-8076-df80b21a73d3'"></app-count>
-
-      <!-- This div is used for line break without taking extra space -->
-      <div style="flex-basis: 100%; height: 0; margin: 0; padding: 0;"></div>
-
-      <!-- Additional counts for various document types, hidden on small screens -->
-      <app-count class="d-none d-md-block" [label]="isMobile ? 'Books & Docs' : 'Books'"
-        [scope]="'c5ba6e19-880d-4fae-accc-7c8851ede5d6'"></app-count>
-
-      <app-count class="d-none d-md-block" [label]="'Reports'"
-        [scope]="'5923c438-7e2a-4351-9ca9-2d188621ff08'"></app-count>
-
-      <app-count class="d-none d-md-block" [label]="'Periodicals'"
-        [scope]="'a3332ba9-a2d7-4830-97ca-428bb656287e'"></app-count>
-
-      <app-count class="d-none d-md-block" [label]="'Bills'"
-        [scope]="'865c088e-f3e9-49ae-8c80-755e5f487a47'"></app-count>
-
-      <app-count class="d-none d-md-block" [label]="'E-Parlib'"
-        [scope]="'ca1f325a-61ab-4d3c-857d-f48a9b78b1a2'"></app-count>
-    </span>
-
-    <!-- Login button for unauthenticated users -->
+      <div class="login-wrap" *ngIf="(isAuthenticated | async)">
+        <ds-themed-auth-nav-menu class="navbar-collapsed"></ds-themed-auth-nav-menu>
+      </div>
+      
     <div class="login-wrap" *ngIf="!(isAuthenticated | async)" style="margin-right: 10px;">
       <button class="btn login-btn" [routerLink]="'/login'" [ngClass]="{'d-none d-md-inline': isMobile}"
         style="height: 50px; width: 100px; font-size: 18px;">
@@ -55,75 +52,191 @@
       </button>
     </div>
 
-    <!-- Auth navigation menu for authenticated users -->
-    <div class="login-wrap" *ngIf="(isAuthenticated | async)">
-      <ds-themed-auth-nav-menu class="navbar-collapsed"></ds-themed-auth-nav-menu>
-    </div>
-
-    <!-- Button to show/hide navigation collapse on mobile -->
-    <div class="login-wrap">
-      <button class="btn login-btn d-md-none" (click)="showNavCollapse()">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+      <div class="login-wrap">
+        <button class="btn login-btn d-md-none" (click)="showNavCollapse()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </div>
   </div>
+ </div>
+    
+  
 
-</nav>
+
+<style>
+  .container-fluid{
+    background-color: white;
+  }
+
+/* ✅ Extra Small Devices (Phones) col */
+@media (max-width: 575px) {
+  .col-12.logo {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .col-6.count {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .col-6.bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+}
+
+/* ✅ Small Devices (Tablets) col-sm */
+@media (min-width: 576px) and (max-width: 767px) {
+  .col-sm-12.logo {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .col-sm-6.count {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .col-sm-6.bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+}
+
+/* ✅ Medium Devices (Larger Tablets & Small Laptops) col-md */
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-md-4.logo {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .col-md-6.count {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .col-md-2.bar {
+    display: flex;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+}
+
+/* ✅ Large Devices (Laptops & Desktops) col-lg */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .col-lg-4.logo {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .col-lg-6.count {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .col-lg-2.bar {
+    display: flex;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+}
+
+/* ✅ Extra Large Devices (Big Screens) col-xl */
+@media (min-width: 1200px) {
+  .col-xl-4.logo {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .col-xl-6.count {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .col-xl-2.bar {
+    display: flex;
+    align-items: center !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+}
+
+</style>
 
 <!-- Bottom navigation container -->
 <div class="bottom-nav-outer" style="line-height: 15px;">
   <div class="container box-bottom-nav" [ngClass]="{'show': isCollapse}">
-    <!-- Dark themed expandable navigation bar -->
-    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01" [ngClass]="{'show': isCollapse}">
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" (click)="isCollapse = !isCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" [ngClass]="{'show': isCollapse}" id="navbarTogglerDemo01">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item date-li">
             <div class="date-wrap">
               <span class="cal">
                 <i class="fa-regular fa-calendar"></i>
               </span>
-              <span>
-                {{date}}
-              </span>
+              <span>{{date}}</span>
               |
               <span class="clock">
                 <i class="fa-regular fa-clock"></i>
               </span>
-              <span class="hour-time">
-                {{hour}}
-              </span>
+              <span class="hour-time">{{hour}}</span>
             </div>
           </li>
-          <!-- Dynamic menu items with dropdown support -->
+          
           <li class="nav-item" [ngClass]="{'dropdown': item.children}" *ngFor="let item of menu; let i = index">
             <a class="nav-link" *ngIf="!item.children" [routerLink]="item.path"
-              (click)="setMenu(item); showNavCollapse(true)" style="text-align: left; font-size: 20px;">
-              <span>{{ item.title }}</span>
+              (click)="setMenu(item); isCollapse = false" style="text-align: left; font-size: 20px;">
+              <span class="card-text">{{ item.title }}</span>
             </a>
-            <a class="nav-link dropdown-toggle" (click)="setMenu(item); showNavCollapse(true)" *ngIf="item.children"
+            <a class="nav-link dropdown-toggle" (click)="setMenu(item)" *ngIf="item.children"
               id="{{ 'navbarDropdown' + i }}" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false" style="text-align: left; font-size: 20px;">
-              <span>{{ item.title }}</span>
+              <span class="card-text">{{ item.title }}</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-header" [ngClass]="{'show': item.isExpanded, 'slug': item.slug}"
+            <div class="dropdown-menu" [ngClass]="{'show': item.isExpanded}"
               attr.aria-labelledby="{{ 'navbarDropdown' + i }}" *ngIf="item.children">
-              <a *ngFor="let subItem of item.children" class="dropdown-item showNavCollapse(true)"
-                style="cursor: pointer; text-align: left; padding-left: 20px;" href="javascript.void(0);" (click)="removeExpanded(subItem.path)"
-                [routerLink]="subItem.path">
-                <span>{{ subItem.title }}</span>
+              <a *ngFor="let subItem of item.children" class="dropdown-item"
+                style="cursor: pointer; text-align: left; padding-left: 20px;" href="javascript:void(0);"
+                (click)="removeExpanded(subItem.path); isCollapse = false" [routerLink]="subItem.path">
+                <span class="card-text">{{ subItem.title }}</span>
               </a>
             </div>
           </li>
-          <!-- External link to the dashboard -->
+          
           <li class="nav-item">
             <a class="nav-link" target="_blank"
               href="https://lookerstudio.google.com/reporting/523515ef-b8db-4f3e-8a33-ca9ba6bd5bd5/page/0NZXE?s=rLfJwAbUBXY"
               style="text-align: left; font-size: 20px;">
-              <span>Dashboard</span>
+              <span class="card-text">Dashboard</span>
             </a>
           </li>
           <li class="nav-item d-md-none">
-            <a class="nav-link" [routerLink]="'/login'" (click)="showNavCollapse(true)"
+            <a class="nav-link" [routerLink]="'/login'" (click)="isCollapse = false"
               style="text-align: left; font-size: 20px;">Login</a>
           </li>
         </ul>
@@ -132,4 +245,19 @@
   </div>
 </div>
 
-
+<style>
+@media (max-width: 991px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #343a40;
+    z-index: 1000;
+    display: none;
+  }
+  .navbar-collapse.show {
+    display: block;
+  }
+}
+</style>

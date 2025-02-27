@@ -33,17 +33,24 @@ export class CommunityCollectionsComponent implements OnInit {
     this.ultiService.getCollectionsByCommunityId(id).pipe(
       switchMap((data) => {
         if (data?._embedded?.collections?.length > 0) {
-          this.totalItems = data._embedded.collections.length; // ✅ Total collections count
-
+          this.totalItems = data._embedded.collections.length;
+  
           const requests = data._embedded.collections.map(item => {
-            return this.getLogo(item._links['logo']?.href).pipe(
-              map(logo => {
+            const logo$ = this.getLogo(item._links['logo']?.href);
+            // Fetch item count using collection UUID
+            const itemsCount$ = item.id 
+              ? this.ultiService.getCollectionItemCount(item.id) 
+              : of(0);
+  
+            return forkJoin([logo$, itemsCount$]).pipe(
+              map(([logo, count]) => {
                 item.img = logo?._links?.content?.href || 'assets/images/cover_book_enhira.png';
+                item.numberOfItems = count; // Now correctly gets 133 from the API
                 return item;
               })
             );
           });
-
+  
           return forkJoin(requests);
         } else {
           return of([]);
@@ -52,7 +59,7 @@ export class CommunityCollectionsComponent implements OnInit {
     ).subscribe(
       (collectionByComm: any[]) => {
         this.collectionByComm = collectionByComm;
-        this.updatePagination(); // ✅ Update page data
+        this.updatePagination();
         this.loading = false;
       },
       () => {

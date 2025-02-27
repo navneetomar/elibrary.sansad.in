@@ -8,12 +8,13 @@
             <div *ngFor="let collection of paginatedCollections" class="collection-card" (click)="goToCollection(collection.id)">
                 <img [src]="collection.img" alt="Collection Image" class="collection-image">
                 <div class="collection-details">
-                    <h3>{{ collection.name }}</h3>
+                    <h3  class="card-text">{{ collection.name }}</h3>
                     <p>{{ collection.description }}</p>
+                    <p style="color:   #666;">publications available: {{ collection.numberOfItems }}</p>
                 </div>
             </div>
         </div>
-
+      
         <!-- ✅ Pagination -->
         <div class="pagination-container">
             <ngb-pagination *ngIf="totalItems > pageSize" [collectionSize]="totalItems" [page]="currentPage"

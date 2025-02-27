@@ -74,6 +74,7 @@ export class UltiService {
     );
   }
   
+  
   getCollectionsByCommunityId(id){
     return this.http.get<any>(
       `${this.appConfig.rest.baseUrl}/api/core/communities/${id}/collections?size=99`
@@ -83,6 +84,19 @@ export class UltiService {
    // ✅ Fetch logo details (Fix for your error)
    getLogoByUrl(logoUrl: string): Observable<any> {
     return this.http.get(logoUrl);
+  }
+
+  getCollectionItemCount(collectionId: string): Observable<number> {
+    const discoverUrl = `${this.appConfig.rest.baseUrl}/api/discover/search/objects`;
+    return this.http.get<any>(discoverUrl, {
+      params: {
+        scope: collectionId,
+        dsoType: 'ITEM',
+        size: '0' // Only fetch metadata, not actual items
+      }
+    }).pipe(
+      map(response => response._embedded?.searchResult?.page?.totalElements || 0)
+    );
   }
   
   /**
