@@ -21,7 +21,6 @@ export class CurrentTimeComponent implements OnInit {
 
   updateTime() {
     const now = new Date();
-    this.currentTime = now.toLocaleTimeString();
+    this.currentTime = now.toLocaleTimeString('en-GB', { hour12: false }); // 24-hour format
   }
 }
-

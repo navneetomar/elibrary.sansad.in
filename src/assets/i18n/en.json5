@@ -5448,6 +5448,7 @@
   "item.page.eperson.firstname": "First Name",
   "item.page.eperson.language": "Language",
   "item.page.eperson.lastname": "Last Name",
-  "item.page.eperson.phone": "Phone"
+  "item.page.eperson.phone": "Phone",
+  "search.filters.filter.accessionnumber.head": "Accession Number",
 }
 
