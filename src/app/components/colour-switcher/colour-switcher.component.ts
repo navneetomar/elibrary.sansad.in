@@ -26,6 +26,18 @@ export class ColourSwitcherComponent {
     this.loadTheme(themefile);
     this.currentTheme = theme;
     localStorage.setItem('theme', theme);
+    //logo handler
+    this.logoHandler(theme);
+  }
+
+  logoHandler(theme: string) {
+    if (theme === 'light') {
+      document.getElementById('light-logo').style.display = 'block';
+      document.getElementById('dark-logo').style.display = 'none';
+    } else {
+      document.getElementById('light-logo').style.display = 'none';
+      document.getElementById('dark-logo').style.display = 'block';
+    }
   }
 
   loadTheme(theme: string) {
@@ -38,9 +50,7 @@ export class ColourSwitcherComponent {
   }
 
   removeExistingTheme() {
-    const existingTheme = document.getElementById('theme-style');
-    if (existingTheme) {
-      existingTheme.remove();
-    }
+    const existingThemes = document.querySelectorAll('#theme-style');
+    existingThemes.forEach(theme => theme.remove());
   }
 }

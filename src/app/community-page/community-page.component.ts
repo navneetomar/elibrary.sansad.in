@@ -44,6 +44,14 @@ import { DSpaceObjectType } from '../core/shared/dspace-object-type.model';
  */
 export class CommunityPageComponent implements OnInit, AfterViewChecked {
 
+  textStyle = {
+    'color': 'var(--neutral-dark-grey, #666)',
+    'font-size': '16px',
+    'font-style': 'normal',
+    'font-weight': '400',
+    'line-height': '24px'
+  };
+
   public DSpaceObjectType = DSpaceObjectType;
   /**
    * The community displayed on this page

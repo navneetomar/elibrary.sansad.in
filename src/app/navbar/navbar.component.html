@@ -1,15 +1,16 @@
-
 <ds-topbar class="d-md-block"></ds-topbar>
 
  <div class="container-fluid">
   <div class="row p-1">
     <div class="logo col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <a href="/home">
-        <img src="assets/images/Untitled-1.png" [attr.alt]="'menu.header.image.logo' | translate"
-          style="height: 80px; flex-shrink: 0;"/>
+        <img src="assets/images/light-logo.png" [attr.alt]="'menu.header.image.logo' | translate"
+          style="height: 80px; flex-shrink: 0;" id="light-logo"/>
+          <img src="assets/images/dark-logo.png" [attr.alt]="'menu.header.image.logo' | translate"
+          style="height: 80px; flex-shrink: 0; display: none;" id="dark-logo"/>
       </a>
     </div>
-    <div class="count col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+    <div class="count col-6 col-sm-6 col-md-6 col-lg-6 col-xl-7">
       <span [style.fontSize.px]="fontSize" class="d-flex flex-wrap justify-content-end">
         <!-- Count of items, changes label based on mobile view -->
         <app-count class="d-block" [label]="isMobile ? 'Total Items' : 'Total Items'" [scope]=""
@@ -39,7 +40,7 @@
           [scope]="'ca1f325a-61ab-4d3c-857d-f48a9b78b1a2'"></app-count>
       </span>
     </div>
-    <div class="bar col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
+    <div class="bar col-6 col-sm-6 col-md-2 col-lg-2 col-xl-1">
 
       <div class="login-wrap" *ngIf="(isAuthenticated | async)">
         <ds-themed-auth-nav-menu class="navbar-collapsed"></ds-themed-auth-nav-menu>
@@ -114,6 +115,7 @@
     padding: 0px !important;
     margin: 0px !important;
   }
+  
 }
 
 /* ✅ Medium Devices (Larger Tablets & Small Laptops) col-md */
@@ -135,6 +137,7 @@
     align-items: center !important;
     padding: 0px !important;
     margin: 0px !important;
+    justify-content: flex-end;
   }
 }
 
@@ -164,24 +167,23 @@
 @media (min-width: 1200px) {
   .col-xl-4.logo {
     display: flex;
-    justify-content: center !important;
     align-items: center !important;
   }
-  .col-xl-6.count {
+  .col-xl-7.count {
     display: flex;
-    justify-content: flex-start;
+    align-items: center !important;
+    padding: 5px !important;
+    margin: 0px !important;
+    justify-content: flex-end;
+  }
+  .col-xl-1.bar {
+    display: flex;
     align-items: center !important;
     padding: 0px !important;
     margin: 0px !important;
-  }
-  .col-xl-2.bar {
-    display: flex;
-    align-items: center !important;
-    padding: 0px !important;
-    margin: 0px !important;
+    justify-content: flex-end;
   }
 }
-
 </style>
 
 <!-- Bottom navigation container -->
@@ -194,7 +196,7 @@
       </button>
       
       <div class="collapse navbar-collapse" [ngClass]="{'show': isCollapse}" id="navbarTogglerDemo01">
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item date-li">
             <div class="date-wrap">
               <span class="cal">
@@ -242,6 +244,9 @@
           </li>
         </ul>
       </div>
+      <div *ngIf="router.url !== '/home'">
+        <ds-search-navbar class="navbar-collapsed"></ds-search-navbar>
+      </div>      
     </nav>
   </div>
 </div>
@@ -262,3 +267,5 @@
   }
 }
 </style>
+
+

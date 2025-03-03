@@ -14,6 +14,7 @@ export class CountComponent implements OnInit {
   @Input() dsoType: string = 'ITEM'; // Default type is ITEM, can be overridden
   @Input() fontSize: string = '12px'; // If true, show title with count
   @Input() isLargeFont: boolean = false; // If true, show title with count
+  textStyle: any = {};
 
   totalItems: number = 0;
   isLoading: boolean = true;
@@ -21,14 +22,22 @@ export class CountComponent implements OnInit {
 
   baseUrl: string = ''; // Dynamic Base URL
 
-  constructor(private http: HttpClient, @Inject(APP_CONFIG) protected appConfig: AppConfig) { }
+  constructor(private http: HttpClient, @Inject(APP_CONFIG) protected appConfig: AppConfig) { 
+    
+    this.textStyle = {
+      'color': 'var(--neutral-dark-grey, #666)',
+      'font-style': 'normal',
+      'font-weight': '400',
+      'line-height': '24px'
+    };
+  }
 
   ngOnInit() {
     this.baseUrl = this.appConfig.rest.baseUrl;
     //this.baseUrl = environment.rest.baseUrl;
     this.fetchTotalItems();
     if(this.isLargeFont) {
-      this.fontSize = '20px';
+      this.fontSize = '16px';
     }
   }
 

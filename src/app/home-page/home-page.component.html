@@ -21,7 +21,7 @@ background-image: url('assets/images/parliament.webp');
   <div class="home-community">
     <div class="container wrapper-community">
       <div class="title-wrapper-community">
-        <span>Digital Library</span>
+        <a href="communities/22af6cf1-fdde-4046-8754-895c6a004a0c"><span>Digital Library</span></a> 
       </div>
       <div class="text-center" *ngIf="loadingCommunity$ | async"><ds-themed-loading></ds-themed-loading></div>
       <div class="row">
@@ -35,10 +35,11 @@ background-image: url('assets/images/parliament.webp');
             documents will be uploaded. The documents have been digitized through a NICSI vendor and
             are placed in DSpace technology. </div>
           <div class="btn-title" style="display: flex; justify-content: flex-end;margin-bottom:20px;">
-            <button class="read-more-btn" (click)="routeToWeb('assets/images/DigitalLibrary.pdf');"
+            <!-- <button class="read-more-btn" (click)="routeToWeb('assets/images/DigitalLibrary.pdf');"
               style="border-radius:10px; background: #D3D3D3; color: black; align-items: center; padding: 12px 20px; display: flex; justify-content: center; margin-left: auto;">
               <span>Read more &nbsp;<i class="fa-solid fa-plus"></i></span>
-            </button>
+            </button> -->
+            <button type="button" class="btn btn-outline-info" (click)="routeToWeb('assets/images/DigitalLibrary.pdf');">Read more..</button>
           </div>
         </div>
         <div class="col-2"></div>
@@ -57,7 +58,7 @@ background-image: url('assets/images/parliament.webp');
   <div class="home-collection" style="margin-top:-80px;">
     <div class="container wrapper-collection">
       <div class="title-wrapper-collection">
-        <span>Digital Business Document(E-Parlib)</span>
+        <a href="communities/ca1f325a-61ab-4d3c-857d-f48a9b78b1a2"><span>Digital Business Document(E-Parlib)</span></a> 
       </div>
       <div class="row">
         <div class="col-2"></div>
@@ -74,10 +75,11 @@ background-image: url('assets/images/parliament.webp');
           </div>
 
           <div class="btn-title" style="display: flex; justify-content: flex-end;margin-bottom:20px;">
-            <button class="read-more-btn" (click)="routeToWeb('assets/images/EParlib.pdf');"
+            <!-- <button class="read-more-btn" (click)="routeToWeb('assets/images/EParlib.pdf');"
               style="border-radius:10px; background: #D3D3D3; color: black; align-items: center; padding: 12px 20px; display: flex; justify-content: center; margin-left: auto;">
               <span>Read more &nbsp;<i class="fa-solid fa-plus"></i></span>
-            </button>
+            </button> -->
+            <button type="button" class="btn btn-outline-info" (click)="routeToWeb('assets/images/EParlib.pdf');">Read more..</button>
           </div>
         </div>
         <div class="col-2"></div>

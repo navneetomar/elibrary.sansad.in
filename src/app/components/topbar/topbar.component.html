@@ -1,27 +1,32 @@
 <div class="topbar">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-6">
-          <ul class="topbar-ul">
-            <li class="topbar-li">
-              <ds-current-date></ds-current-date>
-            </li>
-            <li class="topbar-li">
-              <ds-current-time></ds-current-time>
-            </li>
-            <li class="topbar-li">
-              <ds-colour-switcher></ds-colour-switcher>
-            </li>
-            <li class="topbar-li">
-              <ds-font-resizer></ds-font-resizer>
-            </li>
-            <li class="topbar-li">
-              <div id="google_translate_element"></div>
-            </li>
-          </ul>
-        </div>
+  <div class="container-fluid">
+    <div class="row d-none d-md-flex">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <ul class="topbar-ul">
+          <li class="topbar-li">
+            <ds-current-date></ds-current-date>
+          </li>
+          <li class="topbar-li">
+            <ds-current-time></ds-current-time>
+          </li>
+          <li class="topbar-li">
+            <ds-colour-switcher></ds-colour-switcher>
+          </li>
+          <li class="topbar-li">
+            <ds-font-resizer></ds-font-resizer>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="row d-flex d-md-none">
+      <div class="col-5 d-flex align-items-center justify-content-center p-0 m-0"><ds-current-date></ds-current-date>
+      </div>
+      <div class="col-4 d-flex align-items-center justify-content-center p-0 m-0"><ds-current-time></ds-current-time>
+      </div>
+      <div class="col-3 d-flex align-items-center justify-content-center p-0 m-0">
+        <ds-colour-switcher></ds-colour-switcher></div>
+    </div>
   </div>
-  
+</div>
+

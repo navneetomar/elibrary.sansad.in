@@ -74,7 +74,7 @@
             <div class="box-detail-infor flex-full">
               <p class="title-comm">{{titleBanner}}</p>
               <p class="number-publications">
-                <app-count [scope]="communityPayload.id" [isLargeFont]="true" [label]="'Publications available'"
+                <app-count [scope]="communityPayload.id" [isLargeFont]="true" [ngStyle]="textStyle" [label]="'Publications available'"
                   [dsoType]="DSpaceObjectType.ITEM"></app-count>
               </p>
               <!-- <p><a [href]="[communityPayload.handle]" *ngIf="communityPayload.handle"
