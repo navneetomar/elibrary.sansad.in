@@ -38,5 +38,6 @@ export class CollectionGridElementComponent extends AbstractListableElementCompo
 
   get object(): Collection {
     return this._object;
+    
   }
 }

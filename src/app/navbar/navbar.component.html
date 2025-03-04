@@ -190,26 +190,26 @@
 <div class="bottom-nav-outer" style="line-height: 15px;">
   <div class="container box-bottom-nav" [ngClass]="{'show': isCollapse}">
     
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark p-0">
       <button class="navbar-toggler" type="button" (click)="isCollapse = !isCollapse">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon d-flex align-items-center justify-content-center"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
       </button>
       
-      <div class="collapse navbar-collapse" [ngClass]="{'show': isCollapse}" id="navbarTogglerDemo01">
+      <div class="collapse navbar-collapse p-2" [ngClass]="{'show': isCollapse}" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item date-li">
+          <!-- <li class="nav-item date-li">
             <div class="date-wrap">
               <span class="cal">
                 <i class="fa-regular fa-calendar"></i>
-              </span>
+              </span>&nbsp;
               <span>{{date}}</span>
               |
               <span class="clock">
                 <i class="fa-regular fa-clock"></i>
-              </span>
+              </span>&nbsp;
               <span class="hour-time">{{hour}}</span>
             </div>
-          </li>
+          </li> -->
           
           <li class="nav-item" [ngClass]="{'dropdown': item.children}" *ngFor="let item of menu; let i = index">
             <a class="nav-link" *ngIf="!item.children" [routerLink]="item.path"
@@ -240,7 +240,7 @@
           </li>
           <li class="nav-item d-md-none">
             <a class="nav-link" [routerLink]="'/login'" (click)="isCollapse = false"
-              style="text-align: left; font-size: 20px;">Login</a>
+              style="text-align: left; font-size: 20px;"><span class="card-text">Login</span></a>
           </li>
         </ul>
       </div>
