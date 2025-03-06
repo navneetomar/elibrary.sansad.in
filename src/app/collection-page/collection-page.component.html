@@ -93,16 +93,18 @@
       </div>
       <div class="nav-sub-page" *ngVar="collectionRD$ | async as collectionRD">
         
-        <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut>
-          <div class="search-form mt-2" *ngIf="collectionRD?.payload as collection">
+        <div *ngIf="collectionRD?.hasSucceeded && collectionRD?.payload as collection" @fadeInOut>
+          <div class="search-form mt-2">
             <ds-search-form
               [inPlaceSearch]="false"
-              [searchPlaceholder]="'home.search-form.placeholder' | translate"
+              [searchPlaceholder]="'home.search-form.placeholder.collection' | translate: { titleBanner: titleBanner }"
               [hasBackGround]="true"
-              [collectionId]="collection.id"
-            style="width: 100%;"></ds-search-form>
+              [collectionId]="collection?.id"
+              style="width: 100%;">
+            </ds-search-form>
           </div>
         </div>
+        
        
       </div>
       <div

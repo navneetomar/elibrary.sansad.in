@@ -10,6 +10,7 @@
   <div class="card-body" [ngbTooltip]="tipContent">
     <h4 class="card-title limit-p">{{object.name}}</h4>
     <p *ngIf="object.shortDescription" class="card-text limit-p">{{object.shortDescription}}</p>
+    <p class="card-text limit-p">Publication Available: <span>{{ totalItems }}</span></p>
     <!-- <div *ngIf="linkType != linkTypes.None" class="text-center">
       <a [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/collections/', object.id]" class="lead btn btn-primary viewButton">{{ 'search.results.view-result' | translate}}</a>
     </div> -->

@@ -6,6 +6,7 @@ import { listableObjectComponent } from '../../object-collection/shared/listable
 import { hasNoValue, hasValue } from '../../empty.util';
 import { followLink } from '../../utils/follow-link-config.model';
 import { LinkService } from '../../../core/cache/builders/link.service';
+import { UltiService } from '../../../core/services/ulti.service';
 
 /**
  * Component representing a grid element for collection
@@ -19,13 +20,25 @@ import { LinkService } from '../../../core/cache/builders/link.service';
 export class CollectionTableElementComponent extends AbstractListableElementComponent<
   Collection
 > {
+
+  public totalItems: number = 0;
   private _object: Collection;
 
-  constructor(private linkService: LinkService) {
+  constructor(private ultiService: UltiService, private linkService: LinkService) {
     super();
   }
 
   // @ts-ignore
+  // @Input() set object(object: Collection) {
+  //   this._object = object;
+  //   if (hasValue(this._object) && hasNoValue(this._object.logo)) {
+  //     this.linkService.resolveLink<Collection>(
+  //       this._object,
+  //       followLink('logo')
+  //     );
+  //   }
+  // }
+
   @Input() set object(object: Collection) {
     this._object = object;
     if (hasValue(this._object) && hasNoValue(this._object.logo)) {
@@ -33,6 +46,14 @@ export class CollectionTableElementComponent extends AbstractListableElementComp
         this._object,
         followLink('logo')
       );
+    }
+  
+    // Fetch and set item count
+    if (hasValue(this._object)) {
+      this.ultiService.getCollectionItemCount(this._object.id).subscribe(count => {
+        this.totalItems = count;
+        console.log('Total Items', this.totalItems);
+      });
     }
   }
 

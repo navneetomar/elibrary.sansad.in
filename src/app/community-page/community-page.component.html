@@ -87,12 +87,18 @@
 
         <div class="nav-sub-page" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
 
-          <ng-container *ngIf="communityRD?.payload; let communityPayload">
+          <ng-container *ngIf="communityRD?.payload as communityPayload">
             <div class="search-form mt-2">
-              <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"
-                [hasBackGround]="true" [communityId]="communityPayload.id" style="width: 100%;"></ds-search-form>
+              <ds-search-form 
+                [inPlaceSearch]="false" 
+                [searchPlaceholder]="'home.search-form.placeholder.community' | translate: { titleBanner: titleBanner }"
+                [hasBackGround]="true" 
+                [communityId]="communityPayload?.id" 
+                style="width: 100%;">
+              </ds-search-form>
             </div>
           </ng-container>
+          
         </div>
         <div class="community-page" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
           <div *ngIf="communityRD?.payload; let communityPayload">
