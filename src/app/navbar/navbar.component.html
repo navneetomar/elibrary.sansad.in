@@ -47,8 +47,7 @@
       </div>
       
     <div class="login-wrap" *ngIf="!(isAuthenticated | async)" style="margin-right: 10px;">
-      <button class="btn login-btn" [routerLink]="'/login'" [ngClass]="{'d-none d-md-inline': isMobile}"
-        style="height: 50px; width: 100px; font-size: 18px;">
+      <button class="btn login-btn" [routerLink]="'/login'" [ngClass]="{'d-none d-md-inline': isMobile}">
         <i class="fa-solid fa-user"></i> &nbsp;Login
       </button>
     </div>
@@ -59,13 +58,8 @@
         </button>
       </div>
     </div>
-    
   </div>
  </div>
-    
-  
-
-
 <style>
   .container-fluid{
     background-color: white;
@@ -115,7 +109,6 @@
     padding: 0px !important;
     margin: 0px !important;
   }
-  
 }
 
 /* ✅ Medium Devices (Larger Tablets & Small Laptops) col-md */
@@ -197,20 +190,6 @@
       
       <div class="collapse navbar-collapse p-2" [ngClass]="{'show': isCollapse}" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <!-- <li class="nav-item date-li">
-            <div class="date-wrap">
-              <span class="cal">
-                <i class="fa-regular fa-calendar"></i>
-              </span>&nbsp;
-              <span>{{date}}</span>
-              |
-              <span class="clock">
-                <i class="fa-regular fa-clock"></i>
-              </span>&nbsp;
-              <span class="hour-time">{{hour}}</span>
-            </div>
-          </li> -->
-          
           <li class="nav-item" [ngClass]="{'dropdown': item.children}" *ngFor="let item of menu; let i = index">
             <a class="nav-link" *ngIf="!item.children" [routerLink]="item.path"
               (click)="setMenu(item); isCollapse = false" style="text-align: left; font-size: 20px;">

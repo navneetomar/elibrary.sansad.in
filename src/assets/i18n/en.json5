@@ -1808,6 +1808,8 @@
 
   "home.breadcrumbs": "Homepage",
 
+  "home.search-form.placeholder": "Search...",
+
   "home.search-form.placeholder.community": "Search in {{titleBanner}}",
 
   "home.search-form.placeholder.collection": "Search in {{titleBanner}}",
