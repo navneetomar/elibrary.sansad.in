@@ -25,7 +25,12 @@
   <div class="col-10">
     <div class="content-wrapper">
       <ds-type-badge *ngIf="showLabel" [object]="object" [viewMode]="'table'"></ds-type-badge>
-      <span class="result-title">{{object.name}}&nbsp;<span class="badge badge-pill badge-secondary align-self-center archived-items-lead ng-star-inserted">{{ totalItems }}</span></span>
+      <span class="result-title">{{object.name}}&nbsp; <span 
+        *ngIf="totalItems && totalItems > 0" 
+        class="badge badge-pill badge-secondary align-self-center archived-items-lead ng-star-inserted"
+      >
+        {{ totalItems }}
+      </span></span>
       <p *ngIf="object.firstMetadataValue('dc.description')" class="result-desc">
         {{
           object.firstMetadataValue('dc.description')

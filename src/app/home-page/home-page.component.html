@@ -1,49 +1,60 @@
-<!-- <ds-themed-home-news></ds-themed-home-news> -->
-<div class="banner" style="
-background-image: url('assets/images/parliament.webp'); 
-">
-  <div class="container-search-view">
-    <ng-container *ngIf="site$ | async as site">
-      <ds-view-tracker [object]="site"></ds-view-tracker>
-    </ng-container>
-    <div class="search-field row">
-      <div class="col-lg-1 col-md-12"></div>
-      <div class="col-lg-10 col-md-12">
-        <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"
-          [hasChooseType]=" true" style="width: 100%;"></ds-search-form>
+<div class="container-fluid p-0 m-0">
+  <!-- Header Banner Section -->
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="banner" style="background-image: url('assets/images/parliament.webp');">
+        <!-- Yeh section banner image ke upar search aur view tracker show karega -->
+        <div class="overlay-content">
+          <ng-container *ngIf="site$ | async as site">
+            <ds-view-tracker [object]="site"></ds-view-tracker>
+            <!-- Yeh component site ka view track karega -->
+          </ng-container>
+
+          <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"
+            [hasChooseType]="true">
+          </ds-search-form>
+          <!-- Yeh search box hai jo homepage pe dikh raha hai -->
+        </div>
       </div>
-      <!-- <div class="col-lg-1 col-md-12"></div> -->
     </div>
   </div>
 </div>
 
+<!-- Digital Library Section -->
 <div class="content-home-top">
   <div class="home-community">
     <div class="container wrapper-community">
       <div class="title-wrapper-community">
-        <a href="communities/22af6cf1-fdde-4046-8754-895c6a004a0c"><span>Digital Library</span></a> 
+        <a href="communities/22af6cf1-fdde-4046-8754-895c6a004a0c"><span>Digital Library</span></a>
+        <!-- Digital Library ka title aur uska link -->
       </div>
-      <div class="text-center" *ngIf="loadingCommunity$ | async"><ds-themed-loading></ds-themed-loading></div>
+
+      <!-- Agar data load ho raha hai to spinner show hoga -->
+      <div class="text-center" *ngIf="loadingCommunity$ | async">
+        <ds-themed-loading></ds-themed-loading>
+      </div>
+
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
           <div class="desc-title card-text" style="text-align:justify">
-            The second phase of the journey of Digitization is enabling accessibility of more than one
-            lakh digitized documents comprising approx. 1 crore pages from selective collections of the
-            Parliament Library viz. Papers Laid on the Table of House, Reports, Books, Acts, Bills and
-            Periodicals etc. 89,000 documents are already made available and shortly all the digitized
-            documents will be uploaded. The documents have been digitized through a NICSI vendor and
-            are placed in DSpace technology. </div>
+            <!-- Digital Library ke bare me description -->
+            The second phase of the journey of Digitization is enabling accessibility of more than one lakh digitized
+            documents comprising approx. 1 crore pages from selective collections of the Parliament Library viz. Papers
+            Laid on the Table of House, Reports, Books, Acts, Bills and Periodicals etc. 89,000 documents are already
+            made available and shortly all the digitized documents will be uploaded. The documents have been digitized
+            through a NICSI vendor and are placed in DSpace technology.
+          </div>
           <div class="btn-title" style="display: flex; justify-content: flex-end;margin-bottom:20px;">
-            <!-- <button class="read-more-btn" (click)="routeToWeb('assets/images/DigitalLibrary.pdf');"
-              style="border-radius:10px; background: #D3D3D3; color: black; align-items: center; padding: 12px 20px; display: flex; justify-content: center; margin-left: auto;">
-              <span>Read more &nbsp;<i class="fa-solid fa-plus"></i></span>
-            </button> -->
-            <button type="button" class="btn btn-outline-info" (click)="routeToWeb('assets/images/DigitalLibrary.pdf');">Read more..</button>
+            <button type="button" class="btn btn-outline-info"
+              (click)="routeToWeb('assets/images/DigitalLibrary.pdf');">Read more..</button>
+            <!-- Read More button jo ek PDF ko open karega -->
           </div>
         </div>
         <div class="col-2"></div>
       </div>
+
+      <!-- Community ke collections show karega -->
       <div class="view-wrap">
         <div class="text-center" *ngIf="loadingCollection$ | async">
           <ds-themed-loading [spinner]="true"></ds-themed-loading>
@@ -53,52 +64,57 @@ background-image: url('assets/images/parliament.webp');
     </div>
   </div>
 
-
-
+  <!-- Digital Business Document Section -->
   <div class="home-collection" style="margin-top:-80px;">
     <div class="container wrapper-collection">
       <div class="title-wrapper-collection">
-        <a href="communities/ca1f325a-61ab-4d3c-857d-f48a9b78b1a2"><span>Digital Business Document(E-Parlib)</span></a> 
+        <a href="communities/ca1f325a-61ab-4d3c-857d-f48a9b78b1a2"><span>Digital Business Document (E-Parlib)</span></a>
+        <!-- Digital Business Document ka title aur uska link -->
       </div>
+
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
           <div class="desc-title card-text" style="text-align:justify">
-
-            The digitized version of treasured and historic legislative debates, tracing the growth and
-            development of modern parliamentary institutions in India, from 1854 to 1952, debates
-            from 1 st to 18 th Lok Sabha, Reports of several Parliamentary Committees, Presidential
-            Addresses to the Parliament, PM Speeches, Budget Speeches, and several other
-            publications of the Lok Sabha, comprising more than 12 lakh documents having approx.
-            50 lakh digitized pages are being migrated to this segment of the website in 7.4 version
-            of DSpace technology with customized features.
+            <!-- E-Parlib section ka description -->
+            The digitized version of treasured and historic legislative debates, tracing the growth and development of
+            modern parliamentary institutions in India, from 1854 to 1952, debates from 1 st to 18 th Lok Sabha, Reports
+            of several Parliamentary Committees, Presidential Addresses to the Parliament, PM Speeches, Budget Speeches,
+            and several other publications of the Lok Sabha, comprising more than 12 lakh documents having approx. 50
+            lakh digitized pages are being migrated to this segment of the website in 7.4 version of DSpace technology
+            with customized features.
           </div>
 
           <div class="btn-title" style="display: flex; justify-content: flex-end;margin-bottom:20px;">
-            <!-- <button class="read-more-btn" (click)="routeToWeb('assets/images/EParlib.pdf');"
-              style="border-radius:10px; background: #D3D3D3; color: black; align-items: center; padding: 12px 20px; display: flex; justify-content: center; margin-left: auto;">
-              <span>Read more &nbsp;<i class="fa-solid fa-plus"></i></span>
-            </button> -->
-            <button type="button" class="btn btn-outline-info" (click)="routeToWeb('assets/images/EParlib.pdf');">Read more..</button>
+            <button type="button" class="btn btn-outline-info" (click)="routeToWeb('assets/images/EParlib.pdf');">
+              Read more..
+            </button>
+            <!-- Read More button jo ek PDF ko open karega -->
           </div>
         </div>
         <div class="col-2"></div>
       </div>
+
+      <!-- E-Parlib section ka collection show karega -->
       <ds-community-collections [collection_id]="'ca1f325a-61ab-4d3c-857d-f48a9b78b1a2'"></ds-community-collections>
     </div>
   </div>
 
+  <!-- Middle Banner Section -->
   <div class="banner-middle">
     <img src="assets/images/banner-middle.png" alt="" style="width:100%;">
+    <!-- Ek aur banner image jo section ko separate karne ke liye use ho rahi hai -->
   </div>
 
+  <!-- Helpful Resources Section -->
   <div class="container">
     <div class="row">
       <div class="col-xl-1 col-lg-1 col-md-12"></div>
       <div class="wrapper-helpful col-xl-10 col-lg-10 col-md-12 col-12">
-        <p class="helpful-title">
-          Helpful Resources
-        </p>
+        <p class="helpful-title">Helpful Resources</p>
+        <!-- Helpful Resources title -->
+
+        <!-- Agar resources available hai to unko show karega -->
         <div class="helpful-banner row" *ngIf="helpfulImage">
           <div class="helpful-img col-xl-4 col-lg-6 col-sm-6 col-12" *ngFor="let item of helpfulImage">
             <button type="button" class="btn btn-primary"
@@ -111,6 +127,7 @@ background-image: url('assets/images/parliament.webp');
                 <p class="helpul-desc-title" [ngStyle]="{'color': item.textColor}">{{item.description}}</p>
               </div>
             </button>
+            <!-- Button jo external link pe navigate karega -->
           </div>
         </div>
       </div>

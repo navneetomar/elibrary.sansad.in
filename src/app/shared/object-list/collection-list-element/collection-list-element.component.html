@@ -5,10 +5,14 @@
   [routerLink]="['/collections/' + object.id]"
   class="lead link-collection"
 >
-  {{ object.name }} <span class="badge badge-pill badge-secondary align-self-center archived-items-lead ng-star-inserted">{{ totalItems }}</span>
+  {{ object.name }} 
+  <span 
+    *ngIf="totalItems && totalItems > 0" 
+    class="badge badge-pill badge-secondary align-self-center archived-items-lead ng-star-inserted"
+  >
+    {{ totalItems }}
+  </span>
 </a>
-
-
 
 <!-- <a
   *ngIf="linkType != linkTypes.None"
@@ -19,9 +23,6 @@
 >
   {{ object.name }}
 </a> -->
-
-
-
 <span *ngIf="linkType == linkTypes.None" class="lead">
   {{ object.name }}
 </span>

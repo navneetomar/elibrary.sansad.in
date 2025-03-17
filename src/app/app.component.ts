@@ -42,6 +42,7 @@ import { ModalBeforeDismiss } from './shared/interfaces/modal-before-dismiss.int
 })
 export class AppComponent implements OnInit, AfterViewInit {
   notificationOptions;
+  showScrollButton: boolean = false;
   models;
 
   /**
@@ -116,6 +117,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.dispatchWindowSize(this._window.nativeWindow.innerWidth, this._window.nativeWindow.innerHeight);
  
    
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.showScrollButton = window.scrollY > 200; // 200px se upar scroll hone par button dikhega
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
  

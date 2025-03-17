@@ -11,6 +11,15 @@ a {
   position: relative;
 }
 
+.overlay-content {
+  position: absolute;
+  top: 95%; /* Adjust to vertically center */
+  left: 50%; /* Adjust to horizontally center */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; /* Adjust based on your background image */
+}
+
 .carousel {
   position: relative;
   width: 100%;
@@ -1077,3 +1086,6 @@ width:1200px;
   
   }
 }
+
+
+

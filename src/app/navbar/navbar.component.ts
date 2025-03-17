@@ -39,6 +39,7 @@ import { DSpaceObjectType } from '../core/shared/dspace-object-type.model';
 })
 export class NavbarComponent extends MenuComponent {
 
+  isSticky: boolean = false; // Default state
   isMobile: boolean = window.innerWidth < 768;
 
   @HostListener('window:resize', ['$event'])
@@ -346,6 +347,15 @@ dash = {
     this.isCollapse = forceClose ? false : !this.isCollapse;
   }
   
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > 100) { // 100px scroll hone par sticky ho jayega
+      this.isSticky = true;
+    } else {
+      this.isSticky = false;
+    }
+  }
 
   setMenu(item) {
     this.menu.forEach(sub => {

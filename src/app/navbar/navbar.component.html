@@ -180,12 +180,14 @@
 </style>
 
 <!-- Bottom navigation container -->
-<div class="bottom-nav-outer" style="line-height: 15px;">
+<div class="bottom-nav-outer" [ngClass]="{'sticky-nav': isSticky}" style="line-height: 15px;">
   <div class="container box-bottom-nav" [ngClass]="{'show': isCollapse}">
     
     <nav class="navbar navbar-expand-md navbar-dark bg-dark p-0">
       <button class="navbar-toggler" type="button" (click)="isCollapse = !isCollapse">
-        <span class="navbar-toggler-icon d-flex align-items-center justify-content-center"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
+        <span class="navbar-toggler-icon d-flex align-items-center justify-content-center">
+          <i class="fa fa-angle-up" aria-hidden="true"></i>
+        </span>
       </button>
       
       <div class="collapse navbar-collapse p-2" [ngClass]="{'show': isCollapse}" id="navbarTogglerDemo01">
@@ -230,7 +232,27 @@
   </div>
 </div>
 
+
 <style>
+  /* Default state (navbar normal position pe rahega) */
+.bottom-nav-outer {
+  position: relative;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Jab scroll up kare to navbar sticky ho jaye */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+
 @media (max-width: 991px) {
   .navbar-collapse {
     position: absolute;
