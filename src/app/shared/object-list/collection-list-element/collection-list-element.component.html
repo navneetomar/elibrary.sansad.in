@@ -6,26 +6,14 @@
   class="lead link-collection"
 >
   {{ object.name }} 
-  <span 
-    *ngIf="totalItems && totalItems > 0" 
-    class="badge badge-pill badge-secondary align-self-center archived-items-lead ng-star-inserted"
-  >
-    {{ totalItems }}
+  <span class="badge badge-pill badge-secondary align-self-center archived-items-lead">
+    <ng-container *ngIf="totalItems !== undefined && totalItems !== null && totalItems !== 0; else loading">
+      {{ totalItems }}
+    </ng-container>
   </span>
 </a>
 
-<!-- <a
-  *ngIf="linkType != linkTypes.None"
-  [target]="linkType == linkTypes.ExternalLink ? '_blank' : '_self'"
-  rel="noopener noreferrer"
-  (click)="openCollectionBySearchScope(object.id)"
-  class="lead link-collection"
->
-  {{ object.name }}
-</a> -->
-<span *ngIf="linkType == linkTypes.None" class="lead">
-  {{ object.name }}
-</span>
-<div *ngIf="object.shortDescription" class="text-muted abstract-text">
-  {{ object.shortDescription}}
-</div>
+<!-- Animated Dots Inside Badge -->
+<ng-template #loading>
+  <span class="dots-loading"></span>
+</ng-template>
