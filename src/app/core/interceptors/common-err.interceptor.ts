@@ -39,7 +39,7 @@ export class CommonErrInterceptor implements HttpInterceptor {
                
                 if(this.router.url!="/home" ){
                 if(  errResp == true){
-                    this.router.navigate([ERR_PAGE]);          
+                    //this.router.navigate([ERR_PAGE]);          
                 }
             }
                 if(this.router.url=="/err"){
